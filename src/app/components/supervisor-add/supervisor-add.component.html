@@ -1,0 +1,27 @@
+<h4 mat-dialog-title class="bold pb-2">Add Supervisor</h4>
+<div mat-dialog-content>
+  <form [formGroup]="addForm" (ngSubmit)="addForm.valid && onSubmit()" novalidate>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+      <mat-error *ngIf="errorHandling('name', 'required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field>
+      <mat-label>Line</mat-label>
+      <mat-select multiple formControlName="lines">
+        <mat-option *ngFor="let line of lines" [value]="line.id">
+          {{line.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('lines', 'required')">
+        Lines is required
+      </mat-error>
+    </mat-form-field> -->
+    <!-- <mat-slide-toggle formControlName="active" #active></mat-slide-toggle> -->
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <input type="submit" mat-raised-button class="btn btn-danger" value="Add" [disabled]="addForm.invalid">
+    </div>
+  </form>
+</div>

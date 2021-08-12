@@ -1,0 +1,44 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title ">Line</h4>
+              <p class="card-category">List of Tailoring Lines</p>
+            </div>
+            <div class="float-right">
+              <button mat-mini-fab color="warn" aria-label="Add Line" (click)="onAddLine()">
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let obj of lines">
+                    <td>{{obj.id}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>
+                      <mat-slide-toggle [checked]="obj.isActive" (change)="onToggleActive(obj)">
+                        <span *ngIf="obj.isActive">Active</span>
+                        <span *ngIf="!obj.isActive">Inactive</span>
+                      </mat-slide-toggle>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

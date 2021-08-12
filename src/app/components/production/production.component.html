@@ -1,0 +1,40 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title">Production</h4>
+              <!-- <p class="card-category">List of supervisors</p> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>Date</th>
+                  <th>Zone</th>
+                  <th>Line</th>
+                  <th>Hour</th>
+                  <th>Output</th>
+                  <th> 
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let obj of productions">
+                    <td>{{obj.date}}</td>
+                    <td>{{obj.zone}}</td>
+                    <td>{{obj.line}}</td>
+                    <td>{{obj.production_hour}}</td>
+                    <td class="text-primary">{{obj.output}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

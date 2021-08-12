@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <div class="float-left">
+                <h4 class="card-title ">Target</h4>
+                <p class="card-category">List of Target</p>
+              </div>
+              <div class="float-right">
+                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
+                  <span class="material-icons">add</span>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="text-primary">
+                    <th>Zone</th>
+                    <th>Line</th>
+                    <th>Target</th>
+                    <th>Production Hour</th>
+                  </thead>
+                  <tbody>
+                    <!-- <tr *ngFor="let target of targets">
+                        <td>{{target.zone}}</td>
+                        <td>{{target.line}}</td>
+                        <td>{{target.target}}</td>
+                        <td>{{target.productionHour}}</td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

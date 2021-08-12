@@ -1,0 +1,63 @@
+<h4 mat-dialog-title class="bold pb-2">Add Target</h4>
+<div mat-dialog-content>
+  <app-loader *ngIf="flags.isLoading"></app-loader>
+  <form [formGroup]="addForm" (ngSubmit)="addForm.valid && onSubmit()" novalidate *ngIf="!flags.isLoading">
+    <!-- Zone Line Target Production Hour -->
+    <mat-form-field appearance="fill">
+      <mat-label>Daily Target</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfTarget" placeholder="Daily Target">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="errorHandling('dateOfTarget', 'required')">
+        Daily Target is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Zone</mat-label>
+      <mat-select formControlName="zone" (selectionChange)="onZoneChange($event)">
+        <mat-option *ngFor="let zone of zones" [value]="zone.id">
+          {{zone.zone_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('zone', 'required')">
+        Zone is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Line</mat-label>
+      <mat-select formControlName="line" multiple>
+        <mat-option *ngFor="let line of lines" [value]="line.id">
+          {{line.line_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('line', 'required')">
+        Line is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Production Hour</mat-label>
+      <mat-select formControlName="productionHour">
+        <mat-option *ngFor="let productionHour of [].constructor(24); let i = index" [value]="i + 1">
+          {{i + 1}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('productionHour', 'required')">
+        Production Hour is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Target" formControlName="target">
+      <mat-error *ngIf="errorHandling('target', 'required')">
+        Target is required
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button type="submit" mat-raised-button class="btn btn-danger" [disabled]="addForm.invalid || flags.submitting">
+        <span *ngIf="!flags.submitting">Add</span>
+        <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title ">Supervisor</h4>
+              <p class="card-category">List of supervisors</p>
+            </div>
+            <div class="float-right">
+              <button mat-mini-fab color="warn" aria-label="Add Supervisor" (click)="onAddSupervisor()">
+                <!-- <mat-icon><i class="fa fa-plus fa-2x" aria-hidden="true"></i></mat-icon>
+                 -->
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <!-- <th>Lines Allocated</th> -->
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sup of supervisors">
+                    <td>{{sup.id}}</td>
+                    <td>{{sup.name}}</td>
+                    <!-- <td>{{sup.linesAllocated}}</td> -->
+                    <td>
+                      <mat-slide-toggle [checked]="sup.isActive" (change)="onToggleActive(sup)">
+                        <span *ngIf="sup.isActive">Active</span>
+                        <span *ngIf="!sup.isActive">Inactive</span>
+                      </mat-slide-toggle>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

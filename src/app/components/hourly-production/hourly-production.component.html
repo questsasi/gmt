@@ -1,0 +1,98 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title ">Hourly Production</h4>
+              <!-- <p class="card-category">List of supervisors</p> -->
+            </div>
+          </div>
+          <div class="card-body">
+            {{addForm.value | json}}
+            <form [formGroup]="addForm" autocomplete="off" (ngSubmit)="addForm.valid && onSubmit()" novalidate>
+              <mat-form-field>
+                <mat-label>Hour</mat-label>
+                <mat-select formControlName="hour">
+                  <mat-option *ngFor="let hr of [].constructor(24); let i = index;" [value]="i + 1">
+                    {{i + 1}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('hour', 'required')">
+                  Hour is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Working (Minutes)" formControlName="working" min="0" max="60">
+                <mat-error *ngIf="errorHandling('working', 'required')">
+                  Working (Minutes) is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Supervisor</mat-label>
+                <mat-select formControlName="supervisor">
+                  <mat-option *ngFor="let supervisor of supervisors" [value]="supervisor.id">
+                    {{supervisor.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('supervisor', 'required')">
+                  Supervisor is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Output (in pieces)" formControlName="output" min="0">
+                <mat-error *ngIf="errorHandling('output', 'required')">
+                  Output (in pieces) is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Defect (in pieces)" formControlName="defect" min="0">
+                <mat-error *ngIf="errorHandling('defect', 'required')">
+                  Defect (in pieces) is required
+                </mat-error>
+              </mat-form-field>
+              <mat-slide-toggle formControlName="outage" #outage>Outage</mat-slide-toggle>
+              <ng-container *ngIf="addForm.value.outage">
+                <mat-form-field>
+                  <input matInput type="number" placeholder="Quality downtime" formControlName="qualityDowntime" min="0" max="60">
+                  <mat-error *ngIf="errorHandling('qualityDowntime', 'required')">
+                    Quality downtime is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput type="number" placeholder="Man power downtime" formControlName="manPowerDowntime" min="0" max="60">
+                  <mat-error *ngIf="errorHandling('manPowerDowntime', 'required')">
+                    Man power downtime is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput type="number" placeholder="Planning downtime" formControlName="planningDowntime" min="0" max="60">
+                  <mat-error *ngIf="errorHandling('planningDowntime', 'required')">
+                    Planning downtime is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput type="number" placeholder="Machine downtime" formControlName="machineDowntime" min="0" max="60">
+                  <mat-error *ngIf="errorHandling('machineDowntime', 'required')">
+                    Machine downtime is required
+                  </mat-error>
+                </mat-form-field>
+              </ng-container>
+              <mat-form-field>
+                <textarea matInput placeholder="Remarks" formControlName="remarks"></textarea>
+                <mat-error *ngIf="errorHandling('remarks', 'required')">
+                  Remarks is required
+                </mat-error>
+              </mat-form-field>
+              <div mat-dialog-actions align="end">
+                <button mat-button [routerLink]="['/dashboard']">Cancel</button>
+                <input type="submit" mat-raised-button class="btn btn-danger" value="Add" [disabled]="addForm.invalid">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

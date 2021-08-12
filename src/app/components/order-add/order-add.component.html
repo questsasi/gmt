@@ -1,0 +1,62 @@
+<h4 mat-dialog-title class="bold pb-2">Add Order</h4>
+<div mat-dialog-content>
+  <form [formGroup]="addForm" (ngSubmit)="addForm.valid && onSubmit()" novalidate>
+    <mat-form-field>
+      <input matInput placeholder="Buyer" formControlName="buyer">
+      <mat-error *ngIf="errorHandling('buyer', 'required')">
+        Buyer is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Sales Order Number" formControlName="salesOrderNumber">
+      <mat-error *ngIf="errorHandling('salesOrderNumber', 'required')">
+        Sales Order Number is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Delivery date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="deliveryDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="errorHandling('deliveryDate', 'required')">
+        Delivery date is required
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-mini-fab color="warn" aria-label="Add" (click)="addInput()">
+      <span class="material-icons">add</span>
+    </button>
+    <div formArrayName="items">
+      <div *ngFor="let control of addForm.controls['items'].controls; let i = index">
+        <div class="row" [formGroupName]="i">
+          <button class="col" mat-mini-fab color="warn" aria-label="Add Order" (click)="delInput(i)">
+            <span class="material-icons">delete</span>
+          </button>
+          <mat-form-field class="col">
+            <input matInput placeholder="Style" formControlName="style">
+            <mat-error *ngIf="addForm.controls['items'].controls[i].get('style')?.hasError('required')">
+              Style is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Color" formControlName="color">
+            <mat-error *ngIf="addForm.controls['items'].controls[i].get('color')?.hasError('required')">
+              Color is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Qty" formControlName="qty">
+            <mat-error *ngIf="addForm.controls['items'].controls[i].get('qty')?.hasError('required')">
+            Qty is required
+          </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <input type="submit" mat-raised-button class="btn btn-danger" value="Add" [disabled]="addForm.invalid">
+    </div>
+  </form>
+</div>
