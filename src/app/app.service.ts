@@ -10,6 +10,10 @@ export class AppService {
     postTargetEntry: AppConstant.serviceUrl + "target",
   };
 
+  localhostConst = {
+    getTargetEntry: AppConstant.serviceUrl + 'src/assets/data/addtarget.json'
+  }
+
   constructor(private httpService: HttpService) { }
 
   getLines() {
@@ -17,7 +21,8 @@ export class AppService {
   }
 
   getTargetEntry() {
-    return this.httpService.get(this.appServiceConst.getTargetEntry);
+    // return this.httpService.get('./assets/data/addtarget.json');
+    return this.httpService.get(this.localhostConst.getTargetEntry);
   }
 
   postTargetEntry(postData: any, successFn: any, errFn: any) {

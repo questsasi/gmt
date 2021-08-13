@@ -21,9 +21,9 @@ import * as $ from "jquery";
 export class AppComponent {
   _router: Subscription[] = [];
   lastPoppedUrl: string = "";
-  yScrollStack:any = [];
+  yScrollStack: any = [];
 
-  constructor(public location: Location, private router: Router) {}
+  constructor(public location: Location, private router: Router) { }
 
   ngOnInit() {
     const isWindows = navigator.platform.indexOf("Win") > -1 ? true : false;
@@ -86,7 +86,7 @@ export class AppComponent {
       }
     }
 
-    $(".fixed-plugin a").click(function(event) {
+    $(".fixed-plugin a").click(function (event) {
       // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
       if ($(this).hasClass("switch-trigger")) {
         if (event.stopPropagation) {
@@ -97,7 +97,7 @@ export class AppComponent {
       }
     });
 
-    $(".fixed-plugin .badge").click(function() {
+    $(".fixed-plugin .badge").click(function () {
       let $full_page_background = $(".full-page-background");
 
       $(this)
@@ -116,7 +116,7 @@ export class AppComponent {
       }
     });
 
-    $(".fixed-plugin .img-holder").click(function() {
+    $(".fixed-plugin .img-holder").click(function () {
       let $full_page_background = $(".full-page-background");
 
       $(this)
@@ -132,7 +132,7 @@ export class AppComponent {
         .attr("src");
 
       if ($sidebar_img_container.length != 0) {
-        $sidebar_img_container.fadeOut("fast", function() {
+        $sidebar_img_container.fadeOut("fast", function () {
           $sidebar_img_container.css(
             "background-image",
             'url("' + new_image + '")'
@@ -142,7 +142,7 @@ export class AppComponent {
       }
 
       if ($full_page_background.length != 0) {
-        $full_page_background.fadeOut("fast", function() {
+        $full_page_background.fadeOut("fast", function () {
           $full_page_background.css(
             "background-image",
             'url("' + new_image + '")'
@@ -159,7 +159,7 @@ export class AppComponent {
   ngAfterViewInit() {
     this.runOnRouteChange();
   }
-  isMaps(path:any) {
+  isMaps(path: any) {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     titlee = titlee.slice(1);
     if (path == titlee) {

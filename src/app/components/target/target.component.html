@@ -1,41 +1,59 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header card-header-danger">
-              <div class="float-left">
-                <h4 class="card-title ">Target</h4>
-                <p class="card-category">List of Target</p>
-              </div>
-              <div class="float-right">
-                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
-                  <span class="material-icons">add</span>
-                </button>
-              </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title"> Target </h4>
+              <p class="card-category"> List of Target </p>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="text-primary">
-                    <th>Zone</th>
-                    <th>Line</th>
-                    <th>Target</th>
-                    <th>Production Hour</th>
-                  </thead>
-                  <tbody>
-                    <!-- <tr *ngFor="let target of targets">
-                        <td>{{target.zone}}</td>
-                        <td>{{target.line}}</td>
-                        <td>{{target.target}}</td>
-                        <td>{{target.productionHour}}</td>
-                    </tr> -->
-                  </tbody>
-                </table>
-              </div>
+            <div class="float-right">
+              <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
+                <span class="material-icons"> add </span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table" id="zone_table" aria-hidden="true">
+                <caption class="m-all-0"></caption>
+                <thead class="text-primary">
+                  <th id="zone"> Zone </th>
+                  <th id="line"> Line </th>
+                  <th id="productionhour"> Production Hour </th>
+                  <th id="target"> Target </th>
+                  <th id="action"> Actions </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let targetObj of datasource.targetList">
+                    <td>{{targetObj.zone}}</td>
+                    <td>
+                      <ul>
+                        <li *ngFor="let lineObj of targetObj.lines">
+                          {{lineObj.line_name}}
+                        </li>
+                      </ul>
+                    </td>
+                    <td>{{targetObj.productionHour}}</td>
+                    <td>{{targetObj.target}}</td>
+                    <td>
+                      <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
+                        class="btn btn-primary btn-link btn-sm btn-just-icon">
+                        <i class="material-icons" aria-hidden="true"> edit </i>
+                      </button>
+                      <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        <i class="material-icons" aria-hidden="true"> delete </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

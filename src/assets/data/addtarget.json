@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "factory_name": "MAS Linea Fashion - Udumalpet",
+    "zones": [
+      {
+        "id": 4,
+        "zone_name": "Zone-2B",
+        "lines": [
+          {
+            "id": 26,
+            "line_name": "Line 1"
+          },
+          {
+            "id": 27,
+            "line_name": "Line 2"
+          },
+          {
+            "id": 28,
+            "line_name": "Line 3"
+          },
+          {
+            "id": 29,
+            "line_name": "Line 4"
+          },
+          {
+            "id": 30,
+            "line_name": "Line 5"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "zone_name": "Zone-2A",
+        "lines": [
+          {
+            "id": 21,
+            "line_name": "Line 1"
+          },
+          {
+            "id": 22,
+            "line_name": "Line 2"
+          },
+          {
+            "id": 23,
+            "line_name": "Line 3"
+          },
+          {
+            "id": 24,
+            "line_name": "Line 4"
+          },
+          {
+            "id": 25,
+            "line_name": "Line 5"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "zone_name": "Zone-1B",
+        "lines": [
+          {
+            "id": 11,
+            "line_name": "Line 1"
+          },
+          {
+            "id": 12,
+            "line_name": "Line 2"
+          },
+          {
+            "id": 13,
+            "line_name": "Line 3"
+          },
+          {
+            "id": 14,
+            "line_name": "Line 4"
+          },
+          {
+            "id": 15,
+            "line_name": "Line 5"
+          },
+          {
+            "id": 16,
+            "line_name": "Line 6"
+          },
+          {
+            "id": 17,
+            "line_name": "Line 7"
+          },
+          {
+            "id": 18,
+            "line_name": "Line 8"
+          },
+          {
+            "id": 19,
+            "line_name": "Line 9"
+          },
+          {
+            "id": 20,
+            "line_name": "Line 10"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "zone_name": "Zone-1A",
+        "lines": [
+          {
+            "id": 1,
+            "line_name": "Line 1"
+          },
+          {
+            "id": 2,
+            "line_name": "Line 2"
+          },
+          {
+            "id": 3,
+            "line_name": "Line 3"
+          },
+          {
+            "id": 4,
+            "line_name": "Line 4"
+          },
+          {
+            "id": 5,
+            "line_name": "Line 5"
+          },
+          {
+            "id": 6,
+            "line_name": "Line 6"
+          },
+          {
+            "id": 7,
+            "line_name": "Line 7"
+          },
+          {
+            "id": 8,
+            "line_name": "Line 8"
+          },
+          {
+            "id": 9,
+            "line_name": "Line 9"
+          },
+          {
+            "id": 10,
+            "line_name": "Line 10"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AppService } from 'src/app/app.service';
 import { TargetAddComponent } from 'src/app/components/target-add/target-add.component';
 
 @Component({
@@ -10,9 +11,29 @@ import { TargetAddComponent } from 'src/app/components/target-add/target-add.com
 export class TargetComponent implements OnInit {
 
   targets: Target[] = [];
-  constructor(public dialog: MatDialog) { }
+  flags: any = {
+    displayLoader: Boolean
+  }
+  datasource: any = {
+    targetList: []
+  }
+  constructor(public dialog: MatDialog, private appService: AppService) { }
 
   ngOnInit(): void {
+    // console.log("targets", this.targets)
+    this.flags.displayLoader = true;
+    this.getTargetList();
+  }
+
+  getTargetList() {
+    this.appService.getTargetEntry().subscribe(
+      (response: any) => {
+        if (response && response.length > 0) {
+          this.datasource.targetList = response;
+          console.log("this.datasource.targetList", this.datasource.targetList);
+        }
+      }
+    );
   }
 
   onAddTarget() {
@@ -27,8 +48,8 @@ export class TargetComponent implements OnInit {
 }
 
 export interface Target {
-  zone: String,
-  line: String,
-  target: String,
-  productionHour: String
-};
+  zone: string,
+  line: string,
+  target: string,
+  productionHour: string
+}
