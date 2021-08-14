@@ -3,3 +3,19 @@
 .m-all-0 {
   margin: 0px;
 }
+
+.d-flex {
+  display: flex;
+}
+
+.p-t-5 {
+  padding-top: 5px;
+}
+
+.p-t-15 {
+  padding-top: 15px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}

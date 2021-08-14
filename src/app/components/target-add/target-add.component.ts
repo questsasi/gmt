@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Validators, FormBuilder, FormGroup, } from "@angular/forms";
+import * as moment from 'moment';
+
 import { AppService } from "src/app/app.service";
 
 @Component({
@@ -35,11 +37,10 @@ export class TargetAddComponent {
 
   getTargetDetails() {
     this.flags.displayLoader = true;
-    this.appService.getTargetEntry().subscribe(
+    this.appService.getTargetDetails().subscribe(
       (response: any) => {
         if (response && response.length > 0) {
           this.datasource.targetDetails = response[0];
-          console.log("this.datasource.targetDetails", this.datasource.targetDetails);
           if (this.datasource.targetDetails && this.datasource.targetDetails.zones
             && this.datasource.targetDetails.zones.length > 0) {
             this.datasource.zones = [this.datasource.targetDetails.zones[0]];
@@ -75,17 +76,17 @@ export class TargetAddComponent {
   };
 
   onSubmit() {
-    console.log("onSubmit", this.targetForm);
     this.flags.submitting = true;
 
     let postData = {
       line_id: this.targetForm.value.line,
       target: this.targetForm.value.target,
-      date: this.targetForm.value.dateOfTarget,
+      date: moment(this.targetForm.value.dateOfTarget).format('YYYY-MM-DD'),
       production_hrs: this.targetForm.value.productionHour
     }
 
-    this.appService.postTargetEntry(postData,
+    this.appService.postCreateTarget(
+      postData,
       (resp: any) => {
         this.flags.submitting = false;
         this.onClickCancel();
@@ -93,7 +94,6 @@ export class TargetAddComponent {
       (err: any) => {
         this.flags.submitting = false;
         this.onClickCancel();
-        console.log(err);
       });
   }
 

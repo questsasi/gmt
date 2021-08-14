@@ -1,21 +1,38 @@
-<div class="main-content">
+<div class="main-content target-list">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
-            <div class="float-left">
-              <h4 class="card-title"> Target </h4>
-              <p class="card-category"> List of Target </p>
-            </div>
-            <div class="float-right">
-              <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
-                <span class="material-icons"> add </span>
-              </button>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                <h4 class="card-title"> Target </h4>
+                <p class="card-category"> List of Target </p>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                <mat-form-field appearance="fill">
+                  <mat-label> Date (M/DD/YYYY) </mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="datasource.selectedDate"
+                    (dateChange)="onChangeDate(datasource.selectedDate)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"></div>
+
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 text-right p-t-15">
+                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
+                  <span class="material-icons"> add </span>
+                </button>
+              </div>
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive">
+            <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+            <div class="table-responsive" *ngIf="!flags.displayLoader">
               <table class="table" id="zone_table" aria-hidden="true">
                 <caption class="m-all-0"></caption>
                 <thead class="text-primary">
@@ -23,27 +40,60 @@
                   <th id="line"> Line </th>
                   <th id="productionhour"> Production Hour </th>
                   <th id="target"> Target </th>
-                  <th id="action"> Actions </th>
+                  <th id="action"> Action </th>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let targetObj of datasource.targetList">
-                    <td>{{targetObj.zone}}</td>
+                  <tr *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
+                    <td> {{targetObj.zone_name}} </td>
+                    <td> {{targetObj.line_name}} </td>
+                    <td> {{targetObj.production_hours}} </td>
                     <td>
-                      <ul>
-                        <li *ngFor="let lineObj of targetObj.lines">
-                          {{lineObj.line_name}}
-                        </li>
-                      </ul>
+                      <!-- View -->
+                      <ng-container *ngIf="!targetObj.isEnableEdit">
+                        {{targetObj.target}}
+                        <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
+                          class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(targetIndex)">
+                          <i class="material-icons" aria-hidden="true"> edit </i>
+                        </button>
+                      </ng-container>
+
+                      <!-- Edit -->
+                      <ng-container *ngIf="targetObj.isEnableEdit">
+                        <form class="col-xs-12" [formGroup]="editTargetForm" (ngSubmit)="onSubmitEdit(targetIndex)"
+                          novalidate>
+                          <div class="d-flex">
+                            <mat-form-field>
+                              <input matInput type="number" placeholder="Target" formControlName="target">
+                              <mat-error *ngIf="errorHandling('target', 'required')">
+                                Target is required
+                              </mat-error>
+                              <mat-error *ngIf="errorHandling('target', 'min')">
+                                Target Mininum Value is 0
+                              </mat-error>
+                              <mat-error *ngIf="errorHandling('target', 'max')">
+                                Target Maximum Value is 20000
+                              </mat-error>
+                            </mat-form-field>
+
+                            <div class="d-flex">
+                              <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
+                                class="btn btn-success btn-link btn-sm btn-just-icon fs-20 p-t-5">
+                                <i class="material-icons" aria-hidden="true"> check_circle </i>
+                              </button>
+                              <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
+                                class="btn btn-danger btn-link btn-sm btn-just-icon fs-20 p-t-5"
+                                (click)="onCloseEdit(targetIndex)">
+                                <i class="material-icons" aria-hidden="true"> cancel </i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </ng-container>
                     </td>
-                    <td>{{targetObj.productionHour}}</td>
-                    <td>{{targetObj.target}}</td>
+
                     <td>
-                      <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
-                        class="btn btn-primary btn-link btn-sm btn-just-icon">
-                        <i class="material-icons" aria-hidden="true"> edit </i>
-                      </button>
                       <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
-                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(targetIndex)">
                         <i class="material-icons" aria-hidden="true"> delete </i>
                       </button>
                     </td>

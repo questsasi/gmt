@@ -1,0 +1,17 @@
+<div class="row confirmation">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <mat-dialog-content>
+      <div [innerHTML]="message"> </div>
+    </mat-dialog-content>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+        {{confirmButtonText}}
+      </button>
+      <button mat-raised-button mat-dialog-close tabindex="-1">
+        {{cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

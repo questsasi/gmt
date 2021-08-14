@@ -12,13 +12,13 @@ export class HttpService {
   post(url: any, postData: any) {
     return this.http.post(url, postData).subscribe({
       next: (result: any) => {
-        console.log(result);
+        console.log("<-- Next -->", result);
       },
       error: (err: any) => {
-        console.log(err);
+        console.log("<-- error -->", err);
       },
       complete: () => {
-        console.log('complete');
+        console.log("<-- complete -->");
       }
     });
   }
@@ -26,13 +26,13 @@ export class HttpService {
   put(url: any, postData: any) {
     return this.http.put(url, postData).subscribe({
       next: (result: any) => {
-        console.log(result);
+        console.log("<-- Next -->", result);
       },
       error: (err: any) => {
-        console.log(err);
+        console.log("<-- error -->", err);
       },
       complete: () => {
-        console.log('complete');
+        console.log("<-- complete -->");
       }
     });
   }
@@ -40,13 +40,13 @@ export class HttpService {
   delete(url: any) {
     return this.http.delete(url).subscribe({
       next: (result: any) => {
-        console.log(result);
+        console.log("<-- Next -->", result);
       },
       error: (err: any) => {
-        console.log(err);
+        console.log("<-- error -->", err);
       },
       complete: () => {
-        console.log('complete');
+        console.log("<-- complete -->");
       }
     });
   }
