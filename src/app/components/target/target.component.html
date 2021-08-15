@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-danger header-box">
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
                 <h4 class="card-title"> Target </h4>
@@ -36,14 +36,16 @@
               <table class="table" id="zone_table" aria-hidden="true">
                 <caption class="m-all-0"></caption>
                 <thead class="text-primary">
+                  <td id="sno"> S.No </td>
                   <th id="zone"> Zone </th>
                   <th id="line"> Line </th>
                   <th id="productionhour"> Production Hour </th>
-                  <th id="target"> Target </th>
+                  <th id="target"> Target Hour </th>
                   <th id="action"> Action </th>
                 </thead>
-                <tbody>
+                <tbody *ngIf="datasource?.targetList?.length > 0">
                   <tr *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
+                    <td> {{targetIndex + 1}} </td>
                     <td> {{targetObj.zone_name}} </td>
                     <td> {{targetObj.line_name}} </td>
                     <td> {{targetObj.production_hours}} </td>
@@ -98,6 +100,13 @@
                       </button>
                     </td>
                   </tr>
+                </tbody>
+                <tbody *ngIf="datasource?.targetList?.length === 0">
+                  <td colspan="6">
+                    <div class="text-center fs-20">
+                      No Records Found
+                    </div>
+                  </td>
                 </tbody>
               </table>
             </div>

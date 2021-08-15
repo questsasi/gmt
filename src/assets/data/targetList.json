@@ -1,5 +1,6 @@
 [
   {
+    "target_id": 1,
     "zone_id": 1,
     "zone_name": "Zone1",
     "line_id": 1,
@@ -8,6 +9,7 @@
     "target": 10
   },
   {
+    "target_id": 2,
     "zone_id": 2,
     "zone_name": "Zone2",
     "line_id": 2,

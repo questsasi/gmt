@@ -1,16 +1,17 @@
-<h4 mat-dialog-title class="bold pb-2"> Add Target </h4>
+<h4 mat-dialog-title class="bold pb-2"> Add Production </h4>
 <div mat-dialog-content>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
-  <form [formGroup]="targetForm" (ngSubmit)="targetForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader">
+  <form [formGroup]="productionForm" (ngSubmit)="productionForm.valid && onSubmit()" novalidate
+    *ngIf="!flags.displayLoader">
     <!-- Target Date -->
     <mat-form-field appearance="fill">
-      <mat-label> Target Date </mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dateOfTarget" placeholder="Target Date">
+      <mat-label> Production Date </mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfProduction" placeholder="Production Date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="errorHandling('dateOfTarget', 'required')">
-        Daily Target is required
+      <mat-error *ngIf="errorHandling('dateOfProduction', 'required')">
+        Production Date is required
       </mat-error>
     </mat-form-field>
 
@@ -53,17 +54,17 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- Target Hour -->
+    <!-- Output Hour -->
     <mat-form-field>
-      <input matInput type="number" placeholder="Target Hour" formControlName="target">
-      <mat-error *ngIf="errorHandling('target', 'required')">
-        Target Hour is required
+      <input matInput type="number" placeholder="Output" formControlName="output">
+      <mat-error *ngIf="errorHandling('output', 'required')">
+        Output is required
       </mat-error>
-      <mat-error *ngIf="errorHandling('target', 'min')">
-        Target Hour Mininum Value is 0
+      <mat-error *ngIf="errorHandling('output', 'min')">
+        Output Mininum Value is 0
       </mat-error>
-      <mat-error *ngIf="errorHandling('target', 'max')">
-        Target Hour Maximum Value is 20000
+      <mat-error *ngIf="errorHandling('output', 'max')">
+        Output Maximum Value is 20000
       </mat-error>
     </mat-form-field>
 
@@ -71,7 +72,7 @@
     <div mat-dialog-actions>
       <button mat-button (click)="onClickCancel()"> Cancel </button>
       <button type="submit" mat-raised-button class="btn btn-danger"
-        [disabled]="targetForm.invalid || flags.submitting">
+        [disabled]="productionForm.invalid || flags.submitting">
         <span *ngIf="!flags.submitting"> Add </span>
         <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
       </button>

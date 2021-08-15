@@ -3,41 +3,107 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-danger">
-            <div class="float-left">
-              <h4 class="card-title">Production</h4>
-              <!-- <p class="card-category">List of supervisors</p> -->
+          <div class="card-header card-header-danger header-box">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                <h4 class="card-title"> Production </h4>
+                <p class="card-category"> List of Production </p>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                <mat-form-field appearance="fill">
+                  <mat-label> Date (M/DD/YYYY) </mat-label>
+                  <input matInput [matDatepicker]="picker" [(ngModel)]="datasource.selectedDate"
+                    (dateChange)="onChangeDate(datasource.selectedDate)">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"></div>
+
+              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 text-right p-t-15">
+                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddProduction()">
+                  <span class="material-icons"> add </span>
+                </button>
+              </div>
             </div>
           </div>
+
           <div class="card-body">
             <div class="table-responsive">
               <table class="table" aria-hidden="true">
                 <thead class=" text-primary">
-                  <th id="date"> Date </th>
+                  <th id="sno"> S.No </th>
                   <th id="zone"> Zone </th>
                   <th id="line"> Line </th>
-                  <th id="hour"> Hour </th>
-                  <th id="output"> Output </th>
+                  <th id="hour"> Production Hour </th>
+                  <th id="output"> Production Output </th>
                   <th id="action"> Actions </th>
                 </thead>
-                <tbody>
-                  <tr *ngFor="let obj of productions">
-                    <td>{{obj.production_date}}</td>
-                    <td>{{obj.zone_name}}</td>
-                    <td>{{obj.line_name}}</td>
-                    <td>{{obj.production_hrs}}</td>
-                    <td class="text-primary">{{obj.output}}</td>
+                <tbody *ngIf="datasource?.productionList?.length > 0">
+                  <tr *ngFor="let prodObj of datasource.productionList; let productionIndex=index">
+                    <td> {{productionIndex + 1}} </td>
+                    <td> {{prodObj.zone_name}} </td>
+                    <td> {{prodObj.line_name}} </td>
+                    <td> {{prodObj.production_hrs}} </td>
                     <td>
-                      <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
-                        class="btn btn-primary btn-link btn-sm btn-just-icon">
-                        <i class="material-icons" aria-hidden="true"> edit </i>
-                      </button>
+                      <!-- View -->
+                      <ng-container *ngIf="!prodObj.isEnableEdit">
+                        {{prodObj.output}}
+                        <button mat-raised-button type="button" matTooltip="Edit Output" [matTooltipPosition]="'above'"
+                          class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(productionIndex)">
+                          <i class="material-icons" aria-hidden="true"> edit </i>
+                        </button>
+                      </ng-container>
+
+                      <!-- Edit -->
+                      <ng-container *ngIf="prodObj.isEnableEdit">
+                        <form class="col-xs-12" [formGroup]="editProductionForm"
+                          (ngSubmit)="onSubmitEdit(productionIndex)" novalidate>
+                          <div class="d-flex">
+                            <mat-form-field>
+                              <input matInput type="number" placeholder="Output" formControlName="output">
+                              <mat-error *ngIf="errorHandling('output', 'required')">
+                                Output is required
+                              </mat-error>
+                              <mat-error *ngIf="errorHandling('output', 'min')">
+                                Output Mininum Value is 0
+                              </mat-error>
+                              <mat-error *ngIf="errorHandling('output', 'max')">
+                                Output Maximum Value is 20000
+                              </mat-error>
+                            </mat-form-field>
+
+                            <div class="d-flex">
+                              <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
+                                class="btn btn-success btn-link btn-sm btn-just-icon fs-20 p-t-5">
+                                <i class="material-icons" aria-hidden="true"> check_circle </i>
+                              </button>
+                              <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
+                                class="btn btn-danger btn-link btn-sm btn-just-icon fs-20 p-t-5"
+                                (click)="onCloseEdit(productionIndex)">
+                                <i class="material-icons" aria-hidden="true"> cancel </i>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </ng-container>
+                    </td>
+
+                    <!-- Actions -->
+                    <td>
                       <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
-                        class="btn btn-danger btn-link btn-sm btn-just-icon">
+                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(productionIndex)">
                         <i class="material-icons" aria-hidden="true"> delete </i>
                       </button>
                     </td>
                   </tr>
+                </tbody>
+                <tbody *ngIf="datasource?.productionList?.length === 0">
+                  <td colspan="6">
+                    <div class="text-center fs-20"> No Records Found </div>
+                  </td>
                 </tbody>
               </table>
             </div>

@@ -102,13 +102,11 @@ export class TargetComponent implements OnInit {
 
   onTriggerEditTarget(targetIndex: number) {
     const payload = {
-      zone_id: this.datasource.targetList[targetIndex].zone_id,
-      line_id: this.datasource.targetList[targetIndex].line_id,
-      date: this.datasource.selectedDate,
+      target_id: this.datasource.targetList[targetIndex].target_id,
       target: this.editTargetForm.value.target
     }
 
-    console.log("payload", payload);
+    // console.log("payload", payload);
     this.flags.displayLoader = true;
     this.appService.postEditTarget(
       payload,
@@ -136,7 +134,6 @@ export class TargetComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        console.log("confirmed delete");
         this.onTriggerDelete(this.datasource.targetIndex);
       }
     });
@@ -144,12 +141,10 @@ export class TargetComponent implements OnInit {
 
   onTriggerDelete(targetIndex: number) {
     const payload = {
-      zone_id: this.datasource.targetList[targetIndex].zone_id,
-      line_id: this.datasource.targetList[targetIndex].line_id,
-      date: this.datasource.selectedDate
+      target_id: this.datasource.targetList[targetIndex].target_id,
     }
 
-    console.log("payload", payload);
+    // console.log("payload", payload);
     this.flags.displayLoader = true;
     this.appService.postDeleteTarget(
       payload,

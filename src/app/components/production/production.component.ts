@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import * as moment from 'moment';
+
+import { AppService } from 'src/app/app.service';
+import { ConfirmationdialogComponent } from '../confirmationdialog/confirmationdialog.component';
+import { ProductionAddComponent } from '../production-add/production-add.component';
 
 @Component({
   selector: 'app-production',
@@ -7,49 +14,149 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductionComponent implements OnInit {
 
+  datasource: any = {
+    selectedDate: String,
+    productionIndex: Number,
+    productionList: [] // Array<any> is not allowing
+  };
+  flags: any = {
+    displayLoader: Boolean
+  }
   productions: any;
-  constructor() { }
+  editProductionForm!: FormGroup
+
+  constructor(private appService: AppService, public dialog: MatDialog,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    // this.productions = [{
-    //   "date": "23 jan",
-    //   "zone": "Zone 1",
-    //   "line": "Line 1",
-    //   "production_hour": 2,
-    //   "output": 723
-    // }]
-    this.productions = [
-      {
-        "factoryId": 2,
-        "factory_name": "MAS Linea Fashion - Udumalpet",
-        "zoneId": 1,
-        "zone_name": "Zone-1A",
-        "lineId": 1,
-        "line_name": "Line 1",
-        "targetId": 1,
-        "production_hrs": 10,
-        "target_date": "2021-05-15",
-        "productionId": 1,
-        "production_date": "2021-05-15",
-        "hour": 1,
-        "output": 50
-      },
-      {
-        "factoryId": 1,
-        "factory_name": "MAS Linea Fashion - Udumalpet",
-        "zoneId": 1,
-        "zone_name": "Zone-1A",
-        "lineId": 1,
-        "line_name": "Line 1",
-        "targetId": 1,
-        "production_hrs": 10,
-        "target_date": "2021-05-15",
-        "productionId": 1,
-        "production_date": "2021-05-15",
-        "hour": 1,
-        "output": 100
-      }
-    ]
+    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
+    this.datasource.productionIndex = 0;
+    this.getProductionList();
   }
 
+  onChangeDate(date: string) {
+    console.log("date", date);
+    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
+    this.getProductionList();
+  }
+
+  getProductionList() {
+    this.flags.displayLoader = true;
+    this.appService.getProductionList(
+      this.datasource.selectedDate
+    ).subscribe(
+      (response: any) => {
+        this.datasource.productionList = response;
+        this.parseProductionList();
+        this.flags.displayLoader = false;
+      },
+      (error: any) => {
+        console.error("<-- Error in Fetching Production List -->", error);
+        this.flags.displayLoader = false;
+      }
+    );
+  }
+
+  parseProductionList() {
+    if (this.datasource.productionList && this.datasource.productionList.length > 0) {
+      this.datasource.productionList.forEach((productionObj: any) => {
+        productionObj['isEnableEdit'] = false;
+      });
+    }
+  }
+
+  onAddProduction() {
+    const dialogRef = this.dialog.open(ProductionAddComponent, {
+      width: '250px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
+  onToggleEdit(prodIndex: number) {
+    this.datasource.productionList[prodIndex].isEnableEdit =
+      !this.datasource.productionList[prodIndex].isEnableEdit;
+    if (this.datasource.productionList[prodIndex].isEnableEdit) {
+      this.editProductionForm = this.formBuilder.group({
+        output: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
+      })
+      this.editProductionForm.setValue({ output: this.datasource.productionList[prodIndex].output });
+    }
+  }
+
+  public errorHandling = (control: string, error: string) => {
+    return this.editProductionForm.controls[control].hasError(error);
+  };
+
+  onSubmitEdit(prodIndex: number) {
+    if (this.editProductionForm.valid) {
+      this.onCloseEdit(prodIndex);
+      this.onTriggerEditProduction(prodIndex);
+    }
+  }
+
+  onCloseEdit(prodIndex: number) {
+    this.datasource.productionList[prodIndex].isEnableEdit = false;
+  }
+
+  onTriggerEditProduction(prodIndex: number) {
+    const payload = {
+      production_id: this.datasource.productionList[prodIndex].production_id,
+      output: this.editProductionForm.value.output
+    }
+
+    // console.log("payload", payload);
+    this.flags.displayLoader = true;
+    this.appService.postEditProduction(
+      payload,
+      (response: any) => {
+        this.flags.displayLoader = false;
+        this.getProductionList();
+      },
+      (error: any) => {
+        console.error("<-- error in editiing production -->", error);
+      }
+    );
+  }
+
+  onClickDelete(prodIndex: number) {
+    this.datasource.productionIndex = prodIndex;
+    const dialogRef = this.dialog.open(ConfirmationdialogComponent, {
+      data: {
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.onTriggerDelete(this.datasource.productionIndex);
+      }
+    });
+  }
+
+  onTriggerDelete(prodIndex: number) {
+    const payload = {
+      production_id: this.datasource.productionList[prodIndex].production_id
+    }
+
+    // console.log("payload", payload);
+    this.flags.displayLoader = true;
+    this.appService.postDeleteProduction(
+      payload,
+      (response: any) => {
+        this.flags.displayLoader = false;
+        this.getProductionList();
+      },
+      (error: any) => {
+        console.error("<-- error in deleting production -->", error);
+        this.flags.displayLoader = false;
+        this.getProductionList();
+      }
+    );
+  }
 }

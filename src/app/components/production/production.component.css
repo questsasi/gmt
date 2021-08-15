@@ -1,0 +1,19 @@
+.header-box ::ng-deep .mat-form-field-label {
+  color: #ffffff9e;
+}
+
+.header-box ::ng-deep .mat-datepicker-toggle, .mat-datepicker-content .mat-calendar-next-button, .mat-datepicker-content .mat-calendar-previous-button {
+  color: #ffffff9e;
+}
+
+.header-box ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #fff;
+}
+
+.header-box ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+  background-color: #ffffff9e;
+}
+
+.header-box ::ng-deep .mat-form-field-ripple {
+  background-color: #fff;
+}

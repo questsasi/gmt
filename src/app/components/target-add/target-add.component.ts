@@ -79,10 +79,11 @@ export class TargetAddComponent {
     this.flags.submitting = true;
 
     let postData = {
-      line_id: this.targetForm.value.line,
-      target: this.targetForm.value.target,
       date: moment(this.targetForm.value.dateOfTarget).format('YYYY-MM-DD'),
-      production_hrs: this.targetForm.value.productionHour
+      zone_id: this.targetForm.value.zone,
+      line_id: this.targetForm.value.line,
+      production_hrs: this.targetForm.value.productionHour,
+      target: this.targetForm.value.target
     }
 
     this.appService.postCreateTarget(
