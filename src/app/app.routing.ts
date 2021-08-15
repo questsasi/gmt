@@ -16,6 +16,7 @@ import { NotificationsComponent } from "./components/notifications/notifications
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
 import { LineComponent } from "./components/line/line.component";
 import { TargetComponent } from "./components/target/target.component";
+import { ReportsComponent } from "./components/reports/reports.component";
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: "hourly_production", component: HourlyProductionComponent },
   { path: "production", component: ProductionComponent },
   { path: "order", component: OrderComponent },
-  { path: "target", component: TargetComponent }
+  { path: "target", component: TargetComponent },
+  { path: "reports", component: ReportsComponent }
 ];
 
 @NgModule({

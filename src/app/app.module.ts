@@ -35,6 +35,7 @@ import { OrderAddComponent } from './components/order-add/order-add.component';
 import { TargetComponent } from "./components/target/target.component";
 import { TargetAddComponent } from './components/target-add/target-add.component';
 import { LoaderComponent } from './base/loader/loader.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { LoaderComponent } from './base/loader/loader.component';
     OrderAddComponent,
     TargetComponent,
     TargetAddComponent,
-    LoaderComponent
+    LoaderComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserAnimationsModule,

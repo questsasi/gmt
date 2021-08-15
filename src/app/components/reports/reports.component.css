@@ -1,0 +1,35 @@
+.card-custom {
+  border: 1px solid #eee;
+  box-shadow: 2px 4px 5px 0px #b7b7b7;
+  border-radius: 10px;
+}
+
+.card-custom .title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card-custom .circle {
+  font-weight: bold;
+  background-color: #607d8b;
+  padding: 5px;
+  border-radius: 99px;
+  color: #fff;
+  text-align: center;
+}
+
+.upper-card {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.lower-card {
+  padding-top: 10px;
+}
+
+.lower-card > .div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
