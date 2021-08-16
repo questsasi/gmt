@@ -1,21 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-.m-all-0 {
-  margin: 0px;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.p-t-5 {
-  padding-top: 5px;
-}
-
 .p-t-15 {
   padding-top: 15px;
 }
 
-.fs-20 {
+.card .card-title {
   font-size: 20px;
+}
+
+.material-icons {
+  font-size: 20px !important;
 }

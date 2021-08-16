@@ -10,10 +10,34 @@
   background-color: #fff;
 }
 
-.header-box ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
-  background-color: #ffffff9e;
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
+  background-color: #b1b1b1;
 }
 
 .header-box ::ng-deep .mat-form-field-ripple {
   background-color: #fff;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
+}
+
+.mat-calender {
+  max-width: 200px;
+  float: right;
+  margin-bottom: 10px;
+  padding-right: 15px;
+}
+
+.add-icon {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+::ng-deep .main-panel .main-content {
+  margin: 0px;
+  padding: 0px 10px;
 }

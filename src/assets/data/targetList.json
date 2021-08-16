@@ -16,5 +16,32 @@
     "line_name": "Line2",
     "production_hours": 9,
     "target": 9
+  },
+  {
+    "target_id": 2,
+    "zone_id": 2,
+    "zone_name": "Zone2",
+    "line_id": 2,
+    "line_name": "Line2",
+    "production_hours": 9,
+    "target": 9
+  },
+  {
+    "target_id": 2,
+    "zone_id": 2,
+    "zone_name": "Zone2",
+    "line_id": 2,
+    "line_name": "Line2",
+    "production_hours": 9,
+    "target": 9
+  },
+  {
+    "target_id": 2,
+    "zone_id": 2,
+    "zone_name": "Zone2",
+    "line_id": 2,
+    "line_name": "Line2",
+    "production_hours": 9,
+    "target": 9
   }
 ]

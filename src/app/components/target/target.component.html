@@ -2,33 +2,27 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+        <div class="mat-calender">
+          <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="datasource.selectedDate"
+              (dateChange)="onChangeDate(datasource.selectedDate)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
         <div class="card">
           <div class="card-header card-header-danger header-box">
-            <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
-                <h4 class="card-title"> Target </h4>
-                <p class="card-category"> List of Target </p>
-              </div>
-
-              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
-                <mat-form-field appearance="fill">
-                  <mat-label> Date (M/DD/YYYY) </mat-label>
-                  <input matInput [matDatepicker]="picker" [(ngModel)]="datasource.selectedDate"
-                    (dateChange)="onChangeDate(datasource.selectedDate)">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div>
-
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6"></div>
-
-              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 text-right p-t-15">
+            <div class="d-flex justify-content-between">
+              <div class="card-title p-t-5"> Target </div>
+              <div class="">
                 <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
                   <span class="material-icons"> add </span>
                 </button>
               </div>
             </div>
           </div>
+
           <div class="card-body">
             <app-loader *ngIf="flags.displayLoader"></app-loader>
 
@@ -79,13 +73,12 @@
 
                             <div class="d-flex">
                               <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
-                                class="btn btn-success btn-link btn-sm btn-just-icon fs-20 p-t-5">
-                                <i class="material-icons" aria-hidden="true"> check_circle </i>
+                                class="btn btn-success btn-link btn-sm btn-just-icon">
+                                <i class="material-icons" aria-hidden="true"> check </i>
                               </button>
                               <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
-                                class="btn btn-danger btn-link btn-sm btn-just-icon fs-20 p-t-5"
-                                (click)="onCloseEdit(targetIndex)">
-                                <i class="material-icons" aria-hidden="true"> cancel </i>
+                                class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onCloseEdit(targetIndex)">
+                                <i class="material-icons" aria-hidden="true"> close </i>
                               </button>
                             </div>
                           </div>
