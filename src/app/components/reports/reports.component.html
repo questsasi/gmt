@@ -1,0 +1,41 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title ">Reports</h4>
+              <p class="card-category">Line</p>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <div class="card card-custom" *ngFor="let obj of lineDetails">
+              <div class="card-body">
+                <div class="d-flex justify-content-between upper-card">
+                  <div class="title">{{obj.line_name}}</div>
+                  <div class="circle">{{obj.percent}} %</div>
+                </div>
+                <div class="d-flex align-content-center justify-content-center lower-card">
+                  <div class="col">
+                    <div class="font-weight-bold">{{obj.target}}</div>
+                    <div class="text-muted">Target</div>
+                  </div>
+                  <div class="col">
+                    <div class="font-weight-bold">{{obj.achieved}}</div>
+                    <div class="text-muted">Achieved</div>
+                  </div>
+                  <div class="col">
+                    <div class="font-weight-bold">{{obj.gap}}</div>
+                    <div class="text-muted">Gap</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

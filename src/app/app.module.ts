@@ -37,6 +37,7 @@ import { TargetAddComponent } from './components/target-add/target-add.component
 import { LoaderComponent } from './base/loader/loader.component';
 import { ConfirmationdialogComponent } from './components/confirmationdialog/confirmationdialog.component';
 import { ProductionAddComponent } from './components/production-add/production-add.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ProductionAddComponent } from './components/production-add/production-a
     TargetAddComponent,
     LoaderComponent,
     ConfirmationdialogComponent,
-    ProductionAddComponent
+    ProductionAddComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserAnimationsModule,
