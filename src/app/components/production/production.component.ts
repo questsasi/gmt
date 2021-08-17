@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 import { AppService } from 'src/app/app.service';
-import { ConfirmationdialogComponent } from '../confirmationdialog/confirmationdialog.component';
+import { ConfirmDeleteProductionComponent } from '../confirm-delete-production/confirm-delete-production.component';
 import { ProductionAddComponent } from '../production-add/production-add.component';
 
 @Component({
@@ -106,7 +106,6 @@ export class ProductionComponent implements OnInit {
       output: this.editProductionForm.value.output
     }
 
-    // console.log("payload", payload);
     this.flags.displayLoader = true;
     this.appService.postEditProduction(
       payload,
@@ -122,9 +121,9 @@ export class ProductionComponent implements OnInit {
 
   onClickDelete(prodIndex: number) {
     this.datasource.productionIndex = prodIndex;
-    const dialogRef = this.dialog.open(ConfirmationdialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmDeleteProductionComponent, {
       data: {
-        message: 'Are you sure want to delete?',
+        selectedProduction: this.datasource.productionList[prodIndex],
         buttonText: {
           ok: 'Yes',
           cancel: 'No'
@@ -140,14 +139,9 @@ export class ProductionComponent implements OnInit {
   }
 
   onTriggerDelete(prodIndex: number) {
-    const payload = {
-      production_id: this.datasource.productionList[prodIndex].production_id
-    }
-
-    // console.log("payload", payload);
     this.flags.displayLoader = true;
-    this.appService.postDeleteProduction(
-      payload,
+    this.appService.deleteProduction(
+      this.datasource.productionList[prodIndex].production_id,
       (response: any) => {
         this.flags.displayLoader = false;
         this.getProductionList();

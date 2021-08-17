@@ -1,0 +1,38 @@
+<div class="confirmation">
+  <div class="font-weight-bold">
+    Are you sure, want to delete the below Target ?
+  </div>
+
+  <div>
+    <mat-dialog-content>
+      <table class="table" id="zone_table" aria-hidden="true">
+        <caption class="m-all-0"></caption>
+        <thead class="text-primary">
+          <th id="zone"> Zone </th>
+          <th id="line"> Line </th>
+          <th id="productionhour"> Production Hour </th>
+          <th id="target"> Target Hour </th>
+        </thead>
+        <tbody>
+          <tr>
+            <td> {{selectedTarget.zone_name}} </td>
+            <td> {{selectedTarget.line_name}} </td>
+            <td> {{selectedTarget.production_hours}} </td>
+            <td> {{selectedTarget.target}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-dialog-content>
+  </div>
+
+  <div>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+        {{confirmButtonText}}
+      </button>
+      <button mat-raised-button mat-dialog-close tabindex="-1">
+        {{cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

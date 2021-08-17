@@ -38,6 +38,8 @@ import { LoaderComponent } from './base/loader/loader.component';
 import { ConfirmationdialogComponent } from './components/confirmationdialog/confirmationdialog.component';
 import { ProductionAddComponent } from './components/production-add/production-add.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { ConfirmDeleteTargetComponent } from './components/confirm-delete-target/confirm-delete-target.component';
+import { ConfirmDeleteProductionComponent } from './components/confirm-delete-production/confirm-delete-production.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { ReportsComponent } from './components/reports/reports.component';
     LoaderComponent,
     ConfirmationdialogComponent,
     ProductionAddComponent,
-    ReportsComponent
+    ReportsComponent,
+    ConfirmDeleteTargetComponent,
+    ConfirmDeleteProductionComponent
   ],
   imports: [
     BrowserAnimationsModule,

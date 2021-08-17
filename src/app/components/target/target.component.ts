@@ -5,7 +5,7 @@ import * as moment from 'moment'
 
 import { AppService } from 'src/app/app.service';
 import { TargetAddComponent } from 'src/app/components/target-add/target-add.component';
-import { ConfirmationdialogComponent } from '../confirmationdialog/confirmationdialog.component';
+import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
 
 @Component({
   selector: 'app-target',
@@ -106,7 +106,6 @@ export class TargetComponent implements OnInit {
       target: this.editTargetForm.value.target
     }
 
-    // console.log("payload", payload);
     this.flags.displayLoader = true;
     this.appService.postEditTarget(
       payload,
@@ -115,16 +114,17 @@ export class TargetComponent implements OnInit {
         this.getTargetList();
       },
       (error: any) => {
-        console.error("<-- error in editiing target -->", error);
+        console.error("<-- error in editing target -->", error);
+        this.flags.displayLoader = false;
       }
     );
   }
 
   onClickDelete(targetIndex: number) {
     this.datasource.targetIndex = targetIndex;
-    const dialogRef = this.dialog.open(ConfirmationdialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmDeleteTargetComponent, {
       data: {
-        message: 'Are you sure want to delete?',
+        selectedTarget: this.datasource.targetList[targetIndex],
         buttonText: {
           ok: 'Yes',
           cancel: 'No'
@@ -140,14 +140,9 @@ export class TargetComponent implements OnInit {
   }
 
   onTriggerDelete(targetIndex: number) {
-    const payload = {
-      target_id: this.datasource.targetList[targetIndex].target_id,
-    }
-
-    // console.log("payload", payload);
     this.flags.displayLoader = true;
-    this.appService.postDeleteTarget(
-      payload,
+    this.appService.deleteTarget(
+      this.datasource.targetList[targetIndex].target_id,
       (response: any) => {
         this.flags.displayLoader = false;
         this.getTargetList();

@@ -1,0 +1,39 @@
+<div class="confirmation">
+  <div class="font-weight-bold">
+    Are you sure, want to delete the below Production ?
+  </div>
+
+  <div>
+    <mat-dialog-content>
+      <div class="table-responsive">
+        <table class="table" aria-hidden="true">
+          <thead class=" text-primary">
+            <th id="zone"> Zone </th>
+            <th id="line"> Line </th>
+            <th id="hour"> Production Hour </th>
+            <th id="output"> Production Output </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td> {{selectedProduction.zone_name}} </td>
+              <td> {{selectedProduction.line_name}} </td>
+              <td> {{selectedProduction.production_hrs}} </td>
+              <td> {{selectedProduction.output}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-dialog-content>
+  </div>
+
+  <div>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+        {{confirmButtonText}}
+      </button>
+      <button mat-raised-button mat-dialog-close tabindex="-1">
+        {{cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

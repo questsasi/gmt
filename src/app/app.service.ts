@@ -10,7 +10,7 @@ export class AppService {
     // Target
     listTarget: AppConstant.serviceUrl + 'listtarget/',
     editTarget: AppConstant.serviceUrl + 'edittarget',
-    deleteTarget: AppConstant.serviceUrl + 'deletetarget',
+    deleteTarget: AppConstant.serviceUrl + 'deletetarget/',
     getTargetDetails: AppConstant.serviceUrl + "targetdetails",
     createTarget: AppConstant.serviceUrl + "createtarget",
 
@@ -18,7 +18,7 @@ export class AppService {
     listProduction: AppConstant.serviceUrl + 'listproduction/',
     createProduction: AppConstant.serviceUrl + 'createproduction',
     editProduction: AppConstant.serviceUrl + 'editproduction',
-    deleteProduction: AppConstant.serviceUrl + 'deleteproduction'
+    deleteProduction: AppConstant.serviceUrl + 'deleteproduction/'
   };
 
   localhostConst = {
@@ -50,28 +50,29 @@ export class AppService {
   }
 
   // POST APIs
-  postCreateTarget(postData: any, successFn: Function, errFn: Function) {
-    return this.httpService.post(this.appServiceConst.createTarget, postData);
+  postCreateTarget(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.createTarget, postData, successFn, errorFn);
   }
 
   postEditTarget(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.editTarget, postData);
-  }
-
-  postDeleteTarget(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.deleteTarget, postData);
+    return this.httpService.post(this.appServiceConst.editTarget, postData, successFn, errorFn);
   }
 
   postCreateProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.createProduction, postData);
+    return this.httpService.post(this.appServiceConst.createProduction, postData, successFn, errorFn);
   }
 
   postEditProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.editProduction, postData);
+    return this.httpService.post(this.appServiceConst.editProduction, postData, successFn, errorFn);
   }
 
-  postDeleteProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.deleteProduction, postData);
+  // DELETE APIs
+  deleteTarget(targetId: number, successFn: Function, errorFn: Function) {
+    return this.httpService.delete(this.appServiceConst.deleteTarget + targetId, successFn, errorFn);
+  }
+
+  deleteProduction(productionId: number, successFn: Function, errorFn: Function) {
+    return this.httpService.delete(this.appServiceConst.deleteProduction + productionId, successFn, errorFn);
   }
 
 }
