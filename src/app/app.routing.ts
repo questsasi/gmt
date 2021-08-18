@@ -15,7 +15,7 @@ import { OrderComponent } from "./components/order/order.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
 import { LineComponent } from "./components/line/line.component";
-import { TargetComponent } from "./components/target/target.component";
+import { TargetListComponent } from "./components/target-list/target-list.component";
 import { ReportsComponent } from "./components/reports/reports.component";
 
 const routes: Routes = [
@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: "hourly_production", component: HourlyProductionComponent },
   { path: "production", component: ProductionComponent },
   { path: "order", component: OrderComponent },
-  { path: "target", component: TargetComponent },
+  { path: "target", component: TargetListComponent },
   { path: "reports", component: ReportsComponent }
 ];
 
@@ -50,4 +50,4 @@ const routes: Routes = [
   ],
   exports: [],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

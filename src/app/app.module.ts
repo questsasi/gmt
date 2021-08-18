@@ -32,7 +32,7 @@ import { LineAddComponent } from './components/line-add/line-add.component';
 import { ProductionComponent } from './components/production/production.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderAddComponent } from './components/order-add/order-add.component';
-import { TargetComponent } from "./components/target/target.component";
+import { TargetListComponent } from './components/target-list/target-list.component';
 import { TargetAddComponent } from './components/target-add/target-add.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { ConfirmationdialogComponent } from './components/confirmationdialog/confirmationdialog.component';
@@ -57,7 +57,7 @@ import { ConfirmDeleteProductionComponent } from './components/confirm-delete-pr
     ProductionComponent,
     OrderComponent,
     OrderAddComponent,
-    TargetComponent,
+    TargetListComponent,
     TargetAddComponent,
     LoaderComponent,
     ConfirmationdialogComponent,

@@ -8,11 +8,11 @@ import { TargetAddComponent } from 'src/app/components/target-add/target-add.com
 import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
 
 @Component({
-  selector: 'app-target',
-  templateUrl: './target.component.html',
-  styleUrls: ['./target.component.css']
+  selector: 'app-target-list',
+  templateUrl: './target-list.component.html',
+  styleUrls: ['./target-list.component.css']
 })
-export class TargetComponent implements OnInit {
+export class TargetListComponent implements OnInit {
 
   flags: any = {
     displayLoader: Boolean
@@ -154,4 +154,5 @@ export class TargetComponent implements OnInit {
       }
     );
   }
+
 }
