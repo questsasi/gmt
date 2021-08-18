@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmationdialogComponent } from './confirmationdialog.component';
+import { ProductionListComponent } from './production-list.component';
 
-describe('ConfirmationdialogComponent', () => {
-  let component: ConfirmationdialogComponent;
-  let fixture: ComponentFixture<ConfirmationdialogComponent>;
+describe('ProductionListComponent', () => {
+  let component: ProductionListComponent;
+  let fixture: ComponentFixture<ProductionListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConfirmationdialogComponent]
+      declarations: [ProductionListComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmationdialogComponent);
+    fixture = TestBed.createComponent(ProductionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

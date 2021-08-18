@@ -10,7 +10,7 @@ import { TableListComponent } from "./components/table-list/table-list.component
 import { TypographyComponent } from "./components/typography/typography.component";
 import { UpgradeComponent } from "./components/upgrade/upgrade.component";
 import { HourlyProductionComponent } from "./components/hourly-production/hourly-production.component";
-import { ProductionComponent } from "./components/production/production.component";
+import { ProductionListComponent } from "./components/production-list/production-list.component";
 import { OrderComponent } from "./components/order/order.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: "supervisor", component: SupervisorComponent },
   { path: "line", component: LineComponent },
   { path: "hourly_production", component: HourlyProductionComponent },
-  { path: "production", component: ProductionComponent },
+  { path: "production", component: ProductionListComponent },
   { path: "order", component: OrderComponent },
   { path: "target", component: TargetListComponent },
   { path: "reports", component: ReportsComponent }

@@ -8,11 +8,11 @@ import { ConfirmDeleteProductionComponent } from '../confirm-delete-production/c
 import { ProductionAddComponent } from '../production-add/production-add.component';
 
 @Component({
-  selector: 'app-production',
-  templateUrl: './production.component.html',
-  styleUrls: ['./production.component.css']
+  selector: 'app-production-list',
+  templateUrl: './production-list.component.html',
+  styleUrls: ['./production-list.component.css']
 })
-export class ProductionComponent implements OnInit {
+export class ProductionListComponent implements OnInit {
 
   datasource: any = {
     selectedDate: String,
@@ -153,4 +153,6 @@ export class ProductionComponent implements OnInit {
       }
     );
   }
+
+
 }

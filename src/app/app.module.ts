@@ -30,13 +30,12 @@ import { SupervisorAddComponent } from './components/supervisor-add/supervisor-a
 import { HourlyProductionComponent } from './components/hourly-production/hourly-production.component';
 import { LineComponent } from './components/line/line.component';
 import { LineAddComponent } from './components/line-add/line-add.component';
-import { ProductionComponent } from './components/production/production.component';
+import { ProductionListComponent } from './components/production-list/production-list.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderAddComponent } from './components/order-add/order-add.component';
 import { TargetListComponent } from './components/target/target-list/target-list.component';
 import { TargetAddComponent } from './components/target/target-add/target-add.component';
 import { LoaderComponent } from './common/loader/loader.component';
-import { ConfirmationdialogComponent } from './components/confirmationdialog/confirmationdialog.component';
 import { ProductionAddComponent } from './components/production-add/production-add.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete-target/confirm-delete-target.component';
@@ -55,13 +54,12 @@ import { ConfirmDeleteProductionComponent } from './components/confirm-delete-pr
     HourlyProductionComponent,
     LineComponent,
     LineAddComponent,
-    ProductionComponent,
+    ProductionListComponent,
     OrderComponent,
     OrderAddComponent,
     TargetListComponent,
     TargetAddComponent,
     LoaderComponent,
-    ConfirmationdialogComponent,
     ProductionAddComponent,
     ReportsComponent,
     ConfirmDeleteTargetComponent,
