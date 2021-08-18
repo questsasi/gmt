@@ -10,7 +10,7 @@ import { TableListComponent } from "./components/table-list/table-list.component
 import { TypographyComponent } from "./components/typography/typography.component";
 import { UpgradeComponent } from "./components/upgrade/upgrade.component";
 import { HourlyProductionComponent } from "./components/hourly-production/hourly-production.component";
-import { ProductionListComponent } from "./components/production-list/production-list.component";
+import { ProductionListComponent } from "./components/production/production-list/production-list.component";
 import { OrderComponent } from "./components/order/order.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
