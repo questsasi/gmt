@@ -27,7 +27,7 @@ export class SupervisorAddComponent implements OnInit {
     public dialogRef: MatDialogRef<SupervisorAddComponent>,
     private formBuilder: FormBuilder,
     private appService: AppService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.addForm = this.formBuilder.group({

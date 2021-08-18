@@ -1,51 +1,51 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header card-header-danger">
-              <div class="float-left">
-                <h4 class="card-title ">Order</h4>
-                <p class="card-category">List of Orders</p>
-              </div>
-              <div class="float-right">
-                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddOrder()">
-                  <!-- <mat-icon><i class="fa fa-plus fa-2x" aria-hidden="true"></i></mat-icon>
-                   -->
-                  <span class="material-icons">add</span>
-                </button>
-              </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <div class="float-left">
+              <h4 class="card-title ">Order</h4>
+              <p class="card-category">List of Orders</p>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class="text-primary">
-                    <th>ID</th>
-                    <th>Buyer</th>
-                    <th>Sales Order No.</th>
-                    <th>Del. Date</th>
-                    <th>Items</th>
-                    <th>Status</th>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let order of orders">
-                      <td>{{order.id}}</td>
-                      <td>{{order.buyer}}</td>
-                      <td>{{order.salesOrderNo}}</td>
-                      <td>{{order.deliverDate}}</td>
-                      <td>
-                        <li *ngFor="let items of order.items">
-                          <span>{{items.color}}</span> <span>{{items.style}}</span> - <span>{{items.qty}}</span>
-                        </li>
-                      </td>
-                      <td>{{order.status}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="float-right">
+              <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddOrder()">
+                <!-- <mat-icon><i class="fa fa-plus fa-2x" aria-hidden="true"></i></mat-icon>
+                   -->
+                <span class="material-icons">add</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>ID</th>
+                  <th>Buyer</th>
+                  <th>Sales Order No.</th>
+                  <th>Del. Date</th>
+                  <th>Items</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders">
+                    <td>{{order.id}}</td>
+                    <td>{{order.buyer}}</td>
+                    <td>{{order.salesOrderNo}}</td>
+                    <td>{{order.deliverDate}}</td>
+                    <td>
+                      <li *ngFor="let items of order.items">
+                        <span>{{items.color}}</span> <span>{{items.style}}</span> - <span>{{items.qty}}</span>
+                      </li>
+                    </td>
+                    <td>{{order.status}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

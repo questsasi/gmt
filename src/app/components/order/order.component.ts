@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onToggleActive(obj:any) {
+  onToggleActive(obj: any) {
     console.log(obj);
   }
 

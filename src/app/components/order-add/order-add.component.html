@@ -47,8 +47,8 @@
           <mat-form-field class="col">
             <input matInput placeholder="Qty" formControlName="qty">
             <mat-error *ngIf="addForm.controls['items'].controls[i].get('qty')?.hasError('required')">
-            Qty is required
-          </mat-error>
+              Qty is required
+            </mat-error>
           </mat-form-field>
         </div>
       </div>

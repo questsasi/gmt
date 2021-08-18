@@ -22,11 +22,11 @@ export class LineComponent implements OnInit {
       isActive: false
     }
   ]
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  onToggleActive(obj:any) {
+  onToggleActive(obj: any) {
     console.log(obj);
   }
 

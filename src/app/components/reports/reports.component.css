@@ -27,7 +27,7 @@
   padding-top: 10px;
 }
 
-.lower-card > .div {
+.lower-card>.div {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

@@ -24,7 +24,7 @@ export class ReportsComponent implements OnInit {
       achieved: 853
     }
   ];
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -32,12 +32,12 @@ export class ReportsComponent implements OnInit {
     // this.loaded = true;
   }
 
-  process(lineObj:  any): any {
+  process(lineObj: any): any {
     let result: Array<ReportLineObj> = [];
 
     for (let i = 0; i < lineObj.length; i++) {
       lineObj[i].gap = lineObj[i].achieved - lineObj[i].target;
-      lineObj[i].percent = ((lineObj[i].achieved - lineObj[i].target ) / lineObj[i].target) * 100;
+      lineObj[i].percent = ((lineObj[i].achieved - lineObj[i].target) / lineObj[i].target) * 100;
       lineObj[i].percent = Math.round(lineObj[i].percent * 100) / 100;
       console.log(lineObj[i]);
       result.push(lineObj[i]);

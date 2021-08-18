@@ -24,7 +24,8 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input matInput type="number" placeholder="Working (Minutes)" formControlName="working" min="0" max="60">
+                <input matInput type="number" placeholder="Working (Minutes)" formControlName="working" min="0"
+                  max="60">
                 <mat-error *ngIf="errorHandling('working', 'required')">
                   Working (Minutes) is required
                 </mat-error>
@@ -55,25 +56,29 @@
               <mat-slide-toggle formControlName="outage" #outage>Outage</mat-slide-toggle>
               <ng-container *ngIf="addForm.value.outage">
                 <mat-form-field>
-                  <input matInput type="number" placeholder="Quality downtime" formControlName="qualityDowntime" min="0" max="60">
+                  <input matInput type="number" placeholder="Quality downtime" formControlName="qualityDowntime" min="0"
+                    max="60">
                   <mat-error *ngIf="errorHandling('qualityDowntime', 'required')">
                     Quality downtime is required
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput type="number" placeholder="Man power downtime" formControlName="manPowerDowntime" min="0" max="60">
+                  <input matInput type="number" placeholder="Man power downtime" formControlName="manPowerDowntime"
+                    min="0" max="60">
                   <mat-error *ngIf="errorHandling('manPowerDowntime', 'required')">
                     Man power downtime is required
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput type="number" placeholder="Planning downtime" formControlName="planningDowntime" min="0" max="60">
+                  <input matInput type="number" placeholder="Planning downtime" formControlName="planningDowntime"
+                    min="0" max="60">
                   <mat-error *ngIf="errorHandling('planningDowntime', 'required')">
                     Planning downtime is required
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput type="number" placeholder="Machine downtime" formControlName="machineDowntime" min="0" max="60">
+                  <input matInput type="number" placeholder="Machine downtime" formControlName="machineDowntime" min="0"
+                    max="60">
                   <mat-error *ngIf="errorHandling('machineDowntime', 'required')">
                     Machine downtime is required
                   </mat-error>
@@ -85,7 +90,7 @@
                   Remarks is required
                 </mat-error>
               </mat-form-field>
-              <div mat-dialog-actions align="end">
+              <div mat-dialog-actions>
                 <button mat-button [routerLink]="['/dashboard']">Cancel</button>
                 <input type="submit" mat-raised-button class="btn btn-danger" value="Add" [disabled]="addForm.invalid">
               </div>

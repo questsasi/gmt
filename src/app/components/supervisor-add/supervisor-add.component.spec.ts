@@ -8,9 +8,9 @@ describe('SupervisorAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SupervisorAddComponent ]
+      declarations: [SupervisorAddComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
