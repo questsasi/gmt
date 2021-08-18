@@ -16,6 +16,9 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from "./app.routing";
+import { HttpService } from "./http.service";
+import { AppService } from "./app.service";
+
 import { AppComponent } from "./app.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
@@ -24,21 +27,19 @@ import { SupervisorComponent } from "./components/supervisor/supervisor.componen
 import { UserProfileComponent } from "./components/user-profile/user-profile.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { SupervisorAddComponent } from './components/supervisor-add/supervisor-add.component';
-import { HttpService } from "./http.service";
-import { AppService } from "./app.service";
 import { HourlyProductionComponent } from './components/hourly-production/hourly-production.component';
 import { LineComponent } from './components/line/line.component';
 import { LineAddComponent } from './components/line-add/line-add.component';
 import { ProductionComponent } from './components/production/production.component';
 import { OrderComponent } from './components/order/order.component';
 import { OrderAddComponent } from './components/order-add/order-add.component';
-import { TargetListComponent } from './components/target-list/target-list.component';
-import { TargetAddComponent } from './components/target-add/target-add.component';
+import { TargetListComponent } from './components/target/target-list/target-list.component';
+import { TargetAddComponent } from './components/target/target-add/target-add.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { ConfirmationdialogComponent } from './components/confirmationdialog/confirmationdialog.component';
 import { ProductionAddComponent } from './components/production-add/production-add.component';
 import { ReportsComponent } from './components/reports/reports.component';
-import { ConfirmDeleteTargetComponent } from './components/confirm-delete-target/confirm-delete-target.component';
+import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete-target/confirm-delete-target.component';
 import { ConfirmDeleteProductionComponent } from './components/confirm-delete-production/confirm-delete-production.component';
 
 @NgModule({
@@ -91,10 +92,7 @@ import { ConfirmDeleteProductionComponent } from './components/confirm-delete-pr
     HttpService,
     AppService,
     MatDatepickerModule,
-    {
-      provide: MatDialogRef,
-      useValue: {}
-    }
+    { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent],
   schemas: [

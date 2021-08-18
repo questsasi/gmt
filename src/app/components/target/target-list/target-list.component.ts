@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment'
 
 import { AppService } from 'src/app/app.service';
-import { TargetAddComponent } from 'src/app/components/target-add/target-add.component';
 import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
+import { TargetAddComponent } from '../target-add/target-add.component';
 
 @Component({
   selector: 'app-target-list',

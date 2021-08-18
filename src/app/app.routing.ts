@@ -15,7 +15,7 @@ import { OrderComponent } from "./components/order/order.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
 import { LineComponent } from "./components/line/line.component";
-import { TargetListComponent } from "./components/target-list/target-list.component";
+import { TargetListComponent } from "./components/target/target-list/target-list.component";
 import { ReportsComponent } from "./components/reports/reports.component";
 
 const routes: Routes = [
