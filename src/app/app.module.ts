@@ -40,6 +40,8 @@ import { ProductionAddComponent } from './components/production/production-add/p
 import { ReportsComponent } from './components/reports/reports.component';
 import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete-target/confirm-delete-target.component';
 import { ConfirmDeleteProductionComponent } from './components/production/confirm-delete-production/confirm-delete-production.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,13 @@ import { ConfirmDeleteProductionComponent } from './components/production/confir
     MatNativeDateModule,
     MatSlideToggleModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     HttpService,
