@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { KeycloakService } from "keycloak-angular";
 
 declare const $: any;
 declare interface RouteInfo {
@@ -7,6 +9,7 @@ declare interface RouteInfo {
   icon: string;
   class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
   {
     path: "/target",
@@ -77,15 +80,24 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any = [];
 
-  constructor() { }
+  constructor(private keycloakService: KeycloakService, private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
   }
+
   isMobileMenu() {
     if ($(window).width() > 991) {
       return false;
     }
     return true;
+  }
+
+  onLogout() {
+    this.keycloakService.logout();
+  }
+
+  onClickLogo() {
+    this.router.navigate(['/dashboard']);
   }
 }

@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -14,6 +14,10 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { initializeKeycloak } from "./init/keycloak-init.factory";
+import { KeycloakAngularModule, KeycloakService } from "keycloak-angular";
 
 import { AppRoutingModule } from "./app.routing";
 import { HttpService } from "./http.service";
@@ -40,8 +44,6 @@ import { ProductionAddComponent } from './components/production/production-add/p
 import { ReportsComponent } from './components/reports/reports.component';
 import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete-target/confirm-delete-target.component';
 import { ConfirmDeleteProductionComponent } from './components/production/confirm-delete-production/confirm-delete-production.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     CommonModule,
     RouterModule,
+    KeycloakAngularModule,
     AppRoutingModule,
 
     MatButtonModule,
@@ -98,11 +101,16 @@ import { environment } from '../environments/environment';
     HttpService,
     AppService,
     MatDatepickerModule,
-    { provide: MatDialogRef, useValue: {} }
+    KeycloakService,
+    { provide: MatDialogRef, useValue: {} },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    }
   ],
   bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

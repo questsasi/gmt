@@ -11,3 +11,7 @@
 .material-icons {
   font-size: 20px !important;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
