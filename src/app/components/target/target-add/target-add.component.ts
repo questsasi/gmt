@@ -37,7 +37,7 @@ export class TargetAddComponent {
 
   getTargetDetails() {
     this.flags.displayLoader = true;
-    this.appService.getTargetDetails().subscribe(
+    this.appService.getTargetDetails(
       (response: any) => {
         if (response && response.length > 0) {
           this.datasource.targetDetails = response[0];
@@ -47,6 +47,9 @@ export class TargetAddComponent {
             this.generateTargetForm();
           }
         }
+      },
+      (error: any) => {
+        console.error("<-- Error in fetching Target Details -->", error);
       }
     );
   }

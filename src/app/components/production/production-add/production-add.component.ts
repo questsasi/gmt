@@ -36,7 +36,7 @@ export class ProductionAddComponent {
 
   getProductionDetails() {
     this.flags.displayLoader = true;
-    this.appService.getTargetDetails().subscribe(
+    this.appService.getTargetDetails(
       (response: any) => {
         if (response && response.length > 0) {
           this.datasource.productionDetails = response[0];
@@ -46,6 +46,9 @@ export class ProductionAddComponent {
             this.generateProductionForm();
           }
         }
+      },
+      (error: any) => {
+        console.error("<-- Error in Fetching target details -->", error);
       }
     );
   }

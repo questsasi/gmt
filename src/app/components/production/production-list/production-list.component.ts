@@ -43,8 +43,7 @@ export class ProductionListComponent implements OnInit {
   getProductionList() {
     this.flags.displayLoader = true;
     this.appService.getProductionList(
-      this.datasource.selectedDate
-    ).subscribe(
+      this.datasource.selectedDate,
       (response: any) => {
         this.datasource.productionList = response;
         this.parseProductionList();

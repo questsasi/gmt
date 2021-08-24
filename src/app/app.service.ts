@@ -30,23 +30,25 @@ export class AppService {
   constructor(private httpService: HttpService) { }
 
   // GET APIs
-  getLines() {
-    return this.httpService.get(this.appServiceConst.getLine);
+  getLines(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.appServiceConst.getLine, successFn, errorFn);
   }
 
-  getTargetList(selectedDate: string) {
-    // return this.httpService.get(this.appServiceConst.listTarget + selectedDate);
-    return this.httpService.get(this.localhostConst.listTarget);
+  getTargetList(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = `${this.appServiceConst.listTarget}${selectedDate}`;
+    // return this.httpService.get(url);
+    return this.httpService.get(this.localhostConst.listTarget, successFn, errorFn);
   }
 
-  getTargetDetails() {
+  getTargetDetails(successFn: Function, errorFn: Function) {
     // return this.httpService.get(this.appServiceConst.getTargetDetails);
-    return this.httpService.get(this.localhostConst.getTargetDetails);
+    return this.httpService.get(this.localhostConst.getTargetDetails, successFn, errorFn);
   }
 
-  getProductionList(selectedDate: string) {
-    // return this.httpService.get(this.appServiceConst.listProduction + selectedDate);
-    return this.httpService.get(this.localhostConst.listProduction);
+  getProductionList(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = `${this.appServiceConst.listProduction}${selectedDate}`;
+    // return this.httpService.get(url);
+    return this.httpService.get(this.localhostConst.listProduction, successFn, errorFn);
   }
 
   // POST APIs

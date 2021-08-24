@@ -5,8 +5,8 @@ import { HttpClient } from "@angular/common/http";
 export class HttpService {
   constructor(private http: HttpClient) { }
 
-  get(url: any) {
-    return this.http.get(url);
+  get(url: any, cbSuccessFn: any, cbErrorFn: any) {
+    return this.http.get(url).subscribe(cbSuccessFn, cbErrorFn);
   }
 
   post(url: any, postData: any, cbSuccessFn: any, cbErrorFn: any) {

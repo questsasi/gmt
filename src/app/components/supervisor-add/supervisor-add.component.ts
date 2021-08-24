@@ -46,7 +46,14 @@ export class SupervisorAddComponent implements OnInit {
   };
 
   onSubmit() {
-    let x = this.appService.getLines();
+    let x = this.appService.getLines(
+      (resp: any) => {
+        console.log("resp", resp);
+      },
+      (error: any) => {
+        console.log("error", error);
+      }
+    );
     console.log(x);
 
     console.log(this.addForm.value);

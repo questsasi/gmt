@@ -42,8 +42,7 @@ export class TargetListComponent implements OnInit {
   getTargetList() {
     this.flags.displayLoader = true;
     this.appService.getTargetList(
-      this.datasource.selectedDate
-    ).subscribe(
+      this.datasource.selectedDate,
       (response: any) => {
         if (response && response.length > 0) {
           this.datasource.targetList = response;
@@ -53,6 +52,7 @@ export class TargetListComponent implements OnInit {
       },
       (error: any) => {
         console.error("<-- error in fetching target list -->", error);
+        this.flags.displayLoader = false;
       }
     );
   }
