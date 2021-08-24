@@ -1,11 +1,11 @@
 <div class="confirmation">
-  <div class="font-weight-bold">
-    Are you sure, want to delete the below Target ?
+  <div class="text-bold">
+    DELETE TARGET
   </div>
 
   <div>
     <mat-dialog-content>
-      <table class="table" id="zone_table" aria-hidden="true">
+      <!-- <table class="table" id="zone_table" aria-hidden="true">
         <caption class="m-all-0"></caption>
         <thead class="text-primary">
           <th id="zone"> Zone </th>
@@ -21,7 +21,29 @@
             <td> {{selectedTarget.target}} </td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
+
+      <div class="card p-all-10">
+        <div class="">
+          <div class="font-weight-bold"> Zone </div>
+          <div class="break-all"> {{selectedTarget.zone_name}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Line </div>
+          <div class=""> {{selectedTarget.line_name}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Production Hour </div>
+          <div class=""> {{selectedTarget.production_hours}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Target </div>
+          <div class=""> {{selectedTarget.target}} </div>
+        </div>
+      </div>
     </mat-dialog-content>
   </div>
 

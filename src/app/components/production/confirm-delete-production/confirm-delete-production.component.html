@@ -1,11 +1,11 @@
 <div class="confirmation">
-  <div class="font-weight-bold">
-    Are you sure, want to delete the below Production ?
+  <div class="text-bold">
+    DELETE PRODUCTION
   </div>
 
   <div>
     <mat-dialog-content>
-      <div class="table-responsive">
+      <!-- <div class="table-responsive">
         <table class="table" aria-hidden="true">
           <thead class=" text-primary">
             <th id="zone"> Zone </th>
@@ -22,6 +22,28 @@
             </tr>
           </tbody>
         </table>
+      </div> -->
+
+      <div class="card p-all-10">
+        <div class="">
+          <div class="font-weight-bold"> Zone </div>
+          <div class="break-all"> {{selectedProduction.zone_name}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Line </div>
+          <div class=""> {{selectedProduction.line_name}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Production Hour </div>
+          <div class=""> {{selectedProduction.production_hrs}} </div>
+        </div>
+
+        <div class="p-t-10">
+          <div class="font-weight-bold"> Production Output </div>
+          <div class=""> {{selectedProduction.output}} </div>
+        </div>
       </div>
     </mat-dialog-content>
   </div>

@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+.p-t-10 {
+  padding-top: 10px;
+}
+
 .p-t-15 {
   padding-top: 15px;
+}
+
+.p-all-10 {
+  padding: 10px;
 }
 
 .card .card-title {
@@ -10,4 +18,12 @@
 
 .material-icons {
   font-size: 20px !important;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+.text-bold {
+  font-weight: bold;
 }
