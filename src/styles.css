@@ -27,3 +27,16 @@
 .text-bold {
   font-weight: bold;
 }
+
+.label-name {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.box-header {
+  border-bottom: 1px solid #e1e1e2;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,47 +1,29 @@
 <div class="confirmation">
-  <div class="text-bold">
+  <div class="box-header">
     DELETE TARGET
   </div>
 
   <div>
     <mat-dialog-content>
-      <!-- <table class="table" id="zone_table" aria-hidden="true">
-        <caption class="m-all-0"></caption>
-        <thead class="text-primary">
-          <th id="zone"> Zone </th>
-          <th id="line"> Line </th>
-          <th id="productionhour"> Production Hour </th>
-          <th id="target"> Target Hour </th>
-        </thead>
-        <tbody>
-          <tr>
-            <td> {{selectedTarget.zone_name}} </td>
-            <td> {{selectedTarget.line_name}} </td>
-            <td> {{selectedTarget.production_hours}} </td>
-            <td> {{selectedTarget.target}} </td>
-          </tr>
-        </tbody>
-      </table> -->
-
-      <div class="card p-all-10">
-        <div class="">
-          <div class="font-weight-bold"> Zone </div>
-          <div class="break-all"> {{selectedTarget.zone_name}} </div>
+      <div class="">
+        <div class="row">
+          <div class="col-6 label-name"> Zone </div>
+          <div class="col-6 break-all"> {{selectedTarget.zone_name}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Line </div>
-          <div class=""> {{selectedTarget.line_name}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Line </div>
+          <div class="col-6"> {{selectedTarget.line_name}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Production Hour </div>
-          <div class=""> {{selectedTarget.production_hours}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Production Hour </div>
+          <div class="col-6"> {{selectedTarget.production_hours}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Target </div>
-          <div class=""> {{selectedTarget.target}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Target </div>
+          <div class="col-6"> {{selectedTarget.target}} </div>
         </div>
       </div>
     </mat-dialog-content>

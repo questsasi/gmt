@@ -1,48 +1,29 @@
 <div class="confirmation">
-  <div class="text-bold">
+  <div class="box-header">
     DELETE PRODUCTION
   </div>
 
   <div>
     <mat-dialog-content>
-      <!-- <div class="table-responsive">
-        <table class="table" aria-hidden="true">
-          <thead class=" text-primary">
-            <th id="zone"> Zone </th>
-            <th id="line"> Line </th>
-            <th id="hour"> Production Hour </th>
-            <th id="output"> Production Output </th>
-          </thead>
-          <tbody>
-            <tr>
-              <td> {{selectedProduction.zone_name}} </td>
-              <td> {{selectedProduction.line_name}} </td>
-              <td> {{selectedProduction.production_hrs}} </td>
-              <td> {{selectedProduction.output}} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div> -->
-
-      <div class="card p-all-10">
-        <div class="">
-          <div class="font-weight-bold"> Zone </div>
-          <div class="break-all"> {{selectedProduction.zone_name}} </div>
+      <div class="">
+        <div class="row">
+          <div class="col-6 label-name"> Zone </div>
+          <div class="col-6 break-all"> {{selectedProduction.zone_name}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Line </div>
-          <div class=""> {{selectedProduction.line_name}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Line </div>
+          <div class="col-6"> {{selectedProduction.line_name}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Production Hour </div>
-          <div class=""> {{selectedProduction.production_hrs}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Hour </div>
+          <div class="col-6"> {{selectedProduction.production_hrs}} </div>
         </div>
 
-        <div class="p-t-10">
-          <div class="font-weight-bold"> Production Output </div>
-          <div class=""> {{selectedProduction.output}} </div>
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Output </div>
+          <div class="col-6"> {{selectedProduction.output}} </div>
         </div>
       </div>
     </mat-dialog-content>
