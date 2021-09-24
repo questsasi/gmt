@@ -13,18 +13,8 @@ export class HttpService {
     return this.http.post(url, postData).subscribe(cbSuccessFn, cbErrorFn);
   }
 
-  put(url: any, postData: any) {
-    return this.http.put(url, postData).subscribe({
-      next: (result: any) => {
-        console.log("<-- Next -->", result);
-      },
-      error: (err: any) => {
-        console.log("<-- error -->", err);
-      },
-      complete: () => {
-        console.log("<-- complete -->");
-      }
-    });
+  put(url: any, postData: any, cbSuccessFn: any, cbErrorFn: any) {
+    return this.http.put(url, postData).subscribe(cbSuccessFn, cbErrorFn);
   }
 
   delete(url: any, cbSuccessFn: any, cbErrorFn: any) {

@@ -8,11 +8,10 @@ export class AppService {
     getLine: AppConstant.serviceUrl + "",
 
     // Target
-    listTarget: AppConstant.serviceUrl + 'listtarget/',
-    editTarget: AppConstant.serviceUrl + 'edittarget',
-    deleteTarget: AppConstant.serviceUrl + 'deletetarget/',
-    getTargetDetails: AppConstant.serviceUrl + "targetdetails",
-    createTarget: AppConstant.serviceUrl + "createtarget",
+    target: AppConstant.serviceUrl + 'target',
+    listTarget: AppConstant.serviceUrl + 'target/list/',
+    getTargetDetails: AppConstant.serviceUrl + "target/details",
+    createTarget: AppConstant.serviceUrl + "target/create",
 
     // Production
     listProduction: AppConstant.serviceUrl + 'listproduction/',
@@ -36,28 +35,27 @@ export class AppService {
 
   getTargetList(selectedDate: string, successFn: Function, errorFn: Function) {
     const url = `${this.appServiceConst.listTarget}${selectedDate}`;
-    // return this.httpService.get(url);
-    return this.httpService.get(this.localhostConst.listTarget, successFn, errorFn);
+    return this.httpService.get(url, successFn, errorFn);
   }
 
   getTargetDetails(successFn: Function, errorFn: Function) {
-    // return this.httpService.get(this.appServiceConst.getTargetDetails);
-    return this.httpService.get(this.localhostConst.getTargetDetails, successFn, errorFn);
+    return this.httpService.get(this.appServiceConst.getTargetDetails, successFn, errorFn);
   }
 
   getProductionList(selectedDate: string, successFn: Function, errorFn: Function) {
     const url = `${this.appServiceConst.listProduction}${selectedDate}`;
-    // return this.httpService.get(url);
-    return this.httpService.get(this.localhostConst.listProduction, successFn, errorFn);
+    return this.httpService.get(url, successFn, errorFn);
+    // return this.httpService.get(this.localhostConst.listProduction, successFn, errorFn);
+  }
+
+  // PUT APIs
+  editTarget(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.put(this.appServiceConst.target, postData, successFn, errorFn);
   }
 
   // POST APIs
-  postCreateTarget(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.createTarget, postData, successFn, errorFn);
-  }
-
-  postEditTarget(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.editTarget, postData, successFn, errorFn);
+  createTarget(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.target, postData, successFn, errorFn);
   }
 
   postCreateProduction(postData: any, successFn: Function, errorFn: Function) {
@@ -70,7 +68,7 @@ export class AppService {
 
   // DELETE APIs
   deleteTarget(targetId: number, successFn: Function, errorFn: Function) {
-    return this.httpService.delete(this.appServiceConst.deleteTarget + targetId, successFn, errorFn);
+    return this.httpService.delete(this.appServiceConst.target + '/' + targetId, successFn, errorFn);
   }
 
   deleteProduction(productionId: number, successFn: Function, errorFn: Function) {
