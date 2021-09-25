@@ -44,7 +44,7 @@ export class HourlyProductionComponent implements OnInit {
       this.addForm.value.manPowerDowntime = '';
       this.addForm.value.planningDowntime = '';
       this.addForm.value.machineDowntime = '';
-      console.log(this.addForm.value, this.addForm.value.qualityDowntime);
+      // console.log(this.addForm.value, this.addForm.value.qualityDowntime);
     }
   }
 

@@ -14,7 +14,8 @@ export class AppService {
     createTarget: AppConstant.serviceUrl + "target/create",
 
     // Production
-    listProduction: AppConstant.serviceUrl + 'listproduction/',
+    production: AppConstant.serviceUrl + 'production',
+    listProduction: AppConstant.serviceUrl + 'production/list/',
     createProduction: AppConstant.serviceUrl + 'createproduction',
     editProduction: AppConstant.serviceUrl + 'editproduction',
     deleteProduction: AppConstant.serviceUrl + 'deleteproduction/'
@@ -45,7 +46,6 @@ export class AppService {
   getProductionList(selectedDate: string, successFn: Function, errorFn: Function) {
     const url = `${this.appServiceConst.listProduction}${selectedDate}`;
     return this.httpService.get(url, successFn, errorFn);
-    // return this.httpService.get(this.localhostConst.listProduction, successFn, errorFn);
   }
 
   // PUT APIs
@@ -53,17 +53,17 @@ export class AppService {
     return this.httpService.put(this.appServiceConst.target, postData, successFn, errorFn);
   }
 
+  editProduction(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.put(this.appServiceConst.production, postData, successFn, errorFn);
+  }
+
   // POST APIs
   createTarget(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.target, postData, successFn, errorFn);
   }
 
-  postCreateProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.createProduction, postData, successFn, errorFn);
-  }
-
-  postEditProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.editProduction, postData, successFn, errorFn);
+  createProduction(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.production, postData, successFn, errorFn);
   }
 
   // DELETE APIs
@@ -72,7 +72,7 @@ export class AppService {
   }
 
   deleteProduction(productionId: number, successFn: Function, errorFn: Function) {
-    return this.httpService.delete(this.appServiceConst.deleteProduction + productionId, successFn, errorFn);
+    return this.httpService.delete(this.appServiceConst.production + '/' + productionId, successFn, errorFn);
   }
 
 }

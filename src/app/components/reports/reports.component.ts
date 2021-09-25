@@ -39,7 +39,7 @@ export class ReportsComponent implements OnInit {
       lineObj[i].gap = lineObj[i].achieved - lineObj[i].target;
       lineObj[i].percent = ((lineObj[i].achieved - lineObj[i].target) / lineObj[i].target) * 100;
       lineObj[i].percent = Math.round(lineObj[i].percent * 100) / 100;
-      console.log(lineObj[i]);
+      // console.log(lineObj[i]);
       result.push(lineObj[i]);
     }
     return result;

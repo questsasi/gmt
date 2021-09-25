@@ -38,13 +38,19 @@ export class ProductionAddComponent {
     this.flags.displayLoader = true;
     this.appService.getTargetDetails(
       (response: any) => {
-        if (response && response.length > 0) {
-          this.datasource.productionDetails = response[0];
+        if (response && response.success && response.data && response.data.zone && response.data.zone.length > 0) {
+          this.datasource.productionDetails = response.data.zone[0];
           if (this.datasource.productionDetails && this.datasource.productionDetails.zones
             && this.datasource.productionDetails.zones.length > 0) {
             this.datasource.zones = [this.datasource.productionDetails.zones[0]];
             this.generateProductionForm();
+          } else {
+            this.flags.displayLoader = false;
+            console.error("<-- Zone List is Empty at factory level -->");
           }
+        } else {
+          this.flags.displayLoader = false;
+          console.error("<-- Zone List is Empty at factory level -->");
         }
       },
       (error: any) => {
@@ -88,7 +94,7 @@ export class ProductionAddComponent {
       output: this.productionForm.value.output
     }
 
-    this.appService.postCreateProduction(
+    this.appService.createProduction(
       postData,
       (resp: any) => {
         this.flags.submitting = false;

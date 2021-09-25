@@ -34,8 +34,7 @@ export class TargetListComponent implements OnInit {
   }
 
   onChangeDate(date: string) {
-    console.log("date", date);
-    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
+    this.datasource.selectedDate = moment(date).format("YYYY-MM-DD");
     this.getTargetList();
   }
 
