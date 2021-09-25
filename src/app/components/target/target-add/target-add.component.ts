@@ -39,13 +39,19 @@ export class TargetAddComponent {
     this.flags.displayLoader = true;
     this.appService.getTargetDetails(
       (response: any) => {
-        if (response && response.length > 0) {
-          this.datasource.targetDetails = response[0];
+        if (response && response.success && response.data && response.data.zone && response.data.zone.length > 0) {
+          this.datasource.targetDetails = response.data.zone[0];
           if (this.datasource.targetDetails && this.datasource.targetDetails.zones
             && this.datasource.targetDetails.zones.length > 0) {
             this.datasource.zones = [this.datasource.targetDetails.zones[0]];
             this.generateTargetForm();
+          } else {
+            this.flags.displayLoader = false;
+            console.error("<-- Zone List is Empty at factory level -->");
           }
+        } else {
+          this.flags.displayLoader = false;
+          console.error("<-- Zone List is Empty at parent level -->");
         }
       },
       (error: any) => {
@@ -89,7 +95,7 @@ export class TargetAddComponent {
       target: this.targetForm.value.target
     }
 
-    this.appService.postCreateTarget(
+    this.appService.createTarget(
       postData,
       (resp: any) => {
         this.flags.submitting = false;

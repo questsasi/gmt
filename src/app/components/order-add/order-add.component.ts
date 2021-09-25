@@ -66,15 +66,15 @@ export class OrderAddComponent implements OnInit {
   onSubmit() {
     let x = this.appService.getLines(
       (resp: any) => {
-        console.log("resp", resp);
+        // console.log("resp", resp);
       },
       (error: any) => {
-        console.log("error", error);
+        // console.log("error", error);
       }
     );
-    console.log(x);
+    // console.log(x);
 
-    console.log(this.addForm.value);
+    // console.log(this.addForm.value);
   }
 
 }

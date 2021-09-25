@@ -34,8 +34,7 @@ export class TargetListComponent implements OnInit {
   }
 
   onChangeDate(date: string) {
-    console.log("date", date);
-    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
+    this.datasource.selectedDate = moment(date).format("YYYY-MM-DD");
     this.getTargetList();
   }
 
@@ -44,9 +43,12 @@ export class TargetListComponent implements OnInit {
     this.appService.getTargetList(
       this.datasource.selectedDate,
       (response: any) => {
-        if (response && response.length > 0) {
-          this.datasource.targetList = response;
+        if (response && response.success && response.data) {
+          this.datasource.targetList = (response.data.length > 0) ? response.data : [];
           this.parseTargetList();
+          this.flags.displayLoader = false;
+        } else {
+          this.datasource.targetList = [];
           this.flags.displayLoader = false;
         }
       },
@@ -107,11 +109,15 @@ export class TargetListComponent implements OnInit {
     }
 
     this.flags.displayLoader = true;
-    this.appService.postEditTarget(
+    this.appService.editTarget(
       payload,
       (response: any) => {
         this.flags.displayLoader = false;
-        this.getTargetList();
+        if (response && response.success) {
+          this.getTargetList();
+        } else {
+          console.error("<-- error in editing target -->");
+        }
       },
       (error: any) => {
         console.error("<-- error in editing target -->", error);
@@ -145,7 +151,11 @@ export class TargetListComponent implements OnInit {
       this.datasource.targetList[targetIndex].target_id,
       (response: any) => {
         this.flags.displayLoader = false;
-        this.getTargetList();
+        if (response && response.success) {
+          this.getTargetList();
+        } else {
+          console.error("<-- error in deleting target -->");
+        }
       },
       (error: any) => {
         console.error("<-- error in deleting target -->", error);

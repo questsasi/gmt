@@ -35,8 +35,7 @@ export class ProductionListComponent implements OnInit {
   }
 
   onChangeDate(date: string) {
-    console.log("date", date);
-    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
+    this.datasource.selectedDate = moment(date).format("YYYY-MM-DD");
     this.getProductionList();
   }
 
@@ -45,8 +44,13 @@ export class ProductionListComponent implements OnInit {
     this.appService.getProductionList(
       this.datasource.selectedDate,
       (response: any) => {
-        this.datasource.productionList = response;
-        this.parseProductionList();
+        if (response && response.success && response.data) {
+          this.datasource.productionList = (response.data.length > 0) ? response.data : [];
+          this.parseProductionList();
+        } else {
+          this.datasource.productionList = [];
+        }
+
         this.flags.displayLoader = false;
       },
       (error: any) => {
@@ -106,14 +110,19 @@ export class ProductionListComponent implements OnInit {
     }
 
     this.flags.displayLoader = true;
-    this.appService.postEditProduction(
+    this.appService.editProduction(
       payload,
       (response: any) => {
+        if (response && response.success) {
+          this.getProductionList();
+        } else {
+          console.error("<-- error in editiing production -->");
+        }
         this.flags.displayLoader = false;
-        this.getProductionList();
       },
       (error: any) => {
         console.error("<-- error in editiing production -->", error);
+        this.flags.displayLoader = false;
       }
     );
   }
@@ -142,8 +151,12 @@ export class ProductionListComponent implements OnInit {
     this.appService.deleteProduction(
       this.datasource.productionList[prodIndex].production_id,
       (response: any) => {
+        if (response && response.success) {
+          this.getProductionList();
+        } else {
+          console.error("<-- error in deleting production -->");
+        }
         this.flags.displayLoader = false;
-        this.getProductionList();
       },
       (error: any) => {
         console.error("<-- error in deleting production -->", error);

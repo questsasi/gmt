@@ -27,7 +27,7 @@ export class LineComponent implements OnInit {
   ngOnInit(): void { }
 
   onToggleActive(obj: any) {
-    console.log(obj);
+    // console.log(obj);
   }
 
   onAddLine() {
