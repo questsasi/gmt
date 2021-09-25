@@ -43,7 +43,8 @@ export class TargetAddComponent {
           this.datasource.targetDetails = response.data.zone[0];
           if (this.datasource.targetDetails && this.datasource.targetDetails.zones
             && this.datasource.targetDetails.zones.length > 0) {
-            this.datasource.zones = [this.datasource.targetDetails.zones[0]];
+            // this.datasource.zones = [this.datasource.targetDetails.zones[0]];
+            this.datasource.zones = this.datasource.targetDetails.zones;
             this.generateTargetForm();
           } else {
             this.flags.displayLoader = false;
@@ -69,7 +70,7 @@ export class TargetAddComponent {
       target: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
     });
 
-    let todayDate = new Date().toISOString().split("T")[0];
+    let todayDate = moment().format("YYYY-MM-DD");
     this.targetForm.controls['dateOfTarget'].setValue(todayDate);
     this.flags.displayLoader = false;
   }

@@ -68,7 +68,7 @@ export class ProductionAddComponent {
       output: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
     });
 
-    let todayDate = new Date().toISOString().split("T")[0];
+    let todayDate = moment().format("YYYY-MM-DD");
     this.productionForm.controls['dateOfProduction'].setValue(todayDate);
     this.flags.displayLoader = false;
   }
