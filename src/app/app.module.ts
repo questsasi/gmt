@@ -42,6 +42,7 @@ import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete
 import { ConfirmDeleteProductionComponent } from './components/production/confirm-delete-production/confirm-delete-production.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { environment } from '../environments/environment';
     HttpService,
     AppService,
     MatDatepickerModule,
-    { provide: MatDialogRef, useValue: {} }
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [AppComponent],
   schemas: [
