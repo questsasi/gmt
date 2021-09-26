@@ -13,7 +13,6 @@ import { AppService } from 'src/app/app.service';
 export class ProductionAddComponent {
 
   datasource: any = {
-    productionDetails: {},
     zones: [],
     lines: []
   }
@@ -38,23 +37,16 @@ export class ProductionAddComponent {
     this.flags.displayLoader = true;
     this.appService.getTargetDetails(
       (response: any) => {
-        if (response && response.success && response.data && response.data.zone && response.data.zone.length > 0) {
-          this.datasource.productionDetails = response.data.zone[0];
-          if (this.datasource.productionDetails && this.datasource.productionDetails.zones
-            && this.datasource.productionDetails.zones.length > 0) {
-            this.datasource.zones = [this.datasource.productionDetails.zones[0]];
-            this.generateProductionForm();
-          } else {
-            this.flags.displayLoader = false;
-            console.error("<-- Zone List is Empty at factory level -->");
-          }
+        if (response && response.data && response.data.zone && response.data.zone.length > 0) {
+          this.datasource.zones = response.data.zone;
+          this.generateProductionForm();
         } else {
           this.flags.displayLoader = false;
-          console.error("<-- Zone List is Empty at factory level -->");
+          console.error("List is empty");
         }
       },
       (error: any) => {
-        console.error("<-- Error in Fetching target details -->", error);
+        console.error("Error in fetching target details", error);
       }
     );
   }
@@ -90,8 +82,9 @@ export class ProductionAddComponent {
       production_date: moment(this.productionForm.value.dateOfTarget).format('YYYY-MM-DD'),
       zone_id: this.productionForm.value.zone,
       line_id: this.productionForm.value.line,
-      production_hrs: this.productionForm.value.productionHour,
-      output: this.productionForm.value.output
+      hour: this.productionForm.value.productionHour,
+      output: this.productionForm.value.output,
+      target_id: 24
     }
 
     this.appService.createProduction(

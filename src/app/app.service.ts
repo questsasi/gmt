@@ -16,7 +16,7 @@ export class AppService {
     // Production
     production: AppConstant.serviceUrl + 'production',
     listProduction: AppConstant.serviceUrl + 'production/list/',
-    createProduction: AppConstant.serviceUrl + 'createproduction',
+    createProduction: AppConstant.serviceUrl + 'production/postproductionhours',
     editProduction: AppConstant.serviceUrl + 'editproduction',
     deleteProduction: AppConstant.serviceUrl + 'deleteproduction/'
   };
@@ -63,8 +63,8 @@ export class AppService {
   }
 
   createProduction(postData: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.production, postData, successFn, errorFn);
-  }
+    return this.httpService.post(this.appServiceConst.createProduction, postData, successFn, errorFn);
+  } 
 
   // DELETE APIs
   deleteTarget(targetId: number, successFn: Function, errorFn: Function) {

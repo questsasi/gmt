@@ -44,7 +44,7 @@ export class ProductionListComponent implements OnInit {
     this.appService.getProductionList(
       this.datasource.selectedDate,
       (response: any) => {
-        if (response && response.success && response.data) {
+        if (response && response.data) {
           this.datasource.productionList = (response.data.length > 0) ? response.data : [];
           this.parseProductionList();
         } else {

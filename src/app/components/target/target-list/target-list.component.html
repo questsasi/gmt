@@ -14,10 +14,10 @@
         <div class="card">
           <div class="card-header card-header-danger header-box">
             <div class="d-flex justify-content-between">
-              <div class="card-title p-t-5"> Target </div>
+              <div class="card-title p-t-5">Target</div>
               <div class="">
                 <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddTarget()">
-                  <span class="material-icons"> add </span>
+                  <span class="material-icons">add</span>
                 </button>
               </div>
             </div>
@@ -30,26 +30,26 @@
               <table class="table" id="zone_table" aria-hidden="true">
                 <caption class="m-all-0"></caption>
                 <thead class="text-primary">
-                  <th id="sno"> S.No </th>
-                  <th id="zone"> Zone </th>
-                  <th id="line"> Line </th>
-                  <th id="productionhour"> Production Hour </th>
-                  <th id="target"> Target Hour </th>
-                  <th id="action"> Action </th>
+                  <th id="sno">S.No</th>
+                  <th id="zone">Zone</th>
+                  <th id="line">Line</th>
+                  <th id="productionhour">Expected Production Hour(s)</th>
+                  <th id="target">Target Hour</th>
+                  <th id="action">Action</th>
                 </thead>
                 <tbody *ngIf="datasource?.targetList?.length > 0">
                   <tr *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
-                    <td> {{targetIndex + 1}} </td>
-                    <td> {{targetObj.zone_name}} </td>
-                    <td> {{targetObj.line_name}} </td>
-                    <td> {{targetObj.production_hours}} </td>
+                    <td> {{targetIndex + 1}}</td>
+                    <td> {{targetObj.zone_name}}</td>
+                    <td> {{targetObj.line_name}}</td>
+                    <td> {{targetObj.production_hours}}</td>
                     <td>
                       <!-- View -->
                       <ng-container *ngIf="!targetObj.isEnableEdit">
                         {{targetObj.target}}
                         <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(targetIndex)">
-                          <i class="material-icons" aria-hidden="true"> edit </i>
+                          <i class="material-icons" aria-hidden="true">edit</i>
                         </button>
                       </ng-container>
 
@@ -74,11 +74,11 @@
                             <div class="d-flex">
                               <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
                                 class="btn btn-success btn-link btn-sm btn-just-icon">
-                                <i class="material-icons" aria-hidden="true"> check </i>
+                                <i class="material-icons" aria-hidden="true">check</i>
                               </button>
                               <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
                                 class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onCloseEdit(targetIndex)">
-                                <i class="material-icons" aria-hidden="true"> close </i>
+                                <i class="material-icons" aria-hidden="true">close</i>
                               </button>
                             </div>
                           </div>
@@ -89,7 +89,7 @@
                     <td>
                       <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
                         class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(targetIndex)">
-                        <i class="material-icons" aria-hidden="true"> delete </i>
+                        <i class="material-icons" aria-hidden="true">delete</i>
                       </button>
                     </td>
                   </tr>

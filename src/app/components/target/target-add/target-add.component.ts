@@ -13,7 +13,6 @@ import { AppService } from "src/app/app.service";
 export class TargetAddComponent {
 
   datasource: any = {
-    targetDetails: {},
     zones: [],
     lines: []
   }
@@ -39,24 +38,17 @@ export class TargetAddComponent {
     this.flags.displayLoader = true;
     this.appService.getTargetDetails(
       (response: any) => {
-        if (response && response.success && response.data && response.data.zone && response.data.zone.length > 0) {
-          this.datasource.targetDetails = response.data.zone[0];
-          if (this.datasource.targetDetails && this.datasource.targetDetails.zones
-            && this.datasource.targetDetails.zones.length > 0) {
-            // this.datasource.zones = [this.datasource.targetDetails.zones[0]];
-            this.datasource.zones = this.datasource.targetDetails.zones;
-            this.generateTargetForm();
-          } else {
-            this.flags.displayLoader = false;
-            console.error("<-- Zone List is Empty at factory level -->");
-          }
+        if (response && response.data && response.data.zone && response.data.zone.length > 0) {
+          this.datasource.zones = response.data.zone;
+          this.generateTargetForm();
         } else {
           this.flags.displayLoader = false;
-          console.error("<-- Zone List is Empty at parent level -->");
+          console.error("Zone List is empty");
         }
       },
       (error: any) => {
-        console.error("<-- Error in fetching Target Details -->", error);
+        console.error("Error in fetching target", error);
+        this.flags.displayLoader = false;
       }
     );
   }

@@ -31,7 +31,7 @@
     <!-- Line -->
     <mat-form-field appearance="fill">
       <mat-label> Line </mat-label>
-      <mat-select formControlName="line" multiple>
+      <mat-select formControlName="line">
         <mat-option *ngFor="let line of datasource.lines" [value]="line.id">
           {{line.line_name}}
         </mat-option>
