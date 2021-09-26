@@ -21,7 +21,7 @@ import { ReportsComponent } from "./components/reports/reports.component";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "dashboard",
+    redirectTo: "target",
     pathMatch: "full",
   },
   { path: "dashboard", component: DashboardComponent },
