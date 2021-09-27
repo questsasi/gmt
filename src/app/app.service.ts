@@ -18,7 +18,10 @@ export class AppService {
     listProduction: AppConstant.serviceUrl + 'production/list/',
     createProduction: AppConstant.serviceUrl + 'production/postproductionhours',
     editProduction: AppConstant.serviceUrl + 'editproduction',
-    deleteProduction: AppConstant.serviceUrl + 'deleteproduction/'
+    deleteProduction: AppConstant.serviceUrl + 'deleteproduction/',
+
+    // Reports
+    listReports: AppConstant.serviceUrl + 'report/'
   };
 
   localhostConst = {
@@ -45,6 +48,11 @@ export class AppService {
 
   getProductionList(selectedDate: string, successFn: Function, errorFn: Function) {
     const url = `${this.appServiceConst.listProduction}${selectedDate}`;
+    return this.httpService.get(url, successFn, errorFn);
+  }
+
+  getReports(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = `${this.appServiceConst.listReports}${selectedDate}`;
     return this.httpService.get(url, successFn, errorFn);
   }
 
