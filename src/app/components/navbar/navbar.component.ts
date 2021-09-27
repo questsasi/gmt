@@ -81,6 +81,9 @@ export class NavbarComponent implements OnInit {
 
       var $layer = document.createElement('div');
       $layer.setAttribute('class', 'close-layer');
+      $layer.addEventListener('click', (e) => {
+        this.setMobileMenuVisible(); //Menu toggler call
+      });
 
 
       if (body.querySelectorAll('.main-panel')) {
@@ -108,6 +111,10 @@ export class NavbarComponent implements OnInit {
 
     }
   };
+
+  setMobileMenuVisible() {
+    this.mobile_menu_visible = 0;
+  }
 
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
