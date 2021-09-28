@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  domainUrl: "http://localhost:3000/"
+  production: false,
+  domainUrl: "http://13.126.105.187:3000/"
 };
