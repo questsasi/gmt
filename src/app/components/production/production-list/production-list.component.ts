@@ -4,39 +4,40 @@ import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 import { AppService } from 'src/app/app.service';
+import { DataSharedService } from 'src/app/common/data-shared.service';
 import { ConfirmDeleteProductionComponent } from '../confirm-delete-production/confirm-delete-production.component';
 import { ProductionAddComponent } from '../production-add/production-add.component';
 
 @Component({
   selector: 'app-production-list',
   templateUrl: './production-list.component.html',
-  styleUrls: ['./production-list.component.css']
+  styleUrls: ['./production-list.component.css'],
 })
 export class ProductionListComponent implements OnInit {
-
   datasource: any = {
     selectedDate: String,
     productionIndex: Number,
-    productionList: [] // Array<any> is not allowing
+    productionList: [], // Array<any> is not allowing
   };
   flags: any = {
-    displayLoader: Boolean
-  }
+    displayLoader: Boolean,
+  };
   productions: any;
-  editProductionForm!: FormGroup
+  editProductionForm!: FormGroup;
 
-  constructor(private appService: AppService, public dialog: MatDialog,
-    private formBuilder: FormBuilder) { }
+  constructor(
+    private appService: AppService,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private dataSharedService: DataSharedService
+  ) {}
 
   ngOnInit(): void {
-    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
-    this.datasource.productionIndex = 0;
-    this.getProductionList();
-  }
-
-  onChangeDate(date: string) {
-    this.datasource.selectedDate = moment(date).format("YYYY-MM-DD");
-    this.getProductionList();
+    this.dataSharedService.getDate().subscribe((getDate: any) => {
+      this.datasource.selectedDate = getDate;
+      this.datasource.productionIndex = 0;
+      this.getProductionList();
+    });
   }
 
   getProductionList() {
@@ -45,7 +46,8 @@ export class ProductionListComponent implements OnInit {
       this.datasource.selectedDate,
       (response: any) => {
         if (response && response.data) {
-          this.datasource.productionList = (response.data.length > 0) ? response.data : [];
+          this.datasource.productionList =
+            response.data.length > 0 ? response.data : [];
           this.parseProductionList();
         } else {
           this.datasource.productionList = [];
@@ -54,14 +56,17 @@ export class ProductionListComponent implements OnInit {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error("<-- Error in Fetching Production List -->", error);
+        console.error('<-- Error in Fetching Production List -->', error);
         this.flags.displayLoader = false;
       }
     );
   }
 
   parseProductionList() {
-    if (this.datasource.productionList && this.datasource.productionList.length > 0) {
+    if (
+      this.datasource.productionList &&
+      this.datasource.productionList.length > 0
+    ) {
       this.datasource.productionList.forEach((productionObj: any) => {
         productionObj['isEnableEdit'] = false;
       });
@@ -72,7 +77,7 @@ export class ProductionListComponent implements OnInit {
     const dialogRef = this.dialog.open(ProductionAddComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
   }
@@ -82,9 +87,14 @@ export class ProductionListComponent implements OnInit {
       !this.datasource.productionList[prodIndex].isEnableEdit;
     if (this.datasource.productionList[prodIndex].isEnableEdit) {
       this.editProductionForm = this.formBuilder.group({
-        output: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
-      })
-      this.editProductionForm.setValue({ output: this.datasource.productionList[prodIndex].output });
+        output: [
+          '',
+          [Validators.required, Validators.min(0), Validators.max(20000)],
+        ],
+      });
+      this.editProductionForm.setValue({
+        output: this.datasource.productionList[prodIndex].output,
+      });
     }
   }
 
@@ -106,8 +116,8 @@ export class ProductionListComponent implements OnInit {
   onTriggerEditProduction(prodIndex: number) {
     const payload = {
       production_id: this.datasource.productionList[prodIndex].production_id,
-      output: this.editProductionForm.value.output
-    }
+      output: this.editProductionForm.value.output,
+    };
 
     this.flags.displayLoader = true;
     this.appService.editProduction(
@@ -116,12 +126,12 @@ export class ProductionListComponent implements OnInit {
         if (response && response.success) {
           this.getProductionList();
         } else {
-          console.error("<-- error in editiing production -->");
+          console.error('<-- error in editiing production -->');
         }
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error("<-- error in editiing production -->", error);
+        console.error('<-- error in editiing production -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -134,9 +144,9 @@ export class ProductionListComponent implements OnInit {
         selectedProduction: this.datasource.productionList[prodIndex],
         buttonText: {
           ok: 'Yes',
-          cancel: 'No'
-        }
-      }
+          cancel: 'No',
+        },
+      },
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
@@ -154,17 +164,15 @@ export class ProductionListComponent implements OnInit {
         if (response && response.success) {
           this.getProductionList();
         } else {
-          console.error("<-- error in deleting production -->");
+          console.error('<-- error in deleting production -->');
         }
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error("<-- error in deleting production -->", error);
+        console.error('<-- error in deleting production -->', error);
         this.flags.displayLoader = false;
         this.getProductionList();
       }
     );
   }
-
-
 }

@@ -1,41 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import * as moment from 'moment'
+import * as moment from 'moment';
 
 import { AppService } from 'src/app/app.service';
+import { DataSharedService } from 'src/app/common/data-shared.service';
 import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
 import { TargetAddComponent } from '../target-add/target-add.component';
 
 @Component({
   selector: 'app-target-list',
   templateUrl: './target-list.component.html',
-  styleUrls: ['./target-list.component.css']
+  styleUrls: ['./target-list.component.css'],
 })
 export class TargetListComponent implements OnInit {
-
   flags: any = {
-    displayLoader: Boolean
-  }
+    displayLoader: Boolean,
+  };
   datasource: any = {
     targetList: [],
     selectedDate: String,
-    targetIndex: Number
-  }
+    targetIndex: Number,
+  };
   editTargetForm!: FormGroup;
 
-  constructor(public dialog: MatDialog, private appService: AppService,
-    private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.datasource.selectedDate = moment().format("YYYY-MM-DD");
-    this.datasource.targetIndex = 0;
-    this.getTargetList();
+  constructor(
+    public dialog: MatDialog,
+    private appService: AppService,
+    private formBuilder: FormBuilder,
+    private dataSharedService: DataSharedService
+  ) {
+    this.dataSharedService.getDate().subscribe((getDate: any) => {
+      console.log(2);
+      this.datasource.selectedDate = getDate;
+      this.datasource.targetIndex = 0;
+      this.getTargetList();
+    });
   }
 
-  onChangeDate(date: string) {
-    this.datasource.selectedDate = moment(date).format("YYYY-MM-DD");
-    this.getTargetList();
+  ngOnInit(): void {
+      this.dataSharedService.getDate().subscribe( (getDate:any) => {
+        this.datasource.selectedDate = getDate;
+        this.datasource.targetIndex = 0;
+        this.getTargetList();
+     });
   }
 
   getTargetList() {
@@ -44,7 +52,8 @@ export class TargetListComponent implements OnInit {
       this.datasource.selectedDate,
       (response: any) => {
         if (response && response.success && response.data) {
-          this.datasource.targetList = (response.data.length > 0) ? response.data : [];
+          this.datasource.targetList =
+            response.data.length > 0 ? response.data : [];
           this.parseTargetList();
           this.flags.displayLoader = false;
         } else {
@@ -53,7 +62,7 @@ export class TargetListComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.error("<-- error in fetching target list -->", error);
+        console.error('<-- error in fetching target list -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -71,7 +80,7 @@ export class TargetListComponent implements OnInit {
     const dialogRef = this.dialog.open(TargetAddComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
   }
@@ -81,9 +90,14 @@ export class TargetListComponent implements OnInit {
       !this.datasource.targetList[targetIndex].isEnableEdit;
     if (this.datasource.targetList[targetIndex].isEnableEdit) {
       this.editTargetForm = this.formBuilder.group({
-        target: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
-      })
-      this.editTargetForm.setValue({ target: this.datasource.targetList[targetIndex].target });
+        target: [
+          '',
+          [Validators.required, Validators.min(0), Validators.max(20000)],
+        ],
+      });
+      this.editTargetForm.setValue({
+        target: this.datasource.targetList[targetIndex].target,
+      });
     }
   }
 
@@ -105,8 +119,8 @@ export class TargetListComponent implements OnInit {
   onTriggerEditTarget(targetIndex: number) {
     const payload = {
       target_id: this.datasource.targetList[targetIndex].target_id,
-      target: this.editTargetForm.value.target
-    }
+      target: this.editTargetForm.value.target,
+    };
 
     this.flags.displayLoader = true;
     this.appService.editTarget(
@@ -116,11 +130,11 @@ export class TargetListComponent implements OnInit {
         if (response && response.success) {
           this.getTargetList();
         } else {
-          console.error("<-- error in editing target -->");
+          console.error('<-- error in editing target -->');
         }
       },
       (error: any) => {
-        console.error("<-- error in editing target -->", error);
+        console.error('<-- error in editing target -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -133,9 +147,9 @@ export class TargetListComponent implements OnInit {
         selectedTarget: this.datasource.targetList[targetIndex],
         buttonText: {
           ok: 'Yes',
-          cancel: 'No'
-        }
-      }
+          cancel: 'No',
+        },
+      },
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
@@ -154,15 +168,14 @@ export class TargetListComponent implements OnInit {
         if (response && response.success) {
           this.getTargetList();
         } else {
-          console.error("<-- error in deleting target -->");
+          console.error('<-- error in deleting target -->');
         }
       },
       (error: any) => {
-        console.error("<-- error in deleting target -->", error);
+        console.error('<-- error in deleting target -->', error);
         this.flags.displayLoader = false;
         this.getTargetList();
       }
     );
   }
-
 }

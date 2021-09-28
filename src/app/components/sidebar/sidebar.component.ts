@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { DataSharedService } from 'src/app/common/data-shared.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -9,22 +11,22 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
-    path: "/target",
-    title: "Target",
-    icon: "assignment",
-    class: "",
+    path: '/target',
+    title: 'Target',
+    icon: 'assignment',
+    class: '',
   },
   {
-    path: "/production",
-    title: "Production",
-    icon: "assignment",
-    class: "",
+    path: '/production',
+    title: 'Production',
+    icon: 'assignment',
+    class: '',
   },
   {
-    path: "/reports",
-    title: "Reports",
-    icon: "assignment",
-    class: "",
+    path: '/reports',
+    title: 'Reports',
+    icon: 'assignment',
+    class: '',
   },
   // {
   //   path: "/hourly_production",
@@ -70,18 +72,26 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 @Component({
-  selector: "app-sidebar",
-  templateUrl: "./sidebar.component.html",
-  styleUrls: ["./sidebar.component.css"],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
   menuItems: any = [];
+  selectedDate: any = moment(Date()).format('YYYY-MM-DD');
 
-  constructor() { }
+  constructor(private dataSharedService: DataSharedService) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
+    this.dataSharedService.setDate(this.selectedDate);
   }
+
+  onChangeDate(selDate: string) {
+    this.selectedDate = moment(selDate).format('YYYY-MM-DD');
+    this.dataSharedService.setDate(this.selectedDate);
+  }
+
   isMobileMenu() {
     if ($(window).width() > 991) {
       return false;

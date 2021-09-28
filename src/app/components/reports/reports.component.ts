@@ -1,46 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { AppService } from 'src/app/app.service';
+import { DataSharedService } from 'src/app/common/data-shared.service';
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.css']
+  styleUrls: ['./reports.component.css'],
 })
 export class ReportsComponent implements OnInit {
-
-  lineDetails: any = [
-    {
-      line_name: 'VG1 - 10',
-      target: 1000,
-      achieved: 900
-    },
-    {
-      line_name: 'VG2 - 1',
-      target: 500,
-      achieved: 600
-    },
-    {
-      line_name: 'VG3',
-      target: 1100,
-      achieved: 853
-    }
-  ];
-  selectedDate = moment().format("YYYY-MM-DD");
+  lineDetails: any = [];
+  selectedDate: any;
   flags = {
-    displayLoader: false
+    displayLoader: false,
   };
   reports: any = [];
 
-  constructor(private appService: AppService) { }
+  constructor(
+    private appService: AppService,
+    private dataSharedService: DataSharedService
+  ) {}
 
   ngOnInit(): void {
-    this.getReports();
-  }
-
-  onChangeDate(date: string) {
-    this.selectedDate = moment(date).format("YYYY-MM-DD");
-    this.getReports();
+    this.dataSharedService.getDate().subscribe((getDate: any) => {
+      this.selectedDate = getDate;
+      this.getReports();
+    });
   }
 
   getReports() {
@@ -49,7 +34,8 @@ export class ReportsComponent implements OnInit {
       this.selectedDate,
       (response: any) => {
         if (response && response.data) {
-          this.reports = (response.data.length > 0) ? this.processData(response.data) : [];
+          this.reports =
+            response.data.length > 0 ? this.processData(response.data) : [];
         } else {
           this.reports = [];
         }
@@ -57,7 +43,7 @@ export class ReportsComponent implements OnInit {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error("Error in Fetching report list", error);
+        console.error('Error in Fetching report list', error);
         this.flags.displayLoader = false;
       }
     );
@@ -73,9 +59,15 @@ export class ReportsComponent implements OnInit {
         lines[line].production_hrs = lines[line].targets[0].production_hrs;
 
         // Calculation added
-        lines[line].achieved = this.getAchieved(lines[line].targets[0].productions);
-        lines[line].difference = lines[line].achieved - lines[line].target_count;
-        lines[line].percent = ((lines[line].achieved - lines[line].target_count) / lines[line].target_count) * 100;
+        lines[line].achieved = this.getAchieved(
+          lines[line].targets[0].productions
+        );
+        lines[line].difference =
+          lines[line].achieved - lines[line].target_count;
+        lines[line].percent =
+          ((lines[line].achieved - lines[line].target_count) /
+            lines[line].target_count) *
+          100;
         lines[line].percent = Math.round(lines[line].percent * 100) / 100;
 
         lines[line].productions = lines[line].targets[0].productions;
@@ -88,12 +80,12 @@ export class ReportsComponent implements OnInit {
   }
 
   getAchieved(productions: []) {
-    return productions.map(function (jedi: any) {
-      return jedi.output;
-    })
+    return productions
+      .map(function (jedi: any) {
+        return jedi.output;
+      })
       .reduce(function (acc, score) {
         return acc + score;
       }, 0);
   }
-
 }

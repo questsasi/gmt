@@ -44,6 +44,7 @@ import { ConfirmDeleteProductionComponent } from './components/production/confir
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DataSharedService } from './common/data-shared.service';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
   providers: [
     HttpService,
     AppService,
+    DataSharedService,
     MatDatepickerModule,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

@@ -2,15 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <div class="mat-calender">
-          <mat-form-field appearance="fill" style="z-index: 2000;">
-            <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate"
-              (dateChange)="onChangeDate(selectedDate)">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-
+        <div></div>
         <div class="card">
           <div class="card-header card-header-danger">
             <div class="float-left">
@@ -32,33 +24,18 @@
                       <div class="circle" [ngClass]="line.percent <= 0 ? 'bg-danger': 'bg-success'">{{line.percent}} %
                       </div>
                     </div>
-                    <div class="d-flex align-content-center justify-content-center lower-card">
-                      <div class="col">
-                        <div class="font-weight-bold">{{line.target_count}}</div>
-                        <div class="text-muted">Target o/p</div>
-                      </div>
-                      <div class="col">
-                        <div class="font-weight-bold">{{line.achieved}}</div>
-                        <div class="text-muted">Achieved o/p</div>
-                      </div>
-                      <div class="col">
-                        <div class="font-weight-bold" [ngClass]="line.difference <= 0 ? 'text-danger': 'text-success'">
-                          {{line.difference}}</div>
-                        <div class="text-muted">Difference o/p</div>
-                      </div>
-                      <div class="col"></div>
-                      <div class="col">
-                        <div class="font-weight-bold">{{line.production_hrs}}</div>
-                        <div class="text-muted">Target hour(s)</div>
-                      </div>
-                      <div class="col">
-                        <div class="font-weight-bold">{{line.productions.length}}</div>
-                        <div class="text-muted">Hour(s) produced</div>
-                      </div>
+                    <div class="d-flex align-content-center justify-content-center lower-card text-center">
                       <div class="col">
                         <div class="font-weight-bold">
-                          {{line.production_hrs - line.productions.length }}</div>
-                        <div class="text-muted">Remaining hour(s)</div>
+                          {{line.target_count}} / {{line.achieved}} / 
+                          <span class="font-weight-bold" [ngClass]="line.difference <= 0 ? 'text-danger': 'text-success'">
+                            {{line.difference}}</span>
+                        </div>
+                        <div class="text-muted" style="font-size: 11px;">Target / Achieved / Difference O/P</div>
+                      </div>
+                      <div class="col">
+                        <div class="font-weight-bold">{{line.production_hrs}} / {{line.productions.length}} / {{line.production_hrs - line.productions.length }}</div>
+                        <div class="text-muted" style="font-size: 11px;">Target / Produced / Remaining  Hour(s)</div>
                       </div>
                     </div>
                   </div>
