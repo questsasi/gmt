@@ -59,6 +59,8 @@
               </mat-tab>
             </mat-tab-group>
 
+            <div class="col p-4 text-center" *ngIf="reports.length == 0 && !flags.displayLoader">No report(s) availabe for the selected day</div>
+            <app-loader *ngIf="reports.length == 0 && flags.displayLoader"></app-loader>
           </div>
         </div>
       </div>
