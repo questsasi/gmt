@@ -3,7 +3,7 @@
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
   <form [formGroup]="productionForm" (ngSubmit)="productionForm.valid && onSubmit()" novalidate
-    *ngIf="!flags.displayLoader">
+    *ngIf="!flags.displayLoader"  autocomplete="off">
     <!-- Target Date -->
     <mat-form-field appearance="fill">
       <mat-label> Production Date </mat-label>

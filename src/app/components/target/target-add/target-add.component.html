@@ -2,7 +2,7 @@
 <div mat-dialog-content>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
-  <form [formGroup]="targetForm" (ngSubmit)="targetForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader">
+  <form [formGroup]="targetForm" (ngSubmit)="targetForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader" autocomplete="off">
     <!-- Target Date -->
     <mat-form-field appearance="fill">
       <mat-label> Target Date </mat-label>
