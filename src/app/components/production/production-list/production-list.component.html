@@ -15,28 +15,31 @@
             </div>
           </div>
 
-          <div class="card-body">
+          <div class="card-body px-2">
             <div class="table-responsive">
               <table class="table" aria-hidden="true">
                 <thead class=" text-primary">
-                  <th id="sno"> S.No </th>
-                  <th id="zone"> Zone </th>
-                  <th id="line"> Line </th>
-                  <th id="hour"> Production Hour </th>
-                  <th id="output"> Production Output </th>
-                  <th id="action"> Actions </th>
+                  <th id="sno">S.No</th>
+                  <th id="zone">Zone</th>
+                  <th id="line">Line</th>
+                  <th id="hour">Hrs</th>
+                  <th id="output">O/p</th>
+                  <th id="action">
+                    <!-- <i class="fa fa-user-o" arial-hidden="true"></i> -->
+                    Action
+                  </th>
                 </thead>
                 <tbody *ngIf="datasource?.productionList?.length > 0">
                   <tr *ngFor="let prodObj of datasource.productionList; let productionIndex=index">
-                    <td> {{productionIndex + 1}} </td>
-                    <td> {{prodObj.zone_name}} </td>
-                    <td> {{prodObj.line_name}} </td>
-                    <td> {{prodObj.hour}} </td>
+                    <td>{{productionIndex + 1}}</td>
+                    <td>{{prodObj.zone_name}}</td>
+                    <td>{{prodObj.line_name}}</td>
+                    <td>{{prodObj.hour}}</td>
                     <td>
                       <!-- View -->
                       <ng-container *ngIf="!prodObj.isEnableEdit">
                         {{prodObj.output}}
-                        <button mat-raised-button type="button" matTooltip="Edit Output" [matTooltipPosition]="'above'"
+                        <button mat-raised-button type="button" matTooltip="Edit O/p" [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(productionIndex)">
                           <i class="material-icons" aria-hidden="true"> edit </i>
                         </button>
@@ -48,15 +51,15 @@
                           (ngSubmit)="onSubmitEdit(productionIndex)" novalidate>
                           <div class="d-flex">
                             <mat-form-field>
-                              <input matInput type="number" placeholder="Output" formControlName="output">
+                              <input matInput type="number" placeholder="O/p" formControlName="output">
                               <mat-error *ngIf="errorHandling('output', 'required')">
-                                Output is required
+                                O/p is required
                               </mat-error>
                               <mat-error *ngIf="errorHandling('output', 'min')">
-                                Output Mininum Value is 0
+                                O/p Mininum Value is 0
                               </mat-error>
                               <mat-error *ngIf="errorHandling('output', 'max')">
-                                Output Maximum Value is 20000
+                                O/p Maximum Value is 20000
                               </mat-error>
                             </mat-form-field>
 

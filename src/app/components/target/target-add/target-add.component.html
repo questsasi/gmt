@@ -42,28 +42,28 @@
 
     <!-- Production Hour -->
     <mat-form-field appearance="fill">
-      <mat-label> Expected Production Hour(s)  </mat-label>
+      <mat-label>Hrs</mat-label>
       <mat-select formControlName="productionHour">
         <mat-option *ngFor="let productionHour of [].constructor(24); let i = index" [value]="i + 1">
           {{i + 1}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="errorHandling('productionHour', 'required')">
-        Production Hour is required
+        Hrs is required
       </mat-error>
     </mat-form-field>
 
-    <!-- Production Target -->
+    <!-- O/p -->
     <mat-form-field>
-      <input matInput type="number" placeholder="Production Target" formControlName="target">
+      <input matInput type="number" placeholder="O/p" formControlName="target">
       <mat-error *ngIf="errorHandling('target', 'required')">
-        Production Target is required
+        O/p is required
       </mat-error>
       <mat-error *ngIf="errorHandling('target', 'min')">
-        Production Target Mininum Value is 0
+        O/p Mininum Value is 0
       </mat-error>
       <mat-error *ngIf="errorHandling('target', 'max')">
-        Production Target Maximum Value is 20000
+        O/p Maximum Value is 20000
       </mat-error>
     </mat-form-field>
 

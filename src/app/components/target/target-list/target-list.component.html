@@ -15,7 +15,7 @@
             </div>
           </div>
 
-          <div class="card-body">
+          <div class="card-body px-2">
             <app-loader *ngIf="flags.displayLoader"></app-loader>
 
             <div class="table-responsive" *ngIf="!flags.displayLoader">
@@ -25,20 +25,23 @@
                   <th id="sno">S.No</th>
                   <th id="zone">Zone</th>
                   <th id="line">Line</th>
-                  <th id="productionhour">Expected Production Hour(s)</th>
-                  <th id="target">Target Hour</th>
-                  <th id="action">Action</th>
+                  <th id="productionhour">Hrs</th>
+                  <th id="target">O/p</th>
+                  <th id="action">
+                    <!-- <i class="fa fa-user-o" arial-hidden="true"></i> -->
+                    Action
+                  </th>
                 </thead>
                 <tbody *ngIf="datasource?.targetList?.length > 0">
                   <tr *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
-                    <td> {{targetIndex + 1}}</td>
-                    <td> {{targetObj.zone_name}}</td>
-                    <td> {{targetObj.line_name}}</td>
-                    <td> {{targetObj.production_hours}}</td>
+                    <td>{{targetIndex + 1}}</td>
+                    <td>{{targetObj.zone_name}}</td>
+                    <td>{{targetObj.line_name}}</td>
+                    <td>{{targetObj.production_hours}}</td>
                     <td>
                       <!-- View -->
                       <ng-container *ngIf="!targetObj.isEnableEdit">
-                        {{targetObj.target}}
+                        <span>{{targetObj.target}}</span>
                         <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
                           class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(targetIndex)">
                           <i class="material-icons" aria-hidden="true">edit</i>
