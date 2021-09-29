@@ -79,7 +79,7 @@ export class ProductionAddComponent {
     this.flags.submitting = true;
 
     let postData = {
-      production_date: moment(this.productionForm.value.dateOfTarget).format('YYYY-MM-DD'),
+      production_date: moment(this.productionForm.value.dateOfProduction).format('YYYY-MM-DD'),
       zone_id: this.productionForm.value.zone,
       line_id: this.productionForm.value.line,
       hour: this.productionForm.value.productionHour,
