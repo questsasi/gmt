@@ -17,13 +17,19 @@ import { SupervisorComponent } from "./components/supervisor/supervisor.componen
 import { LineComponent } from "./components/line/line.component";
 import { TargetListComponent } from "./components/target/target-list/target-list.component";
 import { ReportsComponent } from "./components/reports/reports.component";
+import { LoginComponent } from "./components/login/login.component";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "target",
+    redirectTo: "login",
     pathMatch: "full",
   },
+  { path: "login", component: LoginComponent },
+  { path: "target", component: TargetListComponent },
+  { path: "production", component: ProductionListComponent },
+  { path: "reports", component: ReportsComponent },
+
   { path: "dashboard", component: DashboardComponent },
   { path: "user-profile", component: UserProfileComponent },
   { path: "table-list", component: TableListComponent },
@@ -34,10 +40,7 @@ const routes: Routes = [
   { path: "supervisor", component: SupervisorComponent },
   { path: "line", component: LineComponent },
   { path: "hourly_production", component: HourlyProductionComponent },
-  { path: "production", component: ProductionListComponent },
-  { path: "order", component: OrderComponent },
-  { path: "target", component: TargetListComponent },
-  { path: "reports", component: ReportsComponent }
+  { path: "order", component: OrderComponent }
 ];
 
 @NgModule({

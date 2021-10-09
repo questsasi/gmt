@@ -45,6 +45,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DataSharedService } from './common/data-shared.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DataSharedService } from './common/data-shared.service';
     ReportsComponent,
     ConfirmDeleteTargetComponent,
     ConfirmDeleteProductionComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserAnimationsModule,
