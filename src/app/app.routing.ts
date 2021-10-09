@@ -18,6 +18,7 @@ import { LineComponent } from "./components/line/line.component";
 import { TargetListComponent } from "./components/target/target-list/target-list.component";
 import { ReportsComponent } from "./components/reports/reports.component";
 import { LoginComponent } from "./components/login/login.component";
+import { AuthGuardService } from "./services/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -26,9 +27,9 @@ const routes: Routes = [
     pathMatch: "full",
   },
   { path: "login", component: LoginComponent },
-  { path: "target", component: TargetListComponent },
-  { path: "production", component: ProductionListComponent },
-  { path: "reports", component: ReportsComponent },
+  { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
+  { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
+  { path: "reports", component: ReportsComponent, canActivate: [AuthGuardService] },
 
   { path: "dashboard", component: DashboardComponent },
   { path: "user-profile", component: UserProfileComponent },
