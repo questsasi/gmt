@@ -19,6 +19,7 @@ import { TargetListComponent } from "./components/target/target-list/target-list
 import { ReportsComponent } from "./components/reports/reports.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { UmListComponent } from "./components/um/um-list/um-list.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
   { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
   { path: "reports", component: ReportsComponent, canActivate: [AuthGuardService] },
+  { path: "um", component: UmListComponent, canActivate: [AuthGuardService] },
 
   { path: "dashboard", component: DashboardComponent },
   { path: "user-profile", component: UserProfileComponent },

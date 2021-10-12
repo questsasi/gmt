@@ -29,6 +29,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'assignment',
     class: '',
   },
+  {
+    path: '/um',
+    title: 'User Management',
+    icon: 'supervised_user_circle',
+    class: '',
+  },
   // {
   //   path: "/hourly_production",
   //   title: "Hourly Production",

@@ -21,13 +21,18 @@ export class AppService {
     deleteProduction: AppConstant.serviceUrl + 'deleteproduction/',
 
     // Reports
-    listReports: AppConstant.serviceUrl + 'report/'
+    listReports: AppConstant.serviceUrl + 'report/',
+
+    // User Management
+    listUsers: AppConstant.serviceUrl + 'users/list',
+    createUser: AppConstant.serviceUrl + 'users/create'
   };
 
   localhostConst = {
     listTarget: AppConstant.serviceUrl + 'src/assets/data/targetList.json',
     getTargetDetails: AppConstant.serviceUrl + 'src/assets/data/addtarget.json',
-    listProduction: AppConstant.serviceUrl + 'src/assets/data/productionList.json'
+    listProduction: AppConstant.serviceUrl + 'src/assets/data/productionList.json',
+    listUser: AppConstant.serviceUrl + 'src/assets/data/userList.json'
   }
 
   constructor(private httpService: HttpService) { }
@@ -56,6 +61,10 @@ export class AppService {
     return this.httpService.get(url, successFn, errorFn);
   }
 
+  getUsersList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.listUser, successFn, errorFn);
+  }
+
   // PUT APIs
   editTarget(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.put(this.appServiceConst.target, postData, successFn, errorFn);
@@ -72,7 +81,11 @@ export class AppService {
 
   createProduction(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.createProduction, postData, successFn, errorFn);
-  } 
+  }
+
+  createUser(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.createUser, postData, successFn, errorFn);
+  }
 
   // DELETE APIs
   deleteTarget(targetId: number, successFn: Function, errorFn: Function) {

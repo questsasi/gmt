@@ -46,6 +46,8 @@ import { environment } from '../environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DataSharedService } from './common/data-shared.service';
 import { LoginComponent } from './components/login/login.component';
+import { UmListComponent } from './components/um/um-list/um-list.component';
+import { UmAddComponent } from './components/um/um-add/um-add.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { LoginComponent } from './components/login/login.component';
     ConfirmDeleteTargetComponent,
     ConfirmDeleteProductionComponent,
     LoginComponent,
+    UmListComponent,
+    UmAddComponent,
   ],
   imports: [
     BrowserAnimationsModule,
