@@ -20,13 +20,13 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/production',
     title: 'Production',
-    icon: 'assignment',
+    icon: 'track_changes',
     class: '',
   },
   {
     path: '/reports',
     title: 'Reports',
-    icon: 'assignment',
+    icon: 'timeline',
     class: '',
   },
   // {

@@ -16,10 +16,6 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-
-    <div class="d-flex align-self-center">
-      <i class="material-icons" aria-hidden="true" (click)="onLogout()"> logout </i>
-    </div>
   </div>
 
 
@@ -80,5 +76,16 @@
         <p>{{menuItem.title}}</p>
       </a>
     </li>
+    <li routerLinkActive="active" class=" nav-item" >
+      <a class="nav-link" (click)="onLogout()">
+        <i class="material-icons">exit_to_app</i>
+        <p>Logout</p>
+      </a>
+    </li>
+    <!-- <li>
+      <div class="d-flex align-self-center">
+        <i class="material-icons" aria-hidden="true" (click)="onLogout()"> logout </i>
+      </div>
+    </li> -->
   </ul>
 </div>
