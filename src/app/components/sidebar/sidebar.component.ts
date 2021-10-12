@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DataSharedService } from 'src/app/common/data-shared.service';
 
@@ -80,7 +81,7 @@ export class SidebarComponent implements OnInit {
   menuItems: any = [];
   selectedDate: any = moment(Date()).format('YYYY-MM-DD');
 
-  constructor(private dataSharedService: DataSharedService) {}
+  constructor(private dataSharedService: DataSharedService, private router: Router) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
@@ -97,5 +98,11 @@ export class SidebarComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  onLogout() {
+    sessionStorage.clear();
+    window.location.href="#/"
+    location.reload();
   }
 }

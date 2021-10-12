@@ -1,0 +1,25 @@
+.login {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 25px;
+}
+
+.btn-align {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forgot-password {
+  color: #3d86c6;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.text-blue {
+  color: #3d86c6;
+}
+
+.m-t-20 {
+  margin-top: 20px !important;
+}

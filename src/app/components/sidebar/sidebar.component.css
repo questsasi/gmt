@@ -3,14 +3,22 @@
 }
 
 /* Calendar fix */
+
 ::ng-deep.cdk-overlay-container {
   z-index: 1032 !important;
 }
 
 /* Date Picker design change */
+
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
   background-color: #b1b1b1;
 }
+
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: transparent;
+}
+
+::ng-deep .sidebar .logo-img {
+  display: inherit;
+  margin-left: 0px;
 }
