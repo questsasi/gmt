@@ -1,21 +1,34 @@
 <footer class="footer ">
   <div class="container-fluid">
-    <!-- <nav class="pull-left">
+    
+    <nav class="row justify-content-center">
       <ul>
         <li>
-          <a href="#">
+          <a routerLink="about-us">
             About Us
           </a>
         </li>
         <li>
-          <a href="#">
-            License
+          <a routerLink="contact-us">
+            Contact Us
+          </a>
+        </li>
+        <li>
+          <a routerLink="faq">
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a routerLink="legal">
+            Legal
           </a>
         </li>
       </ul>
-    </nav> -->
-    <div class="copyright text-center">
+    </nav>
+
+    <div class="row justify-content-center" style="font-size: 0.7rem;">
       &copy; {{currentDateTime | date: 'yyyy'}}, All rights are reserved.
     </div>
+
   </div>
 </footer>

@@ -46,6 +46,10 @@ import { environment } from '../environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DataSharedService } from './common/data-shared.service';
 import { LoginComponent } from './components/login/login.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { LegalComponent } from './components/legal/legal.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,10 @@ import { LoginComponent } from './components/login/login.component';
     ConfirmDeleteTargetComponent,
     ConfirmDeleteProductionComponent,
     LoginComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    FaqComponent,
+    LegalComponent,
   ],
   imports: [
     BrowserAnimationsModule,
