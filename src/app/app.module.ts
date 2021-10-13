@@ -46,15 +46,15 @@ import { environment } from '../environments/environment';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DataSharedService } from './common/data-shared.service';
 import { LoginComponent } from './components/login/login.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FaqComponent } from './components/faq/faq.component';
+import { LegalComponent } from './components/legal/legal.component';
 import { UmListComponent } from './components/um/um-list/um-list.component';
 import { UmAddComponent } from './components/um/um-add/um-add.component';
 import { UmActivateComponent } from './components/um/um-activate/um-activate.component';
 import { UmDeactivateComponent } from './components/um/um-deactivate/um-deactivate.component';
 import { UmEditComponent } from './components/um/um-edit/um-edit.component';
-import { AboutUsComponent } from './components/about-us/about-us.component';
-import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { FaqComponent } from './components/faq/faq.component';
-import { LegalComponent } from './components/legal/legal.component';
 
 @NgModule({
   declarations: [
@@ -80,15 +80,15 @@ import { LegalComponent } from './components/legal/legal.component';
     ConfirmDeleteTargetComponent,
     ConfirmDeleteProductionComponent,
     LoginComponent,
-    UmListComponent,
-    UmAddComponent,
-    UmActivateComponent,
-    UmDeactivateComponent,
-    UmEditComponent,
     AboutUsComponent,
     ContactUsComponent,
     FaqComponent,
     LegalComponent,
+    UmListComponent,
+    UmAddComponent,
+    UmActivateComponent,
+    UmDeactivateComponent,
+    UmEditComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -129,4 +129,4 @@ import { LegalComponent } from './components/legal/legal.component';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule { }
