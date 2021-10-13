@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const emailId = this.loginForm.get('emailId')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    if (emailId === 'gmt@gmail.com' && password === 'gmt@123') {
+    if (emailId === 'gmt@gmail.com' && password === 'gmt@gmail.com') {
       sessionStorage.setItem('isLoggedInUser', 'true');
       location.reload();
     }

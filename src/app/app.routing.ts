@@ -20,6 +20,10 @@ import { ReportsComponent } from "./components/reports/reports.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { UmListComponent } from "./components/um/um-list/um-list.component";
+import { ContactUsComponent } from "./components/contact-us/contact-us.component";
+import { AboutUsComponent } from "./components/about-us/about-us.component";
+import { FaqComponent } from "./components/faq/faq.component";
+import { LegalComponent } from "./components/legal/legal.component";
 
 const routes: Routes = [
   {
@@ -43,7 +47,11 @@ const routes: Routes = [
   { path: "supervisor", component: SupervisorComponent },
   { path: "line", component: LineComponent },
   { path: "hourly_production", component: HourlyProductionComponent },
-  { path: "order", component: OrderComponent }
+  { path: "order", component: OrderComponent },
+  { path: "about-us", component: AboutUsComponent },
+  { path: "contact-us", component: ContactUsComponent },
+  { path: "faq", component: FaqComponent },
+  { path: "legal", component: LegalComponent }
 ];
 
 @NgModule({
