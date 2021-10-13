@@ -25,7 +25,9 @@ export class AppService {
 
     // User Management
     listUsers: AppConstant.serviceUrl + 'users/list',
-    createUser: AppConstant.serviceUrl + 'users/create'
+    createUser: AppConstant.serviceUrl + 'users/create',
+    modifyUserStatus: AppConstant.serviceUrl + 'users/modifystatus',
+    updateUser: AppConstant.serviceUrl + 'users/update/'
   };
 
   localhostConst = {
@@ -74,6 +76,11 @@ export class AppService {
     return this.httpService.put(this.appServiceConst.production, postData, successFn, errorFn);
   }
 
+  updateUser(userId: number, postData: any, successFn: Function, errorFn: Function) {
+    const url = `${this.appServiceConst.updateUser}${userId}`;
+    return this.httpService.put(url, postData, successFn, errorFn);
+  }
+
   // POST APIs
   createTarget(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.target, postData, successFn, errorFn);
@@ -85,6 +92,10 @@ export class AppService {
 
   createUser(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.createUser, postData, successFn, errorFn);
+  }
+
+  modifyUserStatus(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.modifyUserStatus, postdata, successFn, errorFn);
   }
 
   // DELETE APIs

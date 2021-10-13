@@ -37,9 +37,22 @@
                     <td> {{userObj.password}} </td>
                     <td> {{userObj.mobile_number}} </td>
                     <td>
-                      <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
-                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(userIndex)">
-                        <i class="material-icons" aria-hidden="true">delete</i>
+                      <button mat-raised-button type="button" matTooltip="De Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onDeactivateUser(userIndex)"
+                        *ngIf="userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">mobile_friendly</i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onActivateUser(userIndex)"
+                        *ngIf="!userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">mobile_off</i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Edit User" [matTooltipPosition]="'above'"
+                        class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEditUser(userIndex)"
+                        *ngIf="userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">edit</i>
                       </button>
                     </td>
                   </tr>
