@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
 
 import { AppService } from 'src/app/app.service';
+import { DataSharedService } from 'src/app/common/data-shared.service';
 
 @Component({
   selector: 'app-production-add',
@@ -14,8 +15,9 @@ export class ProductionAddComponent {
 
   datasource: any = {
     zones: [],
-    lines: []
-  }
+    lines: [],
+    target: []
+  };
   flags: any = {
     displayLoader: Boolean,
     submitting: Boolean
@@ -23,9 +25,13 @@ export class ProductionAddComponent {
   productionForm!: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<ProductionAddComponent>, private formBuilder: FormBuilder,
-    private appService: AppService) {
+    private appService: AppService, private dataSharedService: DataSharedService) {
     this.getFlagsStatus();
-    this.getProductionDetails();
+    this.dataSharedService.getDate().subscribe((getDate: any) => {
+      this.datasource.selectedDate = getDate;
+      this.datasource.productionIndex = 0;
+      this.getAddProduction();
+    });
   }
 
   getFlagsStatus() {
@@ -33,12 +39,13 @@ export class ProductionAddComponent {
     this.flags.submitting = false;
   }
 
-  getProductionDetails() {
+  getAddProduction() {
     this.flags.displayLoader = true;
-    this.appService.getTargetDetails(
+    this.appService.getAddProduction(
+      this.datasource.selectedDate,
       (response: any) => {
-        if (response && response.data && response.data.zone && response.data.zone.length > 0) {
-          this.datasource.zones = response.data.zone;
+        if (response && response.data && response.data.zones && response.data.zones.length > 0) {
+          this.datasource.zones = response.data.zones;
           this.generateProductionForm();
         } else {
           this.flags.displayLoader = false;
@@ -53,22 +60,35 @@ export class ProductionAddComponent {
 
   generateProductionForm() {
     this.productionForm = this.formBuilder.group({
-      dateOfProduction: ["", [Validators.required]],
+      dateOfProduction: [{disabled: true, value: this.datasource.selectedDate}, [Validators.required]],
       zone: ["", [Validators.required]],
       line: ["", [Validators.required]],
-      productionHour: [1, [Validators.required]],
+      target: ["", [Validators.required]],
+      productionHour: ["", [Validators.required]],
       output: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
     });
-
-    let todayDate = moment().format("YYYY-MM-DD");
-    this.productionForm.controls['dateOfProduction'].setValue(todayDate);
     this.flags.displayLoader = false;
   }
 
-  onZoneChange(event: any) {
+  onZoneChange() {
+    // Reset Value
     this.datasource.lines = [];
+    this.datasource.target = [];
+    // this.productionForm.controls['zone'] = {};
+    
     let result = this.datasource.zones.find((obj: any) => obj.id == this.productionForm.controls['zone'].value);
     this.datasource.lines = result.lines;
+  }
+
+  onLineChange() {
+    // Reset Value
+    this.datasource.target = [];
+
+    let temp = this.productionForm.controls['line'].value;
+    this.datasource.target = [];
+    if(temp.targets && temp.targets.length > 0) {
+      this.datasource.target = temp.targets;
+    }
   }
 
   public errorHandling = (control: string, error: string) => {
@@ -77,14 +97,15 @@ export class ProductionAddComponent {
 
   onSubmit() {
     this.flags.submitting = true;
-
     let postData = {
-      production_date: moment(this.productionForm.value.dateOfProduction).format('YYYY-MM-DD'),
-      zone_id: this.productionForm.value.zone,
-      line_id: this.productionForm.value.line,
+      production_date: this.datasource.selectedDate,
       hour: this.productionForm.value.productionHour,
       output: this.productionForm.value.output,
-      target_id: 24
+      target_id: this.productionForm.value.target.target_id,
+      buyer_id: this.productionForm.value.target.buyer.buyer_id,
+      style_id: this.productionForm.value.target.style.style_id,
+      // zone_id: this.productionForm.value.zone,
+      // line_id: this.productionForm.value.line.line_id,
     }
 
     this.appService.createProduction(

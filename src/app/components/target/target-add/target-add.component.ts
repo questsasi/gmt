@@ -38,12 +38,14 @@ export class TargetAddComponent {
     this.flags.displayLoader = true;
     this.appService.getTargetDetails(
       (response: any) => {
-        if (response && response.data && response.data.zone && response.data.zone.length > 0) {
-          this.datasource.zones = response.data.zone;
+        if (response && response.data && response.data.zones && response.data.zones.length > 0) {
+          this.datasource.zones = response.data.zones;
+          this.datasource.buyers = response.data.buyers;
+          this.datasource.styles = response.data.styles;
           this.generateTargetForm();
         } else {
           this.flags.displayLoader = false;
-          console.error("Zone List is empty");
+          console.log("Zone List is empty");
         }
       },
       (error: any) => {
@@ -58,7 +60,9 @@ export class TargetAddComponent {
       dateOfTarget: ["", [Validators.required]],
       zone: ["", [Validators.required]],
       line: ["", [Validators.required]],
-      productionHour: [1, [Validators.required]],
+      buyer: ["", [Validators.required]],
+      style: ["", [Validators.required]],
+      productionHour: [9, [Validators.required]],
       target: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
     });
 
@@ -85,7 +89,9 @@ export class TargetAddComponent {
       zone_id: this.targetForm.value.zone,
       line_id: this.targetForm.value.line,
       production_hrs: this.targetForm.value.productionHour,
-      target: this.targetForm.value.target
+      target: this.targetForm.value.target,
+      buyer_id: this.targetForm.value.buyer,
+      style_id: this.targetForm.value.style
     }
 
     this.appService.createTarget(

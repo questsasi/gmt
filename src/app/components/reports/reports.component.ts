@@ -36,9 +36,7 @@ export class ReportsComponent implements OnInit {
         if (response && response.data) {
           this.reports =
             response.data.length > 0 ? this.processData(response.data) : [];
-        } else {
-          this.reports = [];
-        }
+        } 
 
         this.flags.displayLoader = false;
       },
@@ -54,6 +52,7 @@ export class ReportsComponent implements OnInit {
     for (var zone = 0; zone < zoneObj.length; zone++) {
       let lines = zoneObj[zone].lines;
       for (var line = 0; line < lines.length; line++) {
+        lines[line].toggle = false;
         lines[line].target_count = lines[line].targets[0].target_count;
         lines[line].target_id = lines[line].targets[0].target_id;
         lines[line].production_hrs = lines[line].targets[0].production_hrs;
@@ -69,9 +68,9 @@ export class ReportsComponent implements OnInit {
             lines[line].target_count) *
           100;
         lines[line].percent = Math.round(lines[line].percent * 100) / 100;
-
         lines[line].productions = lines[line].targets[0].productions;
-        lines[line].toggle = false;
+        let oneHrCount = lines[line].target_count / lines[line].production_hrs;
+        lines[line].presant = Math.round(oneHrCount * lines[line].productions.length);
       }
       result.push(zoneObj[zone]);
     }

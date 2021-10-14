@@ -40,7 +40,33 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- Production Hour -->
+    <!-- Buyer -->
+    <mat-form-field appearance="fill">
+      <mat-label>Buyer</mat-label>
+      <mat-select formControlName="buyer">
+        <mat-option *ngFor="let buyerObj of datasource.buyers; let i = index" [value]="buyerObj.id">
+          {{buyerObj.buyer_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('buyer', 'required')">
+        Buyer is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Style -->
+    <mat-form-field appearance="fill">
+      <mat-label>Style</mat-label>
+      <mat-select formControlName="style">
+        <mat-option *ngFor="let styleObj of datasource.styles; let i = index" [value]="styleObj.id">
+          {{styleObj.style_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('style', 'required')">
+        Style is required
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Hour -->
     <mat-form-field appearance="fill">
       <mat-label>Hrs</mat-label>
       <mat-select formControlName="productionHour">

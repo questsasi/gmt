@@ -19,6 +19,7 @@ export class AppService {
     createProduction: AppConstant.serviceUrl + 'production/postproductionhours',
     editProduction: AppConstant.serviceUrl + 'editproduction',
     deleteProduction: AppConstant.serviceUrl + 'deleteproduction/',
+    getAddProduction: AppConstant.serviceUrl + 'production/getadd/',
 
     // Reports
     listReports: AppConstant.serviceUrl + 'report/'
@@ -44,6 +45,10 @@ export class AppService {
 
   getTargetDetails(successFn: Function, errorFn: Function) {
     return this.httpService.get(this.appServiceConst.getTargetDetails, successFn, errorFn);
+  }
+
+  getAddProduction(date: String, successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.appServiceConst.getAddProduction + date, successFn, errorFn);
   }
 
   getProductionList(selectedDate: string, successFn: Function, errorFn: Function) {

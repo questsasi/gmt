@@ -3,22 +3,24 @@
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
   <form [formGroup]="productionForm" (ngSubmit)="productionForm.valid && onSubmit()" novalidate
-    *ngIf="!flags.displayLoader"  autocomplete="off">
+    *ngIf="!flags.displayLoader" autocomplete="off">
     <!-- Target Date -->
     <mat-form-field appearance="fill">
       <mat-label> Production Date </mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dateOfProduction" placeholder="Production Date">
+      <input matInput [matDatepicker]="picker" formControlName="dateOfProduction" 
+        placeholder="Production Date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="errorHandling('dateOfProduction', 'required')">
         Production Date is required
       </mat-error>
     </mat-form-field>
+    
 
     <!-- Zone -->
     <mat-form-field appearance="fill">
       <mat-label> Zone </mat-label>
-      <mat-select formControlName="zone" (selectionChange)="onZoneChange($event)">
+      <mat-select formControlName="zone" (selectionChange)="onZoneChange()">
         <mat-option *ngFor="let zone of datasource.zones" [value]="zone.id">
           {{zone.zone_name}}
         </mat-option>
@@ -31,13 +33,27 @@
     <!-- Line -->
     <mat-form-field appearance="fill">
       <mat-label> Line </mat-label>
-      <mat-select formControlName="line">
-        <mat-option *ngFor="let line of datasource.lines" [value]="line.id">
+      <mat-select formControlName="line" (selectionChange)="onLineChange()">
+        <mat-option *ngFor="let line of datasource.lines" [value]="line">
           {{line.line_name}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="errorHandling('line', 'required')">
         Line is required
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Target -->
+    <mat-form-field appearance="fill">
+      <mat-label>Target</mat-label>
+      <mat-select formControlName="target">
+        <mat-option *ngFor="let obj of datasource.target" [value]="obj">
+          <span class="font-weight-bold">#{{obj.target}} - </span>
+          <span class="text-muted" style="font-size: 11px;">({{obj.style.style_name}} | {{obj.buyer.buyer_name}})</span>
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('target', 'required')">
+        Target is required
       </mat-error>
     </mat-form-field>
 
