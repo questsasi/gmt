@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app.routing';
 import { HttpService } from './http.service';
@@ -101,6 +102,7 @@ import { LegalComponent } from './components/legal/legal.component';
     MatDialogModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

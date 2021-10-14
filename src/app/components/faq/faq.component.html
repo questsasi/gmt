@@ -9,8 +9,22 @@
                 <div class="card-title p-t-5">FAQ</div>
               </div>
             </div>
-            <div class="card-body px-2">
-              <p>FAQ works!</p>
+            <div class="card-body">
+              
+              <mat-accordion class="example-headers-align">
+
+                <mat-expansion-panel *ngFor="let obj of faqs">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{obj.ques}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-panel-description>
+                    {{obj.ans}}
+                  </mat-panel-description>
+                </mat-expansion-panel>
+                
+              </mat-accordion>
             </div>
           </div>
         </div>
