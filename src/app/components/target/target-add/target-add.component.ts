@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, } from "@angular/forms";
 import * as moment from 'moment';
 
 import { AppService } from "src/app/app.service";
+import { DataSharedService } from "src/app/common/data-shared.service";
 
 @Component({
   selector: 'app-target-add',
@@ -24,9 +25,12 @@ export class TargetAddComponent {
 
 
   constructor(public dialogRef: MatDialogRef<TargetAddComponent>, private formBuilder: FormBuilder,
-    private appService: AppService) {
+    private appService: AppService, private dataSharedService: DataSharedService) {
     this.getFlagsStatus();
-    this.getTargetDetails();
+    this.dataSharedService.getDate().subscribe((getDate: any) => {
+      this.datasource.selectedDate = getDate;
+      this.getTargetDetails();
+    });
   }
 
   getFlagsStatus() {
@@ -57,7 +61,7 @@ export class TargetAddComponent {
 
   generateTargetForm() {
     this.targetForm = this.formBuilder.group({
-      dateOfTarget: ["", [Validators.required]],
+      dateOfTarget: [{disabled: true, value: this.datasource.selectedDate}, [Validators.required]],
       zone: ["", [Validators.required]],
       line: ["", [Validators.required]],
       buyer: ["", [Validators.required]],
@@ -65,9 +69,6 @@ export class TargetAddComponent {
       productionHour: [9, [Validators.required]],
       target: ["", [Validators.required, Validators.min(0), Validators.max(20000)]]
     });
-
-    let todayDate = moment().format("YYYY-MM-DD");
-    this.targetForm.controls['dateOfTarget'].setValue(todayDate);
     this.flags.displayLoader = false;
   }
 
