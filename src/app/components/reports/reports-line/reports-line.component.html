@@ -6,7 +6,8 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <div class="float-left">
-              <h4 class="card-title ">Reports</h4>
+              <i class="material-icons mr-2  pointer" routerLink="/reports/zones">keyboard_backspace</i>
+              <h4 class="card-title" style="display: inline-block;">Reports - Line</h4>
             </div>
           </div>
           <div class="card-body px-2">
@@ -23,7 +24,7 @@
                           [ngClass]="{'fa-arrow-circle-down': line.toggle, 'fa-arrow-circle-right': !line.toggle}" (click)="line.toggle = !line.toggle"></i>
                           {{line.line_name}}
                         </div>
-                        <div class="circle" [ngClass]="line.percent <= 0 ? 'bg-danger': 'bg-success'">
+                        <div class="circle" [ngClass]="line.percent < 0 ? 'bg-danger': 'bg-success'">
                           {{line.percent}} %
                         </div>
                       </div>

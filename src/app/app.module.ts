@@ -39,7 +39,8 @@ import { TargetListComponent } from './components/target/target-list/target-list
 import { TargetAddComponent } from './components/target/target-add/target-add.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { ProductionAddComponent } from './components/production/production-add/production-add.component';
-import { ReportsComponent } from './components/reports/reports.component';
+import { ReportsZoneComponent } from './components/reports/reports-zone/reports-zone.component';
+import { ReportsLineComponent } from './components/reports/reports-line/reports-line.component';
 import { ConfirmDeleteTargetComponent } from './components/target/confirm-delete-target/confirm-delete-target.component';
 import { ConfirmDeleteProductionComponent } from './components/production/confirm-delete-production/confirm-delete-production.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -72,7 +73,8 @@ import { LegalComponent } from './components/legal/legal.component';
     TargetAddComponent,
     LoaderComponent,
     ProductionAddComponent,
-    ReportsComponent,
+    ReportsZoneComponent,
+    ReportsLineComponent,
     ConfirmDeleteTargetComponent,
     ConfirmDeleteProductionComponent,
     LoginComponent,

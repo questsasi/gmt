@@ -22,14 +22,9 @@ export class AppService {
     getAddProduction: AppConstant.serviceUrl + 'production/getadd/',
 
     // Reports
-    listReports: AppConstant.serviceUrl + 'report/'
+    zoneReports: AppConstant.serviceUrl + 'report/zones/',
+    listReports: AppConstant.serviceUrl + 'report/lines/'
   };
-
-  localhostConst = {
-    listTarget: AppConstant.serviceUrl + 'src/assets/data/targetList.json',
-    getTargetDetails: AppConstant.serviceUrl + 'src/assets/data/addtarget.json',
-    listProduction: AppConstant.serviceUrl + 'src/assets/data/productionList.json'
-  }
 
   constructor(private httpService: HttpService) { }
 
@@ -56,8 +51,13 @@ export class AppService {
     return this.httpService.get(url, successFn, errorFn);
   }
 
-  getReports(selectedDate: string, successFn: Function, errorFn: Function) {
-    const url = `${this.appServiceConst.listReports}${selectedDate}`;
+  getZoneReports(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = this.appServiceConst.zoneReports + selectedDate;
+    return this.httpService.get(url, successFn, errorFn);
+  }
+
+  getLineReports(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = this.appServiceConst.listReports + selectedDate;
     return this.httpService.get(url, successFn, errorFn);
   }
 

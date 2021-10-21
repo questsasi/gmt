@@ -16,7 +16,8 @@ import { NotificationsComponent } from "./components/notifications/notifications
 import { SupervisorComponent } from "./components/supervisor/supervisor.component";
 import { LineComponent } from "./components/line/line.component";
 import { TargetListComponent } from "./components/target/target-list/target-list.component";
-import { ReportsComponent } from "./components/reports/reports.component";
+import { ReportsZoneComponent } from "./components/reports/reports-zone/reports-zone.component";
+import { ReportsLineComponent } from "./components/reports/reports-line/reports-line.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { ContactUsComponent } from "./components/contact-us/contact-us.component";
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
   { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
-  { path: "reports", component: ReportsComponent, canActivate: [AuthGuardService] },
+  { path: "reports/zones", component: ReportsZoneComponent, canActivate: [AuthGuardService] },
+  { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
 
   { path: "dashboard", component: DashboardComponent },
   { path: "user-profile", component: UserProfileComponent },

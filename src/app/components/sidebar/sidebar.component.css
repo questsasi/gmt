@@ -11,7 +11,7 @@
 /* Date Picker design change */
 
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-underline::before {
-  background-color: #b1b1b1;
+  background-color: #eeeeee;
 }
 
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
@@ -21,4 +21,8 @@
 ::ng-deep .sidebar .logo-img {
   display: inherit;
   margin-left: 0px;
+}
+
+::ng-deep .sidebar .logo {
+  padding: 0px;
 }

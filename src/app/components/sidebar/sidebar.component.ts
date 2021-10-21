@@ -24,7 +24,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
-    path: '/reports',
+    path: '/reports/zones',
     title: 'Reports',
     icon: 'timeline',
     class: '',
