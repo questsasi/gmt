@@ -191,4 +191,9 @@ export class AppComponent {
     }
     return bool;
   }
+
+  onNavigate(event: HTMLElement): any {
+    const elemMainPanel = <HTMLElement>document.querySelector(".main-panel");
+    elemMainPanel.scroll({ top: 0, behavior: 'smooth' });
+  }
 }
