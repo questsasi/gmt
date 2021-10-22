@@ -94,10 +94,10 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="datasource?.productionList?.length === 0">
-                  <td colspan="6" *ngIf="!flags.displayLoader">
+                  <td colspan="8" *ngIf="!flags.displayLoader">
                     <div class="text-center fs-20"> No Records Found </div>
                   </td>
-                  <td colspan="6" *ngIf="flags.displayLoader">
+                  <td colspan="8" *ngIf="flags.displayLoader">
                     <app-loader></app-loader>
                   </td>
                 </tbody>
