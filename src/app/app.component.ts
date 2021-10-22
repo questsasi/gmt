@@ -29,9 +29,9 @@ export class AppComponent {
   ngOnInit() {
     this.flags.isLoggedInUser = false;
     this.flags.isLoggedInUser = (sessionStorage.getItem('isLoggedInUser')?.toLowerCase() === 'true');
-    if (this.flags.isLoggedInUser) {
-      this.router.navigate(['target']);
-    }
+    // if (this.flags.isLoggedInUser) {
+    //   this.router.navigate(['target']);
+    // }
     const isWindows = navigator.platform.indexOf("Win") > -1 ? true : false;
 
     if (

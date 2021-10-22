@@ -26,11 +26,6 @@ import { FaqComponent } from "./components/faq/faq.component";
 import { LegalComponent } from "./components/legal/legal.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    redirectTo: "login",
-    pathMatch: "full",
-  },
   { path: "login", component: LoginComponent },
   { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
   { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
@@ -51,7 +46,8 @@ const routes: Routes = [
   { path: "about-us", component: AboutUsComponent },
   { path: "contact-us", component: ContactUsComponent },
   { path: "faq", component: FaqComponent },
-  { path: "legal", component: LegalComponent }
+  { path: "legal", component: LegalComponent },
+  { path: "", redirectTo: "target", pathMatch: "full" }
 ];
 
 @NgModule({
