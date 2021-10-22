@@ -7,7 +7,8 @@ export class AuthService {
   constructor() { }
 
   public isAuthenticated(): boolean {
-    const isLoggedInUserString = sessionStorage.getItem('isLoggedInUser');
-    return (isLoggedInUserString?.toLowerCase() === 'true');
+    return true;
+    // const isLoggedInUserString = sessionStorage.getItem('isLoggedInUser');
+    // return (isLoggedInUserString?.toLowerCase() === 'true');
   }
 }
