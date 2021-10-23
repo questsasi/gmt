@@ -1,17 +1,18 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Validators, FormBuilder, FormGroup, } from "@angular/forms";
 import * as moment from 'moment';
 
 import { AppService } from "src/app/app.service";
 import { DataSharedService } from "src/app/common/data-shared.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-target-add',
   templateUrl: './target-add.component.html',
   styleUrls: ['./target-add.component.css']
 })
-export class TargetAddComponent {
+export class TargetAddComponent implements OnDestroy {
 
   datasource: any = {
     zones: [],
@@ -22,12 +23,12 @@ export class TargetAddComponent {
     submitting: Boolean
   };
   targetForm!: FormGroup;
-
+  private serviceSubscription: Subscription = new Subscription;
 
   constructor(public dialogRef: MatDialogRef<TargetAddComponent>, private formBuilder: FormBuilder,
     private appService: AppService, private dataSharedService: DataSharedService) {
     this.getFlagsStatus();
-    this.dataSharedService.getDate().subscribe((getDate: any) => {
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
       this.datasource.selectedDate = getDate;
       this.getTargetDetails();
     });
@@ -109,5 +110,9 @@ export class TargetAddComponent {
 
   onClickCancel() {
     this.dialogRef.close();
+  }
+  
+  ngOnDestroy(): void {
+    this.serviceSubscription.unsubscribe();
   }
 }

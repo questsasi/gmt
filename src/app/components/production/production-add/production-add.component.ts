@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -11,7 +11,7 @@ import { DataSharedService } from 'src/app/common/data-shared.service';
   templateUrl: './production-add.component.html',
   styleUrls: ['./production-add.component.css']
 })
-export class ProductionAddComponent {
+export class ProductionAddComponent implements OnDestroy {
 
   datasource: any = {
     zones: [],
@@ -23,11 +23,12 @@ export class ProductionAddComponent {
     submitting: Boolean
   };
   productionForm!: FormGroup;
+  private serviceSubscription: Subscription = new Subscription;
 
   constructor(public dialogRef: MatDialogRef<ProductionAddComponent>, private formBuilder: FormBuilder,
     private appService: AppService, private dataSharedService: DataSharedService) {
     this.getFlagsStatus();
-    this.dataSharedService.getDate().subscribe((getDate: any) => {
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
       this.datasource.selectedDate = getDate;
       this.datasource.productionIndex = 0;
       this.getAddProduction();
@@ -123,5 +124,8 @@ export class ProductionAddComponent {
   onClickCancel() {
     this.dialogRef.close();
   }
-
+ 
+  ngOnDestroy(): void {
+    this.serviceSubscription.unsubscribe();
+  }
 }

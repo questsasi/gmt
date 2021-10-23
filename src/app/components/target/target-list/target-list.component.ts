@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -13,7 +13,7 @@ import { TargetAddComponent } from '../target-add/target-add.component';
   templateUrl: './target-list.component.html',
   styleUrls: ['./target-list.component.css'],
 })
-export class TargetListComponent implements OnInit {
+export class TargetListComponent implements OnInit, OnDestroy {
   flags: any = {
     displayLoader: Boolean,
   };
@@ -23,23 +23,17 @@ export class TargetListComponent implements OnInit {
     targetIndex: Number,
   };
   editTargetForm!: FormGroup;
+  private serviceSubscription: Subscription = new Subscription;
 
   constructor(
     public dialog: MatDialog,
     private appService: AppService,
     private formBuilder: FormBuilder,
     private dataSharedService: DataSharedService
-  ) {
-    this.dataSharedService.getDate().subscribe((getDate: any) => {
-      console.log(2);
-      this.datasource.selectedDate = getDate;
-      this.datasource.targetIndex = 0;
-      this.getTargetList();
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
-      this.dataSharedService.getDate().subscribe( (getDate:any) => {
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe( (getDate:any) => {
         this.datasource.selectedDate = getDate;
         this.datasource.targetIndex = 0;
         this.getTargetList();
@@ -177,5 +171,9 @@ export class TargetListComponent implements OnInit {
         this.getTargetList();
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    this.serviceSubscription.unsubscribe();
   }
 }

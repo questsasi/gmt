@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
 
@@ -8,13 +8,14 @@ import { DataSharedService } from 'src/app/common/data-shared.service';
   templateUrl: './reports-line.component.html',
   styleUrls: ['./reports-line.component.css'],
 })
-export class ReportsLineComponent implements OnInit {
+export class ReportsLineComponent implements OnInit, OnDestroy {
   lineDetails: any = [];
   selectedDate: any;
   flags = {
     displayLoader: false,
   };
   reports: any = [];
+  private serviceSubscription: Subscription = new Subscription;
 
   constructor(
     private appService: AppService,
@@ -22,7 +23,7 @@ export class ReportsLineComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataSharedService.getDate().subscribe((getDate: any) => {
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
       this.selectedDate = getDate;
       this.getReports();
     });
@@ -43,6 +44,10 @@ export class ReportsLineComponent implements OnInit {
         this.flags.displayLoader = false;
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.serviceSubscription.unsubscribe();
   }
 
 }

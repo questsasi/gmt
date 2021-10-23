@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -13,7 +14,7 @@ import { ProductionAddComponent } from '../production-add/production-add.compone
   templateUrl: './production-list.component.html',
   styleUrls: ['./production-list.component.css'],
 })
-export class ProductionListComponent implements OnInit {
+export class ProductionListComponent implements OnInit, OnDestroy {
   datasource: any = {
     selectedDate: String,
     productionIndex: Number,
@@ -24,6 +25,7 @@ export class ProductionListComponent implements OnInit {
   };
   productions: any;
   editProductionForm!: FormGroup;
+  private serviceSubscription: Subscription = new Subscription;
 
   constructor(
     private appService: AppService,
@@ -33,7 +35,7 @@ export class ProductionListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataSharedService.getDate().subscribe((getDate: any) => {
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
       this.datasource.selectedDate = getDate;
       this.datasource.productionIndex = 0;
       this.getProductionList();
@@ -174,5 +176,9 @@ export class ProductionListComponent implements OnInit {
         this.getProductionList();
       }
     );
+  }
+  
+  ngOnDestroy(): void {
+    this.serviceSubscription.unsubscribe();
   }
 }
