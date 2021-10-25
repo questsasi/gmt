@@ -24,7 +24,7 @@
                           [ngClass]="{'fa-arrow-circle-down': line.toggle, 'fa-arrow-circle-right': !line.toggle}" (click)="line.toggle = !line.toggle"></i>
                           {{line.line_name}}
                         </div>
-                        <div class="circle" [ngClass]="line.percent < 0 ? 'bg-danger': 'bg-success'">
+                        <div class="circle" [ngClass]="line.percent < 97 ? 'bg-danger': 'bg-success'">
                           {{line.percent}} %
                         </div>
                       </div>
@@ -45,7 +45,7 @@
                           <div class="bottom-text">Achieved</div>
                         </div>
                         <div class="col">
-                          <span class="prod-data" [ngClass]="line.difference <= 0 ? 'text-danger': 'text-success'">{{line.difference}}</span>
+                          <span class="prod-data" [ngClass]="line.difference < 0 ? 'text-danger': 'text-success'">{{line.difference}}</span>
                           <div class="bottom-text" title="Difference">Diff.</div>
                         </div>
                       </div>
@@ -86,8 +86,8 @@
                       <tr *ngFor="let production of line.productions">
                         <td>{{production.hour}}</td>
                         <td>{{production.output}}</td>
-                        <td>TOTAL SPORTS</td>
-                        <td>TURTLE NECK T-SHIRT</td>
+                        <td>{{production.buyer.buyer_name}}</td>
+                        <td>{{production.style.style_name}}</td>
                       </tr>
                     </tbody>
                   </table>

@@ -22,7 +22,7 @@
                     <div class="title">
                       {{zone.zone_name}}
                     </div>
-                    <div class="circle" [ngClass]="zone.acheieved_percent < 0 ? 'bg-danger': 'bg-success'">
+                    <div class="circle" [ngClass]="zone.acheieved_percent < 97 ? 'bg-danger': 'bg-success'">
                       {{zone.acheieved_percent}} %
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                       <div class="bottom-text">Achieved</div>
                     </div>
                     <div class="col">
-                      <span class="prod-data" [ngClass]="zone.target_diff <= 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
+                      <span class="prod-data" [ngClass]="zone.target_diff < 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
                       <div class="bottom-text" title="Difference">Diff.</div>
                     </div>
                   </div>
