@@ -71,3 +71,8 @@
   padding: 2px;
   font-size: 12px;
 }
+
+.card-summary {
+  background: linear-gradient(45deg, #e0e0e0, #cfd8dc);
+  border-radius: 4px;
+}
