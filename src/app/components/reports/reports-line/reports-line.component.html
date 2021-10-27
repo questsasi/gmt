@@ -20,7 +20,7 @@
                   <div class="card-body p-2">
                     <div class="container-fluid">
                       <div class="row d-flex justify-content-between upper-card">
-                        <div class="title">Summary</div>
+                        <div class="title" style="font-size: 18px;">{{zones.zone_name}} Summary</div>
                         <div class="circle" [ngClass]="zones.summary.percent < 97 ? 'bg-danger': 'bg-success'">
                           {{zones.summary.percent}} %
                         </div>
