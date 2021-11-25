@@ -26,3 +26,21 @@
 ::ng-deep .sidebar .logo {
   padding: 0px;
 }
+
+.menu-footer {
+  font-size: 11px;
+  position: absolute;
+  bottom: 25px;
+  font-weight: normal;
+  display: flex;
+  justify-content: space-around;
+}
+.menu-footer > li {
+  list-style-type: none;
+}
+.menu-footer > li > a{
+  color: #666;
+}
+.menu-footer > li:nth-child(even) {
+  padding: 0px 5px;
+}

@@ -24,6 +24,8 @@ import { ContactUsComponent } from "./components/contact-us/contact-us.component
 import { AboutUsComponent } from "./components/about-us/about-us.component";
 import { FaqComponent } from "./components/faq/faq.component";
 import { LegalComponent } from "./components/legal/legal.component";
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -47,7 +49,9 @@ const routes: Routes = [
   { path: "contact-us", component: ContactUsComponent },
   { path: "faq", component: FaqComponent },
   { path: "legal", component: LegalComponent },
-  { path: "", redirectTo: "target", pathMatch: "full" }
+  { path: "disclaimer", component: DisclaimerComponent },
+  { path: "privacy", component: PrivacyComponent },
+  { path: "", redirectTo: "reports/zones", pathMatch: "full" }
 ];
 
 @NgModule({
