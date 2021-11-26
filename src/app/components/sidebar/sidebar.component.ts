@@ -29,6 +29,36 @@ export const ROUTES: RouteInfo[] = [
     icon: 'track_changes',
     class: '',
   },
+  {
+    path: '/about-us',
+    title: 'About Us',
+    icon: 'accessibility_new',
+    class: '',
+  },
+  {
+    path: '/contact-us',
+    title: 'Contact Us',
+    icon: 'import_contacts',
+    class: '',
+  },
+  {
+    path: '/faq',
+    title: 'FAQ',
+    icon: 'contact_support',
+    class: '',
+  },
+  {
+    path: '/disclaimer',
+    title: 'Disclaimer',
+    icon: 'aspect_ratio',
+    class: '',
+  },
+  {
+    path: '/privacy',
+    title: 'Privacy Policy',
+    icon: 'archive',
+    class: '',
+  },
   // {
   //   path: "/hourly_production",
   //   title: "Hourly Production",
