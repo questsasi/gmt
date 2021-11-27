@@ -13,7 +13,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   {
     path: '/reports/zones',
-    title: 'Reports',
+    title: 'Report',
     icon: 'timeline',
     class: '',
   },
@@ -27,6 +27,12 @@ export const ROUTES: RouteInfo[] = [
     path: '/production',
     title: 'Production',
     icon: 'track_changes',
+    class: '',
+  },
+  {
+    path: '/reports/lines',
+    title: 'Line Report',
+    icon: 'timeline',
     class: '',
   },
   {
@@ -115,7 +121,15 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
-    this.dataSharedService.setDate(this.selectedDate);
+
+    var now = new Date().toString();
+    var timeZone = now.replace(/.*[(](.*)[)].*/, '$1');//extracts the content between parenthesis
+    if(timeZone != 'India Standard Time') {
+      this.selectedDate = '2021-11-26';
+      this.dataSharedService.setDate('2021-11-26');
+    } else {
+      this.dataSharedService.setDate(this.selectedDate);
+    }
   }
 
   onChangeDate(selDate: string) {
@@ -132,7 +146,7 @@ export class SidebarComponent implements OnInit {
 
   onLogout() {
     sessionStorage.clear();
-    window.location.href="#/"
+    window.location.href = "#/"
     location.reload();
   }
 }
