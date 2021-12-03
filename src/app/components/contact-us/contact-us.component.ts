@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact-us',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private title: Title) {
+    this.title.setTitle("GMT PRO - Contact us");
+  }
 
   ngOnInit(): void {
   }

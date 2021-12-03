@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-faq',
@@ -43,5 +44,9 @@ export class FaqComponent {
       "ans": "Zone Summary is the average of the lines in the zone."
     }
   ]
+
+  constructor(private title: Title) {
+    this.title.setTitle("GMT PRO - FAQS");
+  }
 
 }

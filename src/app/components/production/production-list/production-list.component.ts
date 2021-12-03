@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Title } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 
@@ -31,8 +32,10 @@ export class ProductionListComponent implements OnInit, OnDestroy {
     private appService: AppService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private dataSharedService: DataSharedService
-  ) {}
+    private dataSharedService: DataSharedService, 
+    private title: Title) {
+      this.title.setTitle("GMT PRO - Production");
+  }
 
   ngOnInit(): void {
     this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
