@@ -12,6 +12,7 @@ import { Subscription } from "rxjs";
 import PerfectScrollbar from "perfect-scrollbar";
 
 import * as $ from "jquery";
+import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-root",
@@ -24,7 +25,13 @@ export class AppComponent {
   yScrollStack: any = [];
   flags: any = {};
 
-  constructor(public location: Location, private router: Router) { }
+  constructor(public location: Location, private router: Router, private meta: Meta, private title: Title) {
+    this.meta.addTags([
+      { name: 'description', content: 'Garmet manufacturing tracker, news and all about garment manufacturing' },
+      { name: 'keywords', content: 'GMT PRO, GMT PRO tracker, Garment Manufacturing Tracker, Garment Tracker, Garment News' }
+    ]);
+    this.title.setTitle("GMT PRO - Home");
+  }
 
   ngOnInit() {
     this.flags.isLoggedInUser = false;
