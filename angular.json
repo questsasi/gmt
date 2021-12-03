@@ -25,7 +25,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/.htaccess"
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
