@@ -115,7 +115,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any = [];
-  selectedDate: any = moment(Date()).format('YYYY-MM-DD');
+  selectedDate: any = moment().format('YYYY-MM-DD');
 
   constructor(private dataSharedService: DataSharedService, private router: Router) { }
 
