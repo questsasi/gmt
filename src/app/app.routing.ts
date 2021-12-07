@@ -26,6 +26,8 @@ import { FaqComponent } from "./components/faq/faq.component";
 import { LegalComponent } from "./components/legal/legal.component";
 import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
+import { BlogComponent } from "./components/blog/blog.component";
+import { BlogListComponent } from "./components/blog-list/blog-list.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -51,6 +53,8 @@ const routes: Routes = [
   { path: "legal", component: LegalComponent },
   { path: "disclaimer", component: DisclaimerComponent },
   { path: "privacy", component: PrivacyComponent },
+  { path: "blog", component: BlogListComponent },
+  { path: "blog/:id", component: BlogComponent },
   { path: "", redirectTo: "reports/zones", pathMatch: "full" }
 ];
 

@@ -54,6 +54,8 @@ import { FaqComponent } from './components/faq/faq.component';
 import { LegalComponent } from './components/legal/legal.component';
 import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { BlogListComponent } from './components/blog-list/blog-list.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
     LegalComponent,
     DisclaimerComponent,
     PrivacyComponent,
+    BlogComponent,
+    BlogListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

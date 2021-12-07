@@ -88,4 +88,9 @@ export class AppService {
     return this.httpService.delete(this.appServiceConst.production + '/' + productionId, successFn, errorFn);
   }
 
+  getBlogs(successFn: Function, errorFn: Function) {
+    const url = './assets/blog.json';
+    return this.httpService.get(url, successFn, errorFn);
+  }
+
 }
