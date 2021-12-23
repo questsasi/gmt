@@ -54,6 +54,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { LegalComponent } from './components/legal/legal.component';
 import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 
@@ -93,6 +94,7 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
   ],
   imports: [
     BrowserAnimationsModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

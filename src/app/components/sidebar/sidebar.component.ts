@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -123,7 +124,7 @@ export class SidebarComponent implements OnInit {
   menuItems: any = [];
   selectedDate: any = moment().format('YYYY-MM-DD');
 
-  constructor(private dataSharedService: DataSharedService, private router: Router) { }
+  constructor(private dataSharedService: DataSharedService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
@@ -144,10 +145,14 @@ export class SidebarComponent implements OnInit {
   }
 
   isMobileMenu() {
-    if ($(window).width() > 991) {
-      return false;
+    if (isPlatformBrowser(this.platformId)) {
+      if ($(window).width() > 991) {
+        return false;
+      }
+      return true;
     }
-    return true;
+
+    return;
   }
 
   onLogout() {
