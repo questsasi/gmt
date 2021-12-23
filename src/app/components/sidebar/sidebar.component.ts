@@ -123,6 +123,8 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any = [];
   selectedDate: any = moment().format('YYYY-MM-DD');
+  minDate: Date = new Date(2021, 9, 4);  // oct 4 2021 start Date
+  maxDate: Date = new Date(); 
 
   constructor(private dataSharedService: DataSharedService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { }
 
