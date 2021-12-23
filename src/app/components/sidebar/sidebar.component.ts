@@ -36,12 +36,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'timeline',
     class: '',
   },
-  { 
-    path: "/blog", 
-    title: 'Blog',
-    icon: 'library_books',
-    class: '',
-  },
+  // { 
+  //   path: "/blog", 
+  //   title: 'Blog',
+  //   icon: 'library_books',
+  //   class: '',
+  // },
   {
     path: '/about-us',
     title: 'About Us',

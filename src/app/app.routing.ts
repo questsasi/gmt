@@ -36,33 +36,39 @@ const routes: Routes = [
   { path: "reports/zones", component: ReportsZoneComponent, canActivate: [AuthGuardService] },
   { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
 
-  { path: "dashboard", component: DashboardComponent },
-  { path: "user-profile", component: UserProfileComponent },
-  { path: "table-list", component: TableListComponent },
-  { path: "typography", component: TypographyComponent },
-  { path: "icons", component: IconsComponent },
-  { path: "notifications", component: NotificationsComponent },
-  { path: "upgrade", component: UpgradeComponent },
-  { path: "supervisor", component: SupervisorComponent },
-  { path: "line", component: LineComponent },
-  { path: "hourly_production", component: HourlyProductionComponent },
-  { path: "order", component: OrderComponent },
+
+  // { path: "dashboard", component: DashboardComponent },
+  // { path: "user-profile", component: UserProfileComponent },
+  // { path: "table-list", component: TableListComponent },
+  // { path: "typography", component: TypographyComponent },
+  // { path: "icons", component: IconsComponent },
+  // { path: "notifications", component: NotificationsComponent },
+  // { path: "upgrade", component: UpgradeComponent },
+  // { path: "supervisor", component: SupervisorComponent },
+  // { path: "line", component: LineComponent },
+  // { path: "hourly_production", component: HourlyProductionComponent },
+  // { path: "order", component: OrderComponent },
+  
+
+  // { path: "blog", component: BlogListComponent },
+  // { path: "blog/:id", component: BlogComponent },
   { path: "about-us", component: AboutUsComponent },
   { path: "contact-us", component: ContactUsComponent },
   { path: "faq", component: FaqComponent },
   { path: "legal", component: LegalComponent },
   { path: "disclaimer", component: DisclaimerComponent },
   { path: "privacy", component: PrivacyComponent },
-  { path: "blog", component: BlogListComponent },
-  { path: "blog/:id", component: BlogComponent },
-  { path: "", redirectTo: "reports/zones", pathMatch: "full" }
+  { path: "", redirectTo: "reports/zones", pathMatch: "full" },
+  { path: "**", redirectTo: "reports/zones", pathMatch: "full" }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes), 
+    RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+}), 
   ],
   exports: [],
 })
