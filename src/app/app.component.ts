@@ -29,8 +29,8 @@ export class AppComponent {
 
   constructor(public location: Location, private router: Router, private meta: Meta, private title: Title, @Inject(PLATFORM_ID) private platformId: Object) {
     this.meta.addTags([
-      { name: 'description', content: 'Garmet manufacturing tracker, news and all about garment manufacturing' },
-      { name: 'keywords', content: 'GMT PRO, GMT PRO tracker, Garment Manufacturing Tracker, Garment Tracker, Garment News' }
+      { name: 'description', content: 'GMT PRO is a production tracker, mainly used in garment manufacturing. Production can be tracked hourly, line, zone, unit, and factory' },
+      { name: 'keywords', content: 'GMT PRO, GMT PRO tracker, Garment Manufacturing Tracker, Garment Tracker' }
     ]);
     this.title.setTitle("GMT PRO - Home");
   }
