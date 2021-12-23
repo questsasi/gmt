@@ -27,7 +27,7 @@
               "src/assets",
               "src/manifest.webmanifest",
               "src/.htaccess",
-              "src/sitemap.xml"
+              "src/assets/sitemap.xml"
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.min.css",
