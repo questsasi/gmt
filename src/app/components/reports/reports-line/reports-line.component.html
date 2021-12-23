@@ -73,8 +73,6 @@
 
                       <div class="row d-flex justify-content-between upper-card">
                         <div class="title">
-                          <i class="fa fa-arrow-circle-right p-2 pointer" 
-                          [ngClass]="{'fa-arrow-circle-down': line.toggle, 'fa-arrow-circle-right': !line.toggle}" (click)="line.toggle = !line.toggle"></i>
                           {{line.line_name}}
                         </div>
                         <div class="circle" [ngClass]="line.percent < 97 ? 'bg-danger': 'bg-success'">
@@ -123,11 +121,17 @@
                     </div>
                   </div>
  
+                  <h6 (click)="line.toggle = !line.toggle" class="font-weight-bold pt-2" style="text-transform: capitalize;border-top:1px solid #ededed;">
+                    <i class="fa fa-chevron-right pl-2 pointer text-info" 
+                      [ngClass]="{'fa-chevron-down': line.toggle, 'fa-chevron-right': !line.toggle}"></i>
+                      Production
+                  </h6>
+                  
                   <table class="table table-striped text-center table-sm" *ngIf="line.toggle" style="font-size: 12px;">
                     <thead class="thead-dark">
-                      <tr>
+                      <!-- <tr>
                         <th scope="col" colspan="4">Production</th>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <th scope="col">Hr</th>
                         <th scope="col">O/P</th>

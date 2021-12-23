@@ -27,7 +27,7 @@
   padding-top: 10px;
 }
 
-.lower-card>.div {
+.lower-card > .div {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -44,19 +44,19 @@
 
 .sub-card-heading {
   font-size: 10px;
-    transform: rotateZ(-90deg);
-    position: absolute;
-    left: -20px;
-    top: 14px;
-    background: #369;
-    color: white;
-    padding: 2px;
-    border-radius: 2px;
-    font-weight: bold;
-    height: 20px;
-    width: 44px;
-    letter-spacing: 1px;
-    line-height: 16px;
+  transform: rotateZ(-90deg);
+  position: absolute;
+  left: -20px;
+  top: 14px;
+  background: #369;
+  color: white;
+  padding: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  height: 20px;
+  width: 44px;
+  letter-spacing: 1px;
+  line-height: 16px;
 }
 .bottom-text {
   text-transform: capitalize;
@@ -67,12 +67,13 @@
   font-weight: 600 !important;
   font-size: 15px;
 }
-.table > thead > tr > th, .table > tbody > tr > td {
+.table > thead > tr > th,
+.table > tbody > tr > td {
   padding: 2px;
   font-size: 12px;
 }
 
 .card-summary {
-  background: linear-gradient(45deg, #e0e0e0, #cfd8dc);
+  background: linear-gradient(45deg, #f4faff, #f0f8ff);
   border-radius: 4px;
 }
