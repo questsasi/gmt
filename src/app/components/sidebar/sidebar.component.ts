@@ -130,9 +130,9 @@ export class SidebarComponent implements OnInit {
 
     var now = new Date().toString();
     var timeZone = now.replace(/.*[(](.*)[)].*/, '$1');//extracts the content between parenthesis
-    if(timeZone != 'India Standard Time') {
-      this.selectedDate = '2021-11-26';
-      this.dataSharedService.setDate('2021-11-26');
+    if (timeZone != 'India Standard Time') {
+      this.selectedDate = '2021-12-23';
+      this.dataSharedService.setDate('2021-12-23');
     } else {
       this.dataSharedService.setDate(this.selectedDate);
     }
