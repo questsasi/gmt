@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -12,20 +12,23 @@ export class BlogComponent implements OnInit {
 
   flags: any = {};
   blogObj: any = [];
-  blogId: number = 0;
-  constructor(private appService: AppService, private route: ActivatedRoute) { }
+  blogTitle:string = '';
+  constructor(private appService: AppService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getBlogs();
-    this.blogId = this.route.snapshot.params['id'];
+    this.blogTitle = this.route.snapshot.params['title'];
   }
 
   getBlogs() {
     this.flags.displayLoader = true;
     this.appService.getBlogs(
       (response: any) => {
-        console.log(this.blogId);
-        this.blogObj = response[this.blogId];
+        console.log(this.blogTitle);
+        this.blogObj = response.find((obj: any) => obj.title == this.blogTitle );
+        if(!this.blogObj) {
+          this.router.navigate(['/error/404']);
+        }
         this.flags.displayLoader = false;
       },
       (error: any) => {

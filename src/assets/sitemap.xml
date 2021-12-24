@@ -43,5 +43,29 @@
   <url>
     <loc>https://www.gmtpro.in/privacy</loc>
     <changefreq>weekly</changefreq>
+  </url>  
+  <url>
+    <loc>https://www.gmtpro.in/404</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/blog</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/blog/What%20is%20Industrial%20Engineering%20%3F</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/blog/How%20to%20do%20skill%20development%20apparel%20manufacturing%20industry%20%3F</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/blog/Importance%20of%20productivity%20tracking%20in%20apparel%20manufacture%20industry%20%3F</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/blog/How%20to%20do%20style%20change%20over%20in%20the%20apparel%20industry%20%3F</loc>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>

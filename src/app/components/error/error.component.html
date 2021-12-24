@@ -6,16 +6,16 @@
         <div class="card">
           <div class="card-header card-header-danger header-box">
             <div class="d-flex justify-content-between">
-              <h1 class="card-title p-t-5">Blog</h1>
+              <h1 class="card-title p-t-5">Error {{code}}</h1>
             </div>
           </div>
           <div class="card-body">
-            <article class="py-3" *ngFor="let obj of blogData;">
-              <a class="p-2" [routerLink]="['/blog/', obj.title]">
-                <i class="fa fa-address-book-o mr-2"></i>
-                {{obj.title}}
-              </a>
-            </article>
+            <div class="text-center">
+              <img src="/assets/img/undraw_towing_-6-yy4.svg" height="150" class="mt-4">
+              <h1 class="mt-5">{{code}}</h1>
+              <div>{{desc}}</div>
+              <a class="mt-4 btn btn-danger" routerLink="/">Go to Homepage</a>
+            </div>
           </div>
         </div>
       </div>

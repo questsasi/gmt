@@ -57,6 +57,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
     PrivacyComponent,
     BlogComponent,
     BlogListComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -28,6 +28,7 @@ import { DisclaimerComponent } from './components/disclaimer/disclaimer.componen
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { BlogComponent } from "./components/blog/blog.component";
 import { BlogListComponent } from "./components/blog-list/blog-list.component";
+import { ErrorComponent } from "./components/error/error.component";
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -37,7 +38,7 @@ const routes: Routes = [
   { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
 
 
-  // { path: "dashboard", component: DashboardComponent },
+  { path: "dashboard", component: DashboardComponent },
   // { path: "user-profile", component: UserProfileComponent },
   // { path: "table-list", component: TableListComponent },
   // { path: "typography", component: TypographyComponent },
@@ -50,16 +51,17 @@ const routes: Routes = [
   // { path: "order", component: OrderComponent },
   
 
-  // { path: "blog", component: BlogListComponent },
-  // { path: "blog/:id", component: BlogComponent },
+  { path: "blog", component: BlogListComponent },
+  { path: "blog/:title", component: BlogComponent },
   { path: "about-us", component: AboutUsComponent },
   { path: "contact-us", component: ContactUsComponent },
   { path: "faq", component: FaqComponent },
   { path: "legal", component: LegalComponent },
   { path: "disclaimer", component: DisclaimerComponent },
   { path: "privacy", component: PrivacyComponent },
+  { path: "error/:code", component: ErrorComponent },
   { path: "", redirectTo: "reports/zones", pathMatch: "full" },
-  { path: "**", redirectTo: "reports/zones", pathMatch: "full" }
+  { path: "**", redirectTo: "error/404", pathMatch: "full" }
 ];
 
 @NgModule({
