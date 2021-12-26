@@ -1,0 +1,30 @@
+.fac-name {
+  font-size: 1.3rem;
+  margin: 15px 0px 40px 0px;
+}
+
+.sub-card-heading {
+  font-size: 10px;
+  transform: rotateZ(-90deg);
+  position: absolute;
+  left: -20px;
+  top: 14px;
+  background: #369;
+  color: white;
+  padding: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  height: 20px;
+  width: 44px;
+  letter-spacing: 1px;
+  line-height: 16px;
+}
+.bottom-text {
+  text-transform: capitalize;
+  color: #555;
+  font-size: 11px;
+}
+.prod-data {
+  font-weight: 600 !important;
+  font-size: 15px;
+}

@@ -20,8 +20,12 @@
     <loc>https://www.gmtpro.in/production</loc>
     <changefreq>hourly</changefreq>
   </url>
-   <url>
+  <url>
     <loc>https://www.gmtpro.in/reports/lines</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/dashboard</loc>
     <changefreq>hourly</changefreq>
   </url>
   <url>
@@ -43,9 +47,9 @@
   <url>
     <loc>https://www.gmtpro.in/privacy</loc>
     <changefreq>weekly</changefreq>
-  </url>  
+  </url>
   <url>
-    <loc>https://www.gmtpro.in/404</loc>
+    <loc>https://www.gmtpro.in/error/404</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
