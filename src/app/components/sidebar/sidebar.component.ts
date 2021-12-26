@@ -13,6 +13,12 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
+    path: '/dashboard',
+    title: 'Dashnoard',
+    icon: 'dashboard',
+    class: '',
+  },
+  {
     path: '/reports/zones',
     title: 'Report',
     icon: 'timeline',
@@ -36,8 +42,8 @@ export const ROUTES: RouteInfo[] = [
     icon: 'timeline',
     class: '',
   },
-  { 
-    path: "/blog", 
+  {
+    path: "/blog",
     title: 'Blog',
     icon: 'library_books',
     class: '',
@@ -124,7 +130,7 @@ export class SidebarComponent implements OnInit {
   menuItems: any = [];
   selectedDate: any = moment().format('YYYY-MM-DD');
   minDate: Date = new Date(2021, 9, 4);  // oct 4 2021 start Date
-  maxDate: Date = new Date(); 
+  maxDate: Date = new Date();
 
   constructor(private dataSharedService: DataSharedService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) { }
 
@@ -139,6 +145,9 @@ export class SidebarComponent implements OnInit {
     } else {
       this.dataSharedService.setDate(this.selectedDate);
     }
+
+    // this.selectedDate = '2021-10-01';
+    // this.dataSharedService.setDate('2021-10-01');
   }
 
   onChangeDate(selDate: string) {
