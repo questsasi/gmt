@@ -25,6 +25,12 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
+    path: '/reports/lines',
+    title: 'Line Report',
+    icon: 'timeline',
+    class: '',
+  },
+  {
     path: '/target',
     title: 'Target',
     icon: 'assignment',
@@ -34,12 +40,6 @@ export const ROUTES: RouteInfo[] = [
     path: '/production',
     title: 'Production',
     icon: 'track_changes',
-    class: '',
-  },
-  {
-    path: '/reports/lines',
-    title: 'Line Report',
-    icon: 'timeline',
     class: '',
   },
   {
@@ -146,8 +146,8 @@ export class SidebarComponent implements OnInit {
       this.dataSharedService.setDate(this.selectedDate);
     }
 
-    // this.selectedDate = '2021-10-01';
-    // this.dataSharedService.setDate('2021-10-01');
+    this.selectedDate = '2021-12-24';
+    this.dataSharedService.setDate('2021-12-24');
   }
 
   onChangeDate(selDate: string) {

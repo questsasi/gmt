@@ -60,7 +60,7 @@ const routes: Routes = [
   { path: "disclaimer", component: DisclaimerComponent },
   { path: "privacy", component: PrivacyComponent },
   { path: "error/:code", component: ErrorComponent },
-  { path: "", redirectTo: "reports/zones", pathMatch: "full" },
+  { path: "", component: DashboardComponent },
   { path: "**", redirectTo: "error/404", pathMatch: "full" }
 ];
 

@@ -7,9 +7,9 @@
         <div class="card card-stats">
           <div class="card-header  card-header-icon"
             [ngClass]="{'card-header-success': report.acheieved_percent >= 97, 'card-header-danger': report.acheieved_percent < 97 }">
-            <div class="card-icon">
-              <i class="material-icons">store</i>
-              {{report.acheieved_percent}} %
+            <div class="card-icon" style="font-size: 16px;">
+              <!-- <i class="material-icons">store</i> -->
+              P2P - {{report.acheieved_percent}} %
             </div>
             <p class="card-category">Factory Summary</p>
             <div class="d-flex justify-content-end">
@@ -57,14 +57,21 @@
                   <div class="bottom-text">Present</div>
                 </div>
                 <div class="col">
-                  <div class="prod-data">{{report.hours_remaining }}</div>
+                  <div class="prod-data">{{report.hours_remaining_avg }}</div>
                   <div class="bottom-text">Remaining</div>
                 </div>
-                <div class="col"></div>
+                <div class="col">
+                  <div class="prod-data">{{report.hours_remaining }}</div>
+                  <div class="bottom-text">Pending Entry</div>
+                </div>
               </div>
             </div>
           </div>
 
+        </div>
+        
+        <div>
+          <a routerLink="/reports/zones" class="btn btn-danger btn-sm">Zone report</a> will give information in detail.
         </div>
 
         <div class="pt-3 card card-body">
