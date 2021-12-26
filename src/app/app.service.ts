@@ -22,8 +22,9 @@ export class AppService {
     getAddProduction: AppConstant.serviceUrl + 'production/getadd/',
 
     // Reports
-    zoneReports: AppConstant.serviceUrl + 'report/zones/',
-    listReports: AppConstant.serviceUrl + 'report/lines/'
+    factoryReport: AppConstant.serviceUrl + 'report/factory/',
+    zoneReport: AppConstant.serviceUrl + 'report/zones/',
+    listReport: AppConstant.serviceUrl + 'report/lines/'
   };
 
   constructor(private httpService: HttpService) { }
@@ -51,13 +52,18 @@ export class AppService {
     return this.httpService.get(url, successFn, errorFn);
   }
 
+  getFactoryReports(selectedDate: string, successFn: Function, errorFn: Function) {
+    const url = this.appServiceConst.factoryReport + selectedDate;
+    return this.httpService.get(url, successFn, errorFn);
+  }
+  
   getZoneReports(selectedDate: string, successFn: Function, errorFn: Function) {
-    const url = this.appServiceConst.zoneReports + selectedDate;
+    const url = this.appServiceConst.zoneReport + selectedDate;
     return this.httpService.get(url, successFn, errorFn);
   }
 
   getLineReports(selectedDate: string, successFn: Function, errorFn: Function) {
-    const url = this.appServiceConst.listReports + selectedDate;
+    const url = this.appServiceConst.listReport + selectedDate;
     return this.httpService.get(url, successFn, errorFn);
   }
 
