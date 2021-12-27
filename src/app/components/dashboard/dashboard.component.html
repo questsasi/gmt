@@ -2,84 +2,84 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
-
-        <h1 class="fac-name">{{report.factory_name}}</h1>
-        <div class="card card-stats">
-          <div class="card-header  card-header-icon"
-            [ngClass]="{'card-header-success': report.acheieved_percent >= 97, 'card-header-danger': report.acheieved_percent < 97 }">
-            <div class="card-icon" style="font-size: 16px;">
-              <!-- <i class="material-icons">store</i> -->
-              P2P - {{report.acheieved_percent}} %
-            </div>
-            <p class="card-category">Factory Summary</p>
-            <div class="d-flex justify-content-end">
-              <h3 class="card-title pl-3">{{report.zone_count}}
-                <small>Zone</small>
-              </h3>
-              <h3 class="card-title pl-3">{{report.line_count}}
-                <small>Line</small>
-              </h3>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="container-fluid">
-              <div class="row d-flex align-content-center justify-content-center text-center"
-                style="position: relative;">
-                <div class="col sub-card-heading">Target</div>
-                <div class="col">
-                  <div class="prod-data">{{report.target_output}}</div>
-                  <div class="bottom-text">O/P</div>
-                </div>
-                <div class="col">
-                  <div class="prod-data">{{report.target_presant}}</div>
-                  <div class="bottom-text">Present</div>
-                </div>
-                <div class="col">
-                  <div class="prod-data">{{report.target_achieved}}</div>
-                  <div class="bottom-text">Achieved</div>
-                </div>
-                <div class="col">
-                  <span class="prod-data"
-                    [ngClass]="report.target_diff < 0 ? 'text-danger': 'text-success'">{{report.target_diff}}</span>
-                  <div class="bottom-text" title="Difference">Diff.</div>
-                </div>
+        <ng-ontainer *ngIf="!flags.displayLoader">
+          <h1 class="fac-name">{{report.factory_name}}</h1>
+          <div class="card card-stats">
+            <div class="card-header  card-header-icon"
+              [ngClass]="{'card-header-success': report.acheieved_percent >= 97, 'card-header-danger': report.acheieved_percent < 97 }">
+              <div class="card-icon" style="font-size: 16px;">
+                <!-- <i class="material-icons">store</i> -->
+                P2P - {{report.acheieved_percent}} %
               </div>
-
-              <div class="row d-flex align-content-center justify-content-center text-center"
-                style="position: relative;">
-                <div class="col sub-card-heading">Hours</div>
-                <div class="col">
-                  <div class="prod-data">{{report.target_hrs_avg}}</div>
-                  <div class="bottom-text">Planned</div>
-                </div>
-                <div class="col">
-                  <div class="prod-data">{{report.hours_completed_avg}}</div>
-                  <div class="bottom-text">Present</div>
-                </div>
-                <div class="col">
-                  <div class="prod-data">{{report.hours_remaining_avg }}</div>
-                  <div class="bottom-text">Remaining</div>
-                </div>
-                <div class="col">
-                  <div class="prod-data">{{report.hours_remaining }}</div>
-                  <div class="bottom-text">Pending Entry</div>
-                </div>
+              <p class="card-category">Factory Summary</p>
+              <div class="d-flex justify-content-end">
+                <h3 class="card-title pl-3">{{report.zone_count}}
+                  <small>Zone</small>
+                </h3>
+                <h3 class="card-title pl-3">{{report.line_count}}
+                  <small>Line</small>
+                </h3>
               </div>
             </div>
-          </div>
+            <div class="card-footer">
+              <div class="container-fluid">
+                <div class="row d-flex align-content-center justify-content-center text-center"
+                  style="position: relative;">
+                  <div class="col sub-card-heading">Target</div>
+                  <div class="col">
+                    <div class="prod-data">{{report.target_output}}</div>
+                    <div class="bottom-text">O/P</div>
+                  </div>
+                  <div class="col">
+                    <div class="prod-data">{{report.target_presant}}</div>
+                    <div class="bottom-text">Present</div>
+                  </div>
+                  <div class="col">
+                    <div class="prod-data">{{report.target_achieved}}</div>
+                    <div class="bottom-text">Achieved</div>
+                  </div>
+                  <div class="col">
+                    <span class="prod-data"
+                      [ngClass]="report.target_diff < 0 ? 'text-danger': 'text-success'">{{report.target_diff}}</span>
+                    <div class="bottom-text" title="Difference">Diff.</div>
+                  </div>
+                </div>
 
-        </div>
-        
-        <div>
-          <a routerLink="/reports/zones" class="btn btn-danger btn-sm">Zone report</a> will give information in detail.
-        </div>
+                <div class="row d-flex align-content-center justify-content-center text-center"
+                  style="position: relative;">
+                  <div class="col sub-card-heading">Hours</div>
+                  <div class="col">
+                    <div class="prod-data">{{report.target_hrs_avg}}</div>
+                    <div class="bottom-text">Planned</div>
+                  </div>
+                  <div class="col">
+                    <div class="prod-data">{{report.hours_completed_avg}}</div>
+                    <div class="bottom-text">Present</div>
+                  </div>
+                  <div class="col">
+                    <div class="prod-data">{{report.hours_remaining_avg }}</div>
+                    <div class="bottom-text">Remaining</div>
+                  </div>
+                  <div class="col">
+                    <div class="prod-data">{{report.hours_remaining }}</div>
+                    <div class="bottom-text">Pending Entry</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a routerLink="/reports/zones" class="btn btn-danger btn-sm">Zone report</a> will give information in
+            detail.
+          </div>
+        </ng-ontainer>
 
         <div class="pt-3 card card-body">
           <h3>GMT PRO</h3>
-          <p>GMT PRO is a production tracker, mainly used in garment manufacturing. 
-          Production can be tracked by hour, line, zone, unit, and factory.
-          With the help of this tool, Management can understand the productivity and make informed decision 
-          like finding out low production lines / Zones / units and improve the productivity.</p>
+          <p>GMT PRO is a production tracker, mainly used in garment manufacturing.
+            Production can be tracked by hour, line, zone, unit, and factory.
+            With the help of this tool, Management can understand the productivity and make informed decision
+            like finding out low production lines / Zones / units and improve the productivity.</p>
           <h3>Benifits</h3>
           <ul>
             <li>Hourly tracking</li>

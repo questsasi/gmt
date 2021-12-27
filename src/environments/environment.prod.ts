@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   domainUrl: "https://www.gmtpro.in/api/"
 };

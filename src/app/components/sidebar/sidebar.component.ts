@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DataSharedService } from 'src/app/common/data-shared.service';
+import { environment } from 'src/environments/environment';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -14,7 +15,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   {
     path: '/dashboard',
-    title: 'Dashnoard',
+    title: 'Dashboard',
     icon: 'dashboard',
     class: '',
   },
@@ -146,8 +147,10 @@ export class SidebarComponent implements OnInit {
       this.dataSharedService.setDate(this.selectedDate);
     }
 
-    this.selectedDate = '2021-12-24';
-    this.dataSharedService.setDate('2021-12-24');
+    if (!environment.production) {
+      this.selectedDate = '2021-12-27';
+      this.dataSharedService.setDate('2021-12-27');
+    }
   }
 
   onChangeDate(selDate: string) {
