@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12">
-        <ng-ontainer *ngIf="!flags.displayLoader">
+        <ng-container *ngIf="report.factory_name">
           <h1 class="fac-name">{{report.factory_name}}</h1>
           <div class="card card-stats">
             <div class="card-header  card-header-icon"
@@ -72,7 +72,7 @@
             <a routerLink="/reports/zones" class="btn btn-danger btn-sm">Zone report</a> will give information in
             detail.
           </div>
-        </ng-ontainer>
+        </ng-container>
 
         <div class="pt-3 card card-body">
           <h3>GMT PRO</h3>

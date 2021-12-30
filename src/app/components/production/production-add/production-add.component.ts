@@ -22,6 +22,8 @@ export class ProductionAddComponent implements OnDestroy {
     displayLoader: Boolean,
     submitting: Boolean
   };
+  errorSubmitting:Boolean = false;
+  errorMsg: String = '';
   productionForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
 
@@ -98,6 +100,8 @@ export class ProductionAddComponent implements OnDestroy {
 
   onSubmit() {
     this.flags.submitting = true;
+    this.errorSubmitting = false;
+
     let postData = {
       production_date: this.datasource.selectedDate,
       hour: this.productionForm.value.productionHour,
@@ -117,7 +121,12 @@ export class ProductionAddComponent implements OnDestroy {
       },
       (err: any) => {
         this.flags.submitting = false;
-        this.onClickCancel();
+        this.errorMsg = err.error.data;
+        this.errorSubmitting = true;
+        setTimeout(() => {
+          this.errorSubmitting = false;
+        }, 10 * 1000);
+        // this.onClickCancel();
       });
   }
 

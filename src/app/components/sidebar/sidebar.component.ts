@@ -14,7 +14,7 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
-    path: '/dashboard',
+    path: '/',
     title: 'Dashboard',
     icon: 'dashboard',
     class: '',
@@ -77,6 +77,12 @@ export const ROUTES: RouteInfo[] = [
     path: '/privacy',
     title: 'Privacy Policy',
     icon: 'archive',
+    class: '',
+  },
+  {
+    path: '/legal',
+    title: 'Legal',
+    icon: 'card_travel',
     class: '',
   },
   // {
@@ -147,10 +153,10 @@ export class SidebarComponent implements OnInit {
       this.dataSharedService.setDate(this.selectedDate);
     }
 
-    if (!environment.production) {
-      this.selectedDate = '2021-12-27';
-      this.dataSharedService.setDate('2021-12-27');
-    }
+    // if (!environment.production) {
+    //   this.selectedDate = '2021-12-29';
+    //   this.dataSharedService.setDate('2021-12-29');
+    // }
   }
 
   onChangeDate(selDate: string) {

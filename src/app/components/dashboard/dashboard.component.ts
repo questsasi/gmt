@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -21,8 +21,14 @@ export class DashboardComponent {
   constructor(
     private appService: AppService,
     private dataSharedService: DataSharedService,
-    private title: Title) {
-    this.title.setTitle("GMT PRO - Factory Report");
+    private title: Title,
+    private meta: Meta) {
+    let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
+    this.meta.updateTag({
+      name: 'description',
+      content: contentText ? contentText + ' - Dashboard' : ""
+    }, "name='description'");
+    this.title.setTitle("Dashboard" + this.appService.seoTitle());
   }
 
   ngOnInit(): void {
@@ -39,12 +45,15 @@ export class DashboardComponent {
       (response: any) => {
         if (response.data) {
           this.report = response.data;
+        } else {
+          this.report = {};
         }
         this.flags.displayLoader = false;
       },
       (error: any) => {
         console.error('Error in fetching factory report', error);
         this.flags.displayLoader = false;
+        this.report = {};
       }
     );
   }

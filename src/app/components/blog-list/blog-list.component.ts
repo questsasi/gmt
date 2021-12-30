@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -11,7 +12,14 @@ export class BlogListComponent implements OnInit {
   flags: any = {};
   blogData:any = [];
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private title: Title, private meta: Meta) {
+    let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
+    this.meta.updateTag({
+      name: 'description',
+      content: contentText ? contentText + '- Blog' : ""
+    }, "name='description'");
+    this.title.setTitle("Blog" + this.appService.seoTitle());
+   }
 
   ngOnInit(): void {
     this.getBlogs();

@@ -22,6 +22,8 @@ export class TargetAddComponent implements OnDestroy {
     displayLoader: Boolean,
     submitting: Boolean
   };
+  errorSubmitting:Boolean = false;
+  errorMsg: String = '';
   targetForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
 
@@ -85,6 +87,7 @@ export class TargetAddComponent implements OnDestroy {
 
   onSubmit() {
     this.flags.submitting = true;
+    this.errorSubmitting = false;
 
     let postData = {
       date: moment(this.targetForm.value.dateOfTarget).format('YYYY-MM-DD'),
@@ -104,7 +107,12 @@ export class TargetAddComponent implements OnDestroy {
       },
       (err: any) => {
         this.flags.submitting = false;
-        this.onClickCancel();
+        this.errorMsg = err.error.data;
+        this.errorSubmitting = true;
+        setTimeout(() => {
+          this.errorSubmitting = false;
+        }, 10 * 1000);
+        // this.onClickCancel();
       });
   }
 

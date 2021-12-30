@@ -31,14 +31,6 @@ import { BlogListComponent } from "./components/blog-list/blog-list.component";
 import { ErrorComponent } from "./components/error/error.component";
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
-  { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
-  { path: "reports/zones", component: ReportsZoneComponent, canActivate: [AuthGuardService] },
-  { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
-
-
-  { path: "dashboard", component: DashboardComponent },
   // { path: "user-profile", component: UserProfileComponent },
   // { path: "table-list", component: TableListComponent },
   // { path: "typography", component: TypographyComponent },
@@ -49,8 +41,11 @@ const routes: Routes = [
   // { path: "line", component: LineComponent },
   // { path: "hourly_production", component: HourlyProductionComponent },
   // { path: "order", component: OrderComponent },
-  
-
+  // { path: "login", component: LoginComponent },
+  { path: "target", component: TargetListComponent, canActivate: [AuthGuardService] },
+  { path: "production", component: ProductionListComponent, canActivate: [AuthGuardService] },
+  { path: "reports/zones", component: ReportsZoneComponent, canActivate: [AuthGuardService] },
+  { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
   { path: "blog", component: BlogListComponent },
   { path: "blog/:title", component: BlogComponent },
   { path: "about-us", component: AboutUsComponent },
@@ -69,8 +64,8 @@ const routes: Routes = [
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-}), 
+      initialNavigation: 'enabled'
+    }),
   ],
   exports: [],
 })

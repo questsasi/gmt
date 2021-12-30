@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
@@ -21,8 +21,14 @@ export class ReportsZoneComponent implements OnInit, OnDestroy {
   constructor(
     private appService: AppService,
     private dataSharedService: DataSharedService, 
-    private title: Title) {
-      this.title.setTitle("GMT PRO - Zone Report");
+    private title: Title,
+    private meta: Meta) {
+      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
+      this.meta.updateTag({
+        name: 'description',
+        content: contentText ? contentText + ' - Zone report' : ""
+      }, "name='description'");
+      this.title.setTitle("Zone report" + this.appService.seoTitle());
   }
 
   ngOnInit(): void {

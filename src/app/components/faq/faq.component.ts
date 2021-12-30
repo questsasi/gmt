@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-faq',
@@ -45,8 +46,13 @@ export class FaqComponent {
     }
   ]
 
-  constructor(private title: Title) {
-    this.title.setTitle("GMT PRO - FAQS");
+  constructor(private title: Title, private meta: Meta, private appService: AppService) {
+    let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
+    this.meta.updateTag( { 
+      name:'description', 
+      content: contentText ? contentText + '- FAQ': ""
+    },"name='description'");
+    this.title.setTitle("FAQ" + this.appService.seoTitle());
   }
 
 }

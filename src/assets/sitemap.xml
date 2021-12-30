@@ -21,14 +21,6 @@
     <changefreq>hourly</changefreq>
   </url>
   <url>
-    <loc>https://www.gmtpro.in/reports/lines</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.gmtpro.in/dashboard</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
     <loc>https://www.gmtpro.in/about-us</loc>
     <changefreq>weekly</changefreq>
   </url>
@@ -46,6 +38,10 @@
   </url>
   <url>
     <loc>https://www.gmtpro.in/privacy</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.gmtpro.in/legal</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>

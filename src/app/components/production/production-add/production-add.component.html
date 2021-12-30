@@ -86,6 +86,7 @@
 
     <!-- Actions -->
     <div mat-dialog-actions>
+      <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
       <button mat-button (click)="onClickCancel()"> Cancel </button>
       <button type="submit" mat-raised-button class="btn btn-danger"
         [disabled]="productionForm.invalid || flags.submitting">

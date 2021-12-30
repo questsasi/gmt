@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
 import { AppService } from 'src/app/app.service';
@@ -31,8 +31,14 @@ export class TargetListComponent implements OnInit, OnDestroy {
     private appService: AppService,
     private formBuilder: FormBuilder,
     private dataSharedService: DataSharedService, 
-    private title: Title) {
-      this.title.setTitle("GMT PRO - Target");
+    private title: Title,
+    private meta: Meta) {
+      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
+      this.meta.updateTag({
+        name: 'description',
+        content: contentText ? contentText + ' - Target' : ""
+      }, "name='description'");
+      this.title.setTitle("Target" + this.appService.seoTitle());
   }
 
   ngOnInit(): void {
