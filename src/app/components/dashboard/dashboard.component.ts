@@ -26,9 +26,9 @@ export class DashboardComponent {
     let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
     this.meta.updateTag({
       name: 'description',
-      content: contentText ? contentText + ' - Dashboard' : ""
+      content: contentText ? contentText + ' - Home' : ""
     }, "name='description'");
-    this.title.setTitle("Dashboard" + this.appService.seoTitle());
+    this.title.setTitle("Home" + this.appService.seoTitle());
   }
 
   ngOnInit(): void {
