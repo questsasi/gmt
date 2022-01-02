@@ -17,16 +17,16 @@ export class ReportsZoneComponent implements OnInit, OnDestroy {
   };
   reports: any = [];
   private serviceSubscription:Subscription = new Subscription;
+  desc = 'Zone-wise summary, and hourly breakup of the entire factory';
 
   constructor(
     private appService: AppService,
     private dataSharedService: DataSharedService, 
     private title: Title,
     private meta: Meta) {
-      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
       this.meta.updateTag({
         name: 'description',
-        content: contentText ? contentText + ' - Zone report' : ""
+        content: this.desc + ' - Zone report'
       }, "name='description'");
       this.title.setTitle("Zone report" + this.appService.seoTitle());
   }

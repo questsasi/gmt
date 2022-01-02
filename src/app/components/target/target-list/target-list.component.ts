@@ -25,6 +25,7 @@ export class TargetListComponent implements OnInit, OnDestroy {
   };
   editTargetForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
+  desc = 'Target of the day for every zone and line will be added with the required details';
 
   constructor(
     public dialog: MatDialog,
@@ -33,10 +34,9 @@ export class TargetListComponent implements OnInit, OnDestroy {
     private dataSharedService: DataSharedService, 
     private title: Title,
     private meta: Meta) {
-      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
       this.meta.updateTag({
         name: 'description',
-        content: contentText ? contentText + ' - Target' : ""
+        content: this.desc + ' - Target'
       }, "name='description'");
       this.title.setTitle("Target" + this.appService.seoTitle());
   }

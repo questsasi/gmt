@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import PerfectScrollbar from "perfect-scrollbar";
 
 @Component({
   selector: "app-footer",
@@ -11,5 +12,7 @@ export class FooterComponent {
   scrollTop() {
     const elemMainPanel = <HTMLElement>document.querySelector(".main-panel");
     elemMainPanel.scroll({ top: 0, behavior: 'smooth' });
+    const ps = new PerfectScrollbar(elemMainPanel);
+    ps.update();
   }
 }

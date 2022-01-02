@@ -27,6 +27,7 @@ export class ProductionListComponent implements OnInit, OnDestroy {
   productions: any;
   editProductionForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
+  desc = 'Production of the day for every zone and line will be added on a houlry basis';
 
   constructor(
     private appService: AppService,
@@ -35,10 +36,9 @@ export class ProductionListComponent implements OnInit, OnDestroy {
     private dataSharedService: DataSharedService, 
     private title: Title, 
     private meta: Meta) {
-      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
       this.meta.updateTag({
         name: 'description',
-        content: contentText ? contentText + ' - Production' : ""
+        content: this.desc + ' - Production'
       }, "name='description'");
       this.title.setTitle("Production" + this.appService.seoTitle());
   }

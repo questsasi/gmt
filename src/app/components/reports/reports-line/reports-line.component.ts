@@ -17,19 +17,18 @@ export class ReportsLineComponent implements OnInit, OnDestroy {
   };
   reports: any = [];
   private serviceSubscription: Subscription = new Subscription;
-
+  desc = 'Line-wise production report with zone-wise summary, and hourly breakup';
   constructor(
     private appService: AppService,
-    private dataSharedService: DataSharedService, 
+    private dataSharedService: DataSharedService,
     private title: Title,
     private meta: Meta) {
-      let contentText = this.appService.seoMeta().find((obj: any) => obj.name == 'description')?.content;
-      this.meta.updateTag({
-        name: 'description',
-        content: contentText ? contentText + ' - Line report' : ""
-      }, "name='description'");
-      this.title.setTitle("Line report" + this.appService.seoTitle());
-    }
+    this.meta.updateTag({
+      name: 'description',
+      content: this.desc + ' - Line report'
+    }, "name='description'");
+    this.title.setTitle("Line report" + this.appService.seoTitle());
+  }
 
   ngOnInit(): void {
     this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
