@@ -28,7 +28,8 @@
                   </div>
 
                   <!-- <div class="row sub-card-heading">Target:</div> -->
-                  <div class="row d-flex align-content-center justify-content-center text-center" style="position: relative;">
+                  <div class="row d-flex align-content-center justify-content-center text-center"
+                    style="position: relative;">
                     <div class="col sub-card-heading">Target</div>
                     <div class="col">
                       <div class="prod-data">{{zone.target_output}}</div>
@@ -43,13 +44,15 @@
                       <div class="bottom-text">Achieved</div>
                     </div>
                     <div class="col">
-                      <span class="prod-data" [ngClass]="zone.target_diff < 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
+                      <span class="prod-data"
+                        [ngClass]="zone.target_diff < 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
                       <div class="bottom-text" title="Difference">Diff.</div>
                     </div>
                   </div>
 
                   <!-- <div class="row sub-card-heading">Hours:</div> -->
-                  <div class="row d-flex align-content-center justify-content-center text-center" style="position: relative;">
+                  <div class="row d-flex align-content-center justify-content-center text-center"
+                    style="position: relative;">
                     <div class="col sub-card-heading">Hours</div>
                     <div class="col">
                       <div class="prod-data">{{zone.target_hrs_avg}}</div>
@@ -69,7 +72,10 @@
               </div>
             </div>
 
-            <div class="col p-4 text-center" *ngIf="reports.length == 0 && !flags.displayLoader">No report(s) availabe for the selected day</div>
+            <div class="col p-4 text-center" *ngIf="reports.length == 0 && !flags.displayLoader">
+              <img src="/assets/img/dreamer.svg" height="200" />
+              <div class="mt-3">No report(s) availabe for the selected day</div>
+            </div>
             <app-loader *ngIf="reports.length == 0 && flags.displayLoader"></app-loader>
           </div>
         </div>

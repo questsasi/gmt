@@ -95,10 +95,9 @@
                   </tr>
                 </tbody>
                 <tbody *ngIf="datasource?.targetList?.length === 0">
-                  <td colspan="8">
-                    <div class="text-center fs-20">
-                      No Records Found
-                    </div>
+                  <td colspan="8" class="text-center fs-20">
+                    <img src="/assets/img/dreamer.svg" height="200" />
+                    <div class="mt-3"> No Records Found </div>
                   </td>
                   <td colspan="8" *ngIf="flags.displayLoader">
                     <app-loader></app-loader>
