@@ -10,12 +10,14 @@
             </div>
           </div>
           <div class="card-body">
-            <article class="py-3" *ngFor="let obj of blogData;">
-              <a class="p-2" [routerLink]="['/blog/', obj.title]">
-                <i class="fa fa-address-book-o mr-2"></i>
-                {{obj.title}}
-              </a>
-            </article>
+            <div class="bg-img">
+              <article class="py-3" *ngFor="let obj of blogData;">
+                <a class="p-2" [routerLink]="['/blog/', obj.title]">
+                  <i class="fa fa-address-book-o mr-2"></i>
+                  {{obj.title}}
+                </a>
+              </article>
+            </div>
           </div>
         </div>
       </div>

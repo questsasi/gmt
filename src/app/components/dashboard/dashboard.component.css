@@ -28,3 +28,11 @@
   font-weight: 600 !important;
   font-size: 15px;
 }
+
+.bg-img {
+  background: url("/assets/img/thought_process.svg");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 200px;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
