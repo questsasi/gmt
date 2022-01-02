@@ -7,4 +7,9 @@ import { Component } from "@angular/core";
 })
 export class FooterComponent {
   currentDateTime: Date = new Date();
+
+  scrollTop() {
+    const elemMainPanel = <HTMLElement>document.querySelector(".main-panel");
+    elemMainPanel.scroll({ top: 0, behavior: 'smooth' });
+  }
 }
