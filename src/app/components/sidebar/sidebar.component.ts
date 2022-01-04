@@ -50,41 +50,41 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
-    path: '/about-us',
-    title: 'About Us',
-    icon: 'accessibility_new',
-    class: '',
-  },
-  {
-    path: '/contact-us',
-    title: 'Contact Us',
-    icon: 'import_contacts',
-    class: '',
-  },
-  {
     path: '/faq',
     title: 'FAQ',
     icon: 'contact_support',
     class: '',
   },
-  {
-    path: '/disclaimer',
-    title: 'Disclaimer',
-    icon: 'aspect_ratio',
-    class: '',
-  },
-  {
-    path: '/privacy',
-    title: 'Privacy Policy',
-    icon: 'archive',
-    class: '',
-  },
-  {
-    path: '/legal',
-    title: 'Legal',
-    icon: 'card_travel',
-    class: '',
-  },
+  // {
+  //   path: '/about-us',
+  //   title: 'About Us',
+  //   icon: 'accessibility_new',
+  //   class: '',
+  // },
+  // {
+  //   path: '/contact-us',
+  //   title: 'Contact Us',
+  //   icon: 'import_contacts',
+  //   class: '',
+  // }, 
+  // {
+  //   path: '/disclaimer',
+  //   title: 'Disclaimer',
+  //   icon: 'aspect_ratio',
+  //   class: '',
+  // },
+  // {
+  //   path: '/privacy',
+  //   title: 'Privacy Policy',
+  //   icon: 'archive',
+  //   class: '',
+  // },
+  // {
+  //   path: '/legal',
+  //   title: 'Legal',
+  //   icon: 'card_travel',
+  //   class: '',
+  // },
   // {
   //   path: "/hourly_production",
   //   title: "Hourly Production",
@@ -147,8 +147,8 @@ export class SidebarComponent implements OnInit {
     var now = new Date().toString();
     var timeZone = now.replace(/.*[(](.*)[)].*/, '$1');//extracts the content between parenthesis
     if (timeZone != 'India Standard Time') {
-      this.selectedDate = '2021-12-23';
-      this.dataSharedService.setDate('2021-12-23');
+      this.selectedDate = '2022-1-4';
+      this.dataSharedService.setDate('2022-1-4');
     } else {
       this.dataSharedService.setDate(this.selectedDate);
     }
