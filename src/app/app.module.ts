@@ -58,6 +58,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AdsenseModule } from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,10 @@ import { ErrorComponent } from './components/error/error.component';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
+    }),
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-3280107634572843',
+      adSlot: 5189999964,
     }),
   ],
   providers: [

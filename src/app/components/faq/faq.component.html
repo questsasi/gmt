@@ -1,33 +1,44 @@
 <div class="main-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
-          <div></div>
-          <div class="card">
-            <div class="card-header card-header-danger header-box">
-              <div class="d-flex justify-content-between">
-                <h1 class="card-title p-t-5">FAQS</h1>
-              </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div></div>
+        <div class="card">
+          <div class="card-header card-header-danger header-box">
+            <div class="d-flex justify-content-between">
+              <h1 class="card-title p-t-5">FAQS</h1>
             </div>
-            <div class="card-body">
-              
-              <mat-accordion class="example-headers-align">
+          </div>
+          <div class="card-body">
 
-                <mat-expansion-panel *ngFor="let obj of faqs">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      {{obj.ques}}
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <mat-panel-description [innerHTML]="obj.ans">
-                   
-                  </mat-panel-description>
-                </mat-expansion-panel>
-                
-              </mat-accordion>
-            </div>
+            <mat-accordion class="example-headers-align">
+
+              <mat-expansion-panel *ngFor="let obj of faqs">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{obj.ques}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-panel-description [innerHTML]="obj.ans">
+
+                </mat-panel-description>
+              </mat-expansion-panel>
+
+            </mat-accordion>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Adsense start -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ng-adsense></ng-adsense>
+      <ng-adsense></ng-adsense>
+    </div>
+  </div>
+</div>
+<!-- Adsense end -->

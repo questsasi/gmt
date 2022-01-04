@@ -37,6 +37,7 @@
     "font-awesome": "~4.7.0",
     "jquery": "~3.4.1",
     "moment": "2.24.0",
+    "ng2-adsense": "^10.1.0",
     "perfect-scrollbar": "~1.1.0",
     "popper.js": "~1.15.0",
     "rxjs": "7.4.0",
