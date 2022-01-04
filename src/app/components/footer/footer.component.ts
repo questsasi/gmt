@@ -14,5 +14,9 @@ export class FooterComponent {
     elemMainPanel.scroll({ top: 0, behavior: 'smooth' });
     const ps = new PerfectScrollbar(elemMainPanel);
     ps.update();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }
