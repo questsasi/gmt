@@ -8,6 +8,12 @@
   "start_url": "./",
   "icons": [
     {
+      "src": "assets/img/logo_sm.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
       "src": "assets/img/logo.png",
       "sizes": "384x384",
       "type": "image/png",
