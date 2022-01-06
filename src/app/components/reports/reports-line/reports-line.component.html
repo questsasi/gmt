@@ -66,95 +66,102 @@
                     </div>
                   </div>
                 </div>
+                <ng-adsense [height]="50" [width]="320"></ng-adsense>
 
-                <!-- Lines -->
-                <div class="card card-custom" *ngFor="let line of zones.lines">
-                  <div class="card-body p-2">
-                    <div class="container-fluid">
+                <ng-container *ngFor="let line of zones.lines;let lineIndex = index;">
+                  <!-- Lines -->
+                  <div class="card card-custom">
+                    <div class="card-body p-2">
+                      <div class="container-fluid">
 
-                      <div class="row d-flex justify-content-between upper-card">
-                        <div class="title">
-                          {{line.line_name}}
+                        <div class="row d-flex justify-content-between upper-card">
+                          <div class="title">
+                            {{line.line_name}}
+                          </div>
+                          <div class="circle" [ngClass]="line.percent < 97 ? 'bg-danger': 'bg-success'">
+                            {{line.percent}} %
+                          </div>
                         </div>
-                        <div class="circle" [ngClass]="line.percent < 97 ? 'bg-danger': 'bg-success'">
-                          {{line.percent}} %
-                        </div>
-                      </div>
 
-                      <!-- <div class="row sub-card-heading">Target:</div> -->
-                      <div class="row d-flex align-content-center justify-content-center text-center"
-                        style="position: relative;">
-                        <div class="col sub-card-heading">Target</div>
-                        <div class="col">
-                          <div class="prod-data">{{line.target_count}}</div>
-                          <div class="bottom-text">O/P</div>
+                        <!-- <div class="row sub-card-heading">Target:</div> -->
+                        <div class="row d-flex align-content-center justify-content-center text-center"
+                          style="position: relative;">
+                          <div class="col sub-card-heading">Target</div>
+                          <div class="col">
+                            <div class="prod-data">{{line.target_count}}</div>
+                            <div class="bottom-text">O/P</div>
+                          </div>
+                          <div class="col">
+                            <div class="prod-data">{{line.presant}}</div>
+                            <div class="bottom-text">Present</div>
+                          </div>
+                          <div class="col">
+                            <div class="prod-data">{{line.achieved}}</div>
+                            <div class="bottom-text">Achieved</div>
+                          </div>
+                          <div class="col">
+                            <span class="prod-data"
+                              [ngClass]="line.difference < 0 ? 'text-danger': 'text-success'">{{line.difference}}</span>
+                            <div class="bottom-text" title="Difference">Diff.</div>
+                          </div>
                         </div>
-                        <div class="col">
-                          <div class="prod-data">{{line.presant}}</div>
-                          <div class="bottom-text">Present</div>
-                        </div>
-                        <div class="col">
-                          <div class="prod-data">{{line.achieved}}</div>
-                          <div class="bottom-text">Achieved</div>
-                        </div>
-                        <div class="col">
-                          <span class="prod-data"
-                            [ngClass]="line.difference < 0 ? 'text-danger': 'text-success'">{{line.difference}}</span>
-                          <div class="bottom-text" title="Difference">Diff.</div>
-                        </div>
-                      </div>
 
-                      <!-- <div class="row sub-card-heading">Hours:</div> -->
-                      <div class="row d-flex align-content-center justify-content-center text-center"
-                        style="position: relative;">
-                        <div class="col sub-card-heading">Hours</div>
-                        <div class="col">
-                          <div class="prod-data">{{line.production_hrs}}</div>
-                          <div class="bottom-text">Planned</div>
+                        <!-- <div class="row sub-card-heading">Hours:</div> -->
+                        <div class="row d-flex align-content-center justify-content-center text-center"
+                          style="position: relative;">
+                          <div class="col sub-card-heading">Hours</div>
+                          <div class="col">
+                            <div class="prod-data">{{line.production_hrs}}</div>
+                            <div class="bottom-text">Planned</div>
+                          </div>
+                          <div class="col">
+                            <div class="prod-data">{{line.productions.length}}</div>
+                            <div class="bottom-text">Present</div>
+                          </div>
+                          <div class="col">
+                            <div class="prod-data">{{line.production_hrs - line.productions.length }}</div>
+                            <div class="bottom-text">Remaining</div>
+                          </div>
+                          <div class="col"></div>
                         </div>
-                        <div class="col">
-                          <div class="prod-data">{{line.productions.length}}</div>
-                          <div class="bottom-text">Present</div>
-                        </div>
-                        <div class="col">
-                          <div class="prod-data">{{line.production_hrs - line.productions.length }}</div>
-                          <div class="bottom-text">Remaining</div>
-                        </div>
-                        <div class="col"></div>
                       </div>
                     </div>
-                  </div>
 
-                  <h6 (click)="line.toggle = !line.toggle" class="font-weight-bold pt-2"
-                    style="text-transform: initial;border-top:1px solid #ededed;cursor: pointer;">
-                    <i class="fa fa-chevron-right pl-2 pointer text-info"
-                      [ngClass]="{'fa-chevron-down': line.toggle, 'fa-chevron-right': !line.toggle}"></i>
-                    Hourly Production
-                  </h6>
+                    <h6 (click)="line.toggle = !line.toggle" class="font-weight-bold pt-2"
+                      style="text-transform: initial;border-top:1px solid #ededed;cursor: pointer;">
+                      <i class="fa fa-chevron-right pl-2 pointer text-info"
+                        [ngClass]="{'fa-chevron-down': line.toggle, 'fa-chevron-right': !line.toggle}"></i>
+                      Hourly Production
+                    </h6>
 
-                  <table class="table table-striped text-center table-sm" *ngIf="line.toggle" style="font-size: 12px;">
-                    <thead class="thead-dark">
-                      <!-- <tr>
+                    <table class="table table-striped text-center table-sm" *ngIf="line.toggle"
+                      style="font-size: 12px;">
+                      <thead class="thead-dark">
+                        <!-- <tr>
                         <th scope="col" colspan="4">Production</th>
                       </tr> -->
-                      <tr>
-                        <th scope="col">Hr</th>
-                        <th scope="col">O/P</th>
-                        <th scope="col">Buyer</th>
-                        <th scope="col">Style</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let production of line.productions">
-                        <td>{{production.hour}}</td>
-                        <td>{{production.output}}</td>
-                        <td>{{production.buyer.buyer_name}}</td>
-                        <td>{{production.style.style_name}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        <tr>
+                          <th scope="col">Hr</th>
+                          <th scope="col">O/P</th>
+                          <th scope="col">Buyer</th>
+                          <th scope="col">Style</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let production of line.productions">
+                          <td>{{production.hour}}</td>
+                          <td>{{production.output}}</td>
+                          <td>{{production.buyer.buyer_name}}</td>
+                          <td>{{production.style.style_name}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
 
-                </div>
+                  </div>
+                  <!-- <div *ngIf="lineIndex == 0 || lineIndex == 3">
+                    <ng-adsense [height]="50" [width]="320"></ng-adsense>
+                  </div> -->
+                </ng-container>
               </mat-tab>
             </mat-tab-group>
 

@@ -1,4 +1,7 @@
-<h4 mat-dialog-title class="bold pb-2"> Add Target </h4>
+<h4 mat-dialog-title class="bold pb-2"> 
+  Add Target 
+  <div (click)="onClickCancel()" class="float-right px-1 text-muted">x</div>
+</h4>
 <div mat-dialog-content>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
@@ -104,4 +107,5 @@
       </button>
     </div>
   </form>
+  <ng-adsense [height]="50" [width]="100"></ng-adsense>
 </div>

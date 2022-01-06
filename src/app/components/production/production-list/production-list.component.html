@@ -32,66 +32,76 @@
                   </th>
                 </thead>
                 <tbody *ngIf="datasource?.productionList?.length > 0">
-                  <tr *ngFor="let prodObj of datasource.productionList; let productionIndex=index">
-                    <td>{{productionIndex + 1}}</td>
-                    <td>{{prodObj.zone_name}}</td>
-                    <td>{{prodObj.line_name}}</td>
-                    <td>{{prodObj.hour}}</td>
-                    <td>
-                      <!-- View -->
-                      <ng-container *ngIf="!prodObj.isEnableEdit">
-                        {{prodObj.output}}
-                        <button mat-raised-button type="button" matTooltip="Edit O/p" [matTooltipPosition]="'above'"
-                          class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(productionIndex)">
-                          <i class="material-icons" aria-hidden="true"> edit </i>
-                        </button>
-                      </ng-container>
+                  <ng-container *ngFor="let prodObj of datasource.productionList; let productionIndex=index">
+                    <tr>
+                      <td>{{productionIndex + 1}}</td>
+                      <td>{{prodObj.zone_name}}</td>
+                      <td>{{prodObj.line_name}}</td>
+                      <td>{{prodObj.hour}}</td>
+                      <td>
+                        <!-- View -->
+                        <ng-container *ngIf="!prodObj.isEnableEdit">
+                          {{prodObj.output}}
+                          <button mat-raised-button type="button" matTooltip="Edit O/p" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-sm btn-just-icon"
+                            (click)="onToggleEdit(productionIndex)">
+                            <i class="material-icons" aria-hidden="true"> edit </i>
+                          </button>
+                        </ng-container>
 
-                      <!-- Edit -->
-                      <ng-container *ngIf="prodObj.isEnableEdit">
-                        <form class="col-xs-12" [formGroup]="editProductionForm"
-                          (ngSubmit)="onSubmitEdit(productionIndex)" novalidate>
-                          <div class="d-flex">
-                            <mat-form-field>
-                              <input matInput type="number" placeholder="O/p" formControlName="output">
-                              <mat-error *ngIf="errorHandling('output', 'required')">
-                                O/p is required
-                              </mat-error>
-                              <mat-error *ngIf="errorHandling('output', 'min')">
-                                O/p Mininum Value is 0
-                              </mat-error>
-                              <mat-error *ngIf="errorHandling('output', 'max')">
-                                O/p Maximum Value is 20000
-                              </mat-error>
-                            </mat-form-field>
-
+                        <!-- Edit -->
+                        <ng-container *ngIf="prodObj.isEnableEdit">
+                          <form class="col-xs-12" [formGroup]="editProductionForm"
+                            (ngSubmit)="onSubmitEdit(productionIndex)" novalidate>
                             <div class="d-flex">
-                              <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
-                                class="btn btn-success btn-link btn-sm btn-just-icon">
-                                <i class="material-icons" aria-hidden="true"> check </i>
-                              </button>
-                              <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
-                                class="btn btn-danger btn-link btn-sm btn-just-icon"
-                                (click)="onCloseEdit(productionIndex)">
-                                <i class="material-icons" aria-hidden="true"> close </i>
-                              </button>
+                              <mat-form-field>
+                                <input matInput type="number" placeholder="O/p" formControlName="output">
+                                <mat-error *ngIf="errorHandling('output', 'required')">
+                                  O/p is required
+                                </mat-error>
+                                <mat-error *ngIf="errorHandling('output', 'min')">
+                                  O/p Mininum Value is 0
+                                </mat-error>
+                                <mat-error *ngIf="errorHandling('output', 'max')">
+                                  O/p Maximum Value is 20000
+                                </mat-error>
+                              </mat-form-field>
+
+                              <div class="d-flex">
+                                <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
+                                  class="btn btn-success btn-link btn-sm btn-just-icon">
+                                  <i class="material-icons" aria-hidden="true"> check </i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Cancel"
+                                  [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon"
+                                  (click)="onCloseEdit(productionIndex)">
+                                  <i class="material-icons" aria-hidden="true"> close </i>
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                        </form>
-                      </ng-container>
-                    </td>
+                          </form>
+                        </ng-container>
+                      </td>
 
-                    <td>{{prodObj.buyer_name}}</td>
-                    <td>{{prodObj.style_name}}</td>
+                      <td>{{prodObj.buyer_name}}</td>
+                      <td>{{prodObj.style_name}}</td>
 
-                    <!-- Actions -->
-                    <td>
-                      <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
-                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(productionIndex)">
-                        <i class="material-icons" aria-hidden="true"> delete </i>
-                      </button>
-                    </td>
-                  </tr>
+                      <!-- Actions -->
+                      <td>
+                        <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                          class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(productionIndex)">
+                          <i class="material-icons" aria-hidden="true"> delete </i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr *ngIf="(productionIndex+1 == 3 || productionIndex+1 == 6 || productionIndex+1 == 9)">
+                      <td colspan="8">
+                        <!-- Adsense start -->
+                        <ng-adsense [height]="50" [width]="320"></ng-adsense>
+                        <!-- Adsense end -->
+                      </td>
+                    </tr>
+                  </ng-container>
                 </tbody>
                 <tbody *ngIf="datasource?.productionList?.length === 0">
                   <td colspan="8" *ngIf="!flags.displayLoader" class="text-center fs-20">

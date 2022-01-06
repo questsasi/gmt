@@ -37,62 +37,74 @@
                   </th>
                 </thead>
                 <tbody *ngIf="datasource?.targetList?.length > 0">
-                  <tr *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
-                    <td>{{targetIndex + 1}}</td>
-                    <td>{{targetObj.zone_name}}</td>
-                    <td>{{targetObj.line_name}}</td>
-                    <td>{{targetObj.production_hours}}</td>
-                    <td>
-                      <!-- View -->
-                      <ng-container *ngIf="!targetObj.isEnableEdit">
-                        <span>{{targetObj.target}}</span>
-                        <button mat-raised-button type="button" matTooltip="Edit Target" [matTooltipPosition]="'above'"
-                          class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onToggleEdit(targetIndex)">
-                          <i class="material-icons" aria-hidden="true">edit</i>
-                        </button>
-                      </ng-container>
 
-                      <!-- Edit -->
-                      <ng-container *ngIf="targetObj.isEnableEdit">
-                        <form class="col-xs-12" [formGroup]="editTargetForm" (ngSubmit)="onSubmitEdit(targetIndex)"
-                          novalidate>
-                          <div class="d-flex">
-                            <mat-form-field>
-                              <input matInput type="number" placeholder="Target" formControlName="target">
-                              <mat-error *ngIf="errorHandling('target', 'required')">
-                                Target is required
-                              </mat-error>
-                              <mat-error *ngIf="errorHandling('target', 'min')">
-                                Target Mininum Value is 0
-                              </mat-error>
-                              <mat-error *ngIf="errorHandling('target', 'max')">
-                                Target Maximum Value is 20000
-                              </mat-error>
-                            </mat-form-field>
+                  <ng-container *ngFor="let targetObj of datasource.targetList; let targetIndex=index">
+                    <tr>
+                      <td>{{targetIndex + 1}}</td>
+                      <td>{{targetObj.zone_name}}</td>
+                      <td>{{targetObj.line_name}}</td>
+                      <td>{{targetObj.production_hours}}</td>
+                      <td>
+                        <!-- View -->
+                        <ng-container *ngIf="!targetObj.isEnableEdit">
+                          <span>{{targetObj.target}}</span>
+                          <button mat-raised-button type="button" matTooltip="Edit Target"
+                            [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon"
+                            (click)="onToggleEdit(targetIndex)">
+                            <i class="material-icons" aria-hidden="true">edit</i>
+                          </button>
+                        </ng-container>
 
+                        <!-- Edit -->
+                        <ng-container *ngIf="targetObj.isEnableEdit">
+                          <form class="col-xs-12" [formGroup]="editTargetForm" (ngSubmit)="onSubmitEdit(targetIndex)"
+                            novalidate>
                             <div class="d-flex">
-                              <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
-                                class="btn btn-success btn-link btn-sm btn-just-icon">
-                                <i class="material-icons" aria-hidden="true">check</i>
-                              </button>
-                              <button mat-raised-button type="button" matTooltip="Cancel" [matTooltipPosition]="'above'"
-                                class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onCloseEdit(targetIndex)">
-                                <i class="material-icons" aria-hidden="true">close</i>
-                              </button>
+                              <mat-form-field>
+                                <input matInput type="number" placeholder="Target" formControlName="target">
+                                <mat-error *ngIf="errorHandling('target', 'required')">
+                                  Target is required
+                                </mat-error>
+                                <mat-error *ngIf="errorHandling('target', 'min')">
+                                  Target Mininum Value is 0
+                                </mat-error>
+                                <mat-error *ngIf="errorHandling('target', 'max')">
+                                  Target Maximum Value is 20000
+                                </mat-error>
+                              </mat-form-field>
+
+                              <div class="d-flex">
+                                <button mat-raised-button type="submit" matTooltip="Save" [matTooltipPosition]="'above'"
+                                  class="btn btn-success btn-link btn-sm btn-just-icon">
+                                  <i class="material-icons" aria-hidden="true">check</i>
+                                </button>
+                                <button mat-raised-button type="button" matTooltip="Cancel"
+                                  [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon"
+                                  (click)="onCloseEdit(targetIndex)">
+                                  <i class="material-icons" aria-hidden="true">close</i>
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                        </form>
-                      </ng-container>
-                    </td>
-                    <td>{{targetObj.style_name}}</td>
-                    <td>{{targetObj.buyer_name}}</td>
-                    <td>
-                      <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
-                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(targetIndex)">
-                        <i class="material-icons" aria-hidden="true">delete</i>
-                      </button>
-                    </td>
-                  </tr>
+                          </form>
+                        </ng-container>
+                      </td>
+                      <td>{{targetObj.style_name}}</td>
+                      <td>{{targetObj.buyer_name}}</td>
+                      <td>
+                        <button mat-raised-button type="button" matTooltip="Delete" [matTooltipPosition]="'above'"
+                          class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onClickDelete(targetIndex)">
+                          <i class="material-icons" aria-hidden="true">delete</i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr  *ngIf="(targetIndex+1 == 3 || targetIndex+1 == 6 || targetIndex+1 == 9)">
+                      <td colspan="8">
+                        <!-- Adsense start -->
+                        <ng-adsense [height]="50" [width]="320"></ng-adsense>
+                        <!-- Adsense end -->
+                      </td>
+                    </tr>
+                  </ng-container>
                 </tbody>
                 <tbody *ngIf="datasource?.targetList?.length === 0">
                   <td colspan="8" class="text-center fs-20">
