@@ -33,14 +33,14 @@ export class ProductionListComponent implements OnInit, OnDestroy {
     private appService: AppService,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private dataSharedService: DataSharedService, 
-    private title: Title, 
+    private dataSharedService: DataSharedService,
+    private title: Title,
     private meta: Meta) {
-      this.meta.updateTag({
-        name: 'description',
-        content: this.desc + ' - Production'
-      }, "name='description'");
-      this.title.setTitle("Production" + this.appService.seoTitle());
+    this.meta.updateTag({
+      name: 'description',
+      content: this.desc + ' - Production'
+    }, "name='description'");
+    this.title.setTitle("Production" + this.appService.seoTitle());
   }
 
   ngOnInit(): void {
@@ -86,7 +86,9 @@ export class ProductionListComponent implements OnInit, OnDestroy {
 
   onAddProduction() {
     const dialogRef = this.dialog.open(ProductionAddComponent, {
-      width: '250px',
+      minWidth: '300px',
+      minHeight: '98vh',
+      panelClass: 'custom-dialog-container'
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
@@ -186,7 +188,7 @@ export class ProductionListComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
+
   ngOnDestroy(): void {
     this.serviceSubscription.unsubscribe();
   }

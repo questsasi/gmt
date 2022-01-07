@@ -81,7 +81,9 @@ export class TargetListComponent implements OnInit, OnDestroy {
 
   onAddTarget() {
     const dialogRef = this.dialog.open(TargetAddComponent, {
-      width: '250px',
+      minWidth: '300px',
+      minHeight: '98vh',
+      panelClass: 'custom-dialog-container'
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();

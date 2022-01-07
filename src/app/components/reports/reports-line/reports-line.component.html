@@ -157,8 +157,8 @@
                     </table>
 
                   </div>
-                  <div *ngIf="(lineIndex+1) % 3 == 0 && afterViewInit && zoneIndex == 0">
-                    <ng-adsense [height]="100" [width]="320"></ng-adsense>
+                  <div *ngIf="(lineIndex % 3 == 0) && afterViewInit && zoneIndex == 0">
+                    <ng-adsense [height]="50" [width]="275"></ng-adsense>
                   </div>
                 </ng-container>
               </mat-tab>

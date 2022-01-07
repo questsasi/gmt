@@ -1,28 +1,27 @@
 <h4 mat-dialog-title class="bold pb-2">
   Add Production
-  <div (click)="onClickCancel()" class="float-right px-1 text-muted">x</div>
+  <div (click)="onClickCancel()" class="float-right px-1 text-muted pointer">x</div>
 </h4>
 <div mat-dialog-content>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
   <form [formGroup]="productionForm" (ngSubmit)="productionForm.valid && onSubmit()" novalidate
     *ngIf="!flags.displayLoader" autocomplete="off">
+
     <!-- Target Date -->
     <mat-form-field appearance="fill">
-      <mat-label> Production Date </mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="dateOfProduction" 
-        placeholder="Production Date">
+      <mat-label>Production Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dateOfProduction" placeholder="Production Date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="errorHandling('dateOfProduction', 'required')">
-        Production Date is required
+        Production date is required
       </mat-error>
     </mat-form-field>
-    
 
     <!-- Zone -->
     <mat-form-field appearance="fill">
-      <mat-label> Zone </mat-label>
+      <mat-label>Zone</mat-label>
       <mat-select formControlName="zone" (selectionChange)="onZoneChange()">
         <mat-option *ngFor="let zone of datasource.zones" [value]="zone.id">
           {{zone.zone_name}}
@@ -35,7 +34,7 @@
 
     <!-- Line -->
     <mat-form-field appearance="fill">
-      <mat-label> Line </mat-label>
+      <mat-label>Line</mat-label>
       <mat-select formControlName="line" (selectionChange)="onLineChange()">
         <mat-option *ngFor="let line of datasource.lines" [value]="line">
           {{line.line_name}}
@@ -45,7 +44,7 @@
         Line is required
       </mat-error>
     </mat-form-field>
-    
+
     <!-- Target -->
     <mat-form-field appearance="fill">
       <mat-label>Target</mat-label>
@@ -80,15 +79,17 @@
         O/p is required
       </mat-error>
       <mat-error *ngIf="errorHandling('output', 'min')">
-        O/p Mininum Value is 0
+        O/p mininum value is 0
       </mat-error>
       <mat-error *ngIf="errorHandling('output', 'max')">
-        O/p Maximum Value is 20000
+        O/p maximum value is 20000
       </mat-error>
     </mat-form-field>
 
+    <ng-adsense [height]="50" [width]="200" *ngIf="afterViewInit"></ng-adsense>
+
     <!-- Actions -->
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="mt-2">
       <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
       <button mat-button (click)="onClickCancel()"> Cancel </button>
       <button type="submit" mat-raised-button class="btn btn-danger"
@@ -98,5 +99,4 @@
       </button>
     </div>
   </form>
-  <ng-adsense [height]="50" [width]="250" *ngIf="afterViewInit"></ng-adsense>
 </div>

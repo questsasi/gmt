@@ -1,6 +1,6 @@
 <h4 mat-dialog-title class="bold pb-2"> 
   Add Target 
-  <div (click)="onClickCancel()" class="float-right px-1 text-muted">x</div>
+  <div (click)="onClickCancel()" class="float-right px-1 text-muted pointer">x</div>
 </h4>
 <div mat-dialog-content>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
@@ -13,7 +13,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="errorHandling('dateOfTarget', 'required')">
-        Daily Target is required
+        Target Date is required
       </mat-error>
     </mat-form-field>
 
@@ -89,15 +89,17 @@
         O/p is required
       </mat-error>
       <mat-error *ngIf="errorHandling('target', 'min')">
-        O/p Mininum Value is 0
+        O/p mininum value is 0
       </mat-error>
       <mat-error *ngIf="errorHandling('target', 'max')">
-        O/p Maximum Value is 20000
+        O/p maximum value is 20000
       </mat-error>
     </mat-form-field>
 
+    <ng-adsense [height]="50" [width]="200" *ngIf="afterViewInit"></ng-adsense>
+
     <!-- Actions -->
-    <div mat-dialog-actions>
+    <div mat-dialog-actions class="mt-2">
       <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
       <button mat-button (click)="onClickCancel()"> Cancel </button>
       <button type="submit" mat-raised-button class="btn btn-danger"
@@ -107,5 +109,5 @@
       </button>
     </div>
   </form>
-  <ng-adsense [height]="50" [width]="250" *ngIf="afterViewInit"></ng-adsense>
+  
 </div>
