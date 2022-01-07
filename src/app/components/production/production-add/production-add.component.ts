@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -11,7 +11,7 @@ import { DataSharedService } from 'src/app/common/data-shared.service';
   templateUrl: './production-add.component.html',
   styleUrls: ['./production-add.component.css']
 })
-export class ProductionAddComponent implements OnDestroy {
+export class ProductionAddComponent implements AfterViewInit, OnDestroy {
 
   datasource: any = {
     zones: [],
@@ -26,6 +26,7 @@ export class ProductionAddComponent implements OnDestroy {
   errorMsg: String = '';
   productionForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
+  afterViewInit = false;
 
   constructor(public dialogRef: MatDialogRef<ProductionAddComponent>, private formBuilder: FormBuilder,
     private appService: AppService, private dataSharedService: DataSharedService) {
@@ -35,6 +36,12 @@ export class ProductionAddComponent implements OnDestroy {
       this.datasource.productionIndex = 0;
       this.getAddProduction();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.afterViewInit = true;
+    }, 1000);
   }
 
   getFlagsStatus() {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
@@ -9,7 +9,7 @@ import { DataSharedService } from 'src/app/common/data-shared.service';
   templateUrl: './reports-line.component.html',
   styleUrls: ['./reports-line.component.css'],
 })
-export class ReportsLineComponent implements OnInit, OnDestroy {
+export class ReportsLineComponent implements OnInit, AfterViewInit, OnDestroy {
   lineDetails: any = [];
   selectedDate: any;
   flags = {
@@ -18,6 +18,8 @@ export class ReportsLineComponent implements OnInit, OnDestroy {
   reports: any = [];
   private serviceSubscription: Subscription = new Subscription;
   desc = 'Line-wise production report with zone-wise summary, and hourly breakup';
+  afterViewInit = false;
+
   constructor(
     private appService: AppService,
     private dataSharedService: DataSharedService,
@@ -35,6 +37,12 @@ export class ReportsLineComponent implements OnInit, OnDestroy {
       this.selectedDate = getDate;
       this.getReports();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.afterViewInit = true;
+    }, 1000);
   }
 
   getReports() {

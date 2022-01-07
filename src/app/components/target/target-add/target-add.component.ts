@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { AfterViewInit, Component, OnDestroy } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Validators, FormBuilder, FormGroup, } from "@angular/forms";
 import * as moment from 'moment';
@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
   templateUrl: './target-add.component.html',
   styleUrls: ['./target-add.component.css']
 })
-export class TargetAddComponent implements OnDestroy {
+export class TargetAddComponent implements AfterViewInit, OnDestroy {
 
   datasource: any = {
     zones: [],
@@ -26,6 +26,7 @@ export class TargetAddComponent implements OnDestroy {
   errorMsg: String = '';
   targetForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
+  afterViewInit = false;
 
   constructor(public dialogRef: MatDialogRef<TargetAddComponent>, private formBuilder: FormBuilder,
     private appService: AppService, private dataSharedService: DataSharedService) {
@@ -34,6 +35,12 @@ export class TargetAddComponent implements OnDestroy {
       this.datasource.selectedDate = getDate;
       this.getTargetDetails();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.afterViewInit = true;
+    }, 1000);
   }
 
   getFlagsStatus() {
