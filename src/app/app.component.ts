@@ -27,6 +27,8 @@ export class AppComponent {
   lastPoppedUrl: string = "";
   yScrollStack: any = [];
   flags: any = {};
+  afterViewInit = false;
+  showAd: Boolean = true; 
 
   constructor(public location: Location, private router: Router, private meta: Meta, private title: Title, @Inject(PLATFORM_ID) private platformId: Object, private appService: AppService) {
     this.meta.addTags(this.appService.seoMeta());
@@ -172,6 +174,9 @@ export class AppComponent {
   }
   ngAfterViewInit() {
     this.runOnRouteChange();
+    setTimeout(() => {
+      this.afterViewInit = true;
+    }, 1000);
   }
   isMaps(path: any) {
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -203,5 +208,9 @@ export class AppComponent {
   onNavigate(event: HTMLElement): any {
     const elemMainPanel = <HTMLElement>document.querySelector(".main-panel");
     elemMainPanel.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  onCloseAd() {
+    this.showAd = false;
   }
 }

@@ -16,3 +16,11 @@
 <!-- <div class="wrapper" *ngIf="!flags.isLoggedInUser">
   <router-outlet></router-outlet>
 </div> -->
+
+
+<div id="ad-fixed" *ngIf="showAd">
+  <ng-container *ngIf="afterViewInit">
+    <div id="ad-close" (click)="onCloseAd()">x</div>
+    <ng-adsense id="center" [height]="20" [width]="320" ></ng-adsense>
+  </ng-container>
+</div>

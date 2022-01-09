@@ -1,0 +1,25 @@
+#ad-fixed {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  cursor: pointer;
+  background-color: #e3e3e3;
+  z-index: 3;
+}
+
+#center {
+  height: 50px;
+  width: 320px;
+  margin: 0 auto;
+  background-color: #e3e3e3;
+}
+
+#ad-close {
+  position: absolute;
+  left: 5px;
+  top: -24px;
+  padding: 0px 4px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #e3e3e3;
+}
