@@ -176,7 +176,7 @@ export class AppComponent {
     this.runOnRouteChange();
     setTimeout(() => {
       this.afterViewInit = true;
-    }, 1000);
+    }, 1500);
   }
   isMaps(path: any) {
     var titlee = this.location.prepareExternalUrl(this.location.path());
