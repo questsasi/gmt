@@ -135,7 +135,7 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
   menuItems: any = [];
-  selectedDate: any = moment().format('YYYY-MM-DD');
+  selectedDate: any = '';
   minDate: Date = new Date(2021, 9, 4);  // oct 4 2021 start Date
   maxDate: Date = new Date();
 
@@ -143,20 +143,16 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
+    this.selectedDate = moment().format('YYYY-MM-DD');
 
     var now = new Date().toString();
     var timeZone = now.replace(/.*[(](.*)[)].*/, '$1');//extracts the content between parenthesis
-    if (timeZone != 'India Standard Time') {
-      this.selectedDate = '2022-1-4';
-      this.dataSharedService.setDate('2022-1-4');
+    if (timeZone != 'India Standard Time' || window.location.origin == 'https://localhost:4200') {
+      this.selectedDate = '2022-01-12';
+      this.dataSharedService.setDate('2022-01-12');
     } else {
       this.dataSharedService.setDate(this.selectedDate);
     }
-
-    // if (!environment.production) {
-    //   this.selectedDate = '2021-12-29';
-    //   this.dataSharedService.setDate('2021-12-29');
-    // }
   }
 
   onChangeDate(selDate: string) {
