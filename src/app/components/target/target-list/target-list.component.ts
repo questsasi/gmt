@@ -1,13 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { AppService } from 'src/app/app.service';
 import { DataSharedService } from 'src/app/common/data-shared.service';
 import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
 import { TargetAddComponent } from '../target-add/target-add.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-target-list',
@@ -18,7 +21,7 @@ export class TargetListComponent implements OnInit, OnDestroy {
   flags: any = {
     displayLoader: Boolean,
   };
-  datasource: any = {
+  targetObj: any = {
     targetList: [],
     selectedDate: String,
     targetIndex: Number,
@@ -26,43 +29,53 @@ export class TargetListComponent implements OnInit, OnDestroy {
   editTargetForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
   desc = 'Target of the day for every zone and line will be added with the required details';
+  displayedColumns: string[] = ['sno', 'zone_name', 'line_name', 'production_hours', 'target', 'style_name', 'buyer_name', "action"];
+  dataSource: any = [];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
+  @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
+ 
 
   constructor(
     public dialog: MatDialog,
     private appService: AppService,
     private formBuilder: FormBuilder,
-    private dataSharedService: DataSharedService, 
+    private dataSharedService: DataSharedService,
     private title: Title,
     private meta: Meta) {
-      this.meta.updateTag({
-        name: 'description',
-        content: this.desc + ' - Target'
-      }, "name='description'");
-      this.title.setTitle("Target" + this.appService.seoTitle());
+    this.meta.updateTag({
+      name: 'description',
+      content: this.desc + ' - Target'
+    }, "name='description'");
+    this.title.setTitle("Target" + this.appService.seoTitle());
+
   }
 
   ngOnInit(): void {
-    this.serviceSubscription = this.dataSharedService.getDate().subscribe( (getDate:any) => {
-        this.datasource.selectedDate = getDate;
-        this.datasource.targetIndex = 0;
-        this.getTargetList();
-     });
+    this.serviceSubscription = this.dataSharedService.getDate().subscribe((getDate: any) => {
+      this.targetObj.selectedDate = getDate;
+      this.targetObj.targetIndex = 0;
+      this.getTargetList();
+    });
   }
 
   getTargetList() {
     this.flags.displayLoader = true;
     this.appService.getTargetList(
-      this.datasource.selectedDate,
+      this.targetObj.selectedDate,
       (response: any) => {
-        if (response && response.success && response.data) {
-          this.datasource.targetList =
-            response.data.length > 0 ? response.data : [];
-          this.parseTargetList();
-          this.flags.displayLoader = false;
+        if (response && response.success && response.data && response.data.length > 0) {
+          response.data.forEach((targetObj: any) => {
+            targetObj['isEnableEdit'] = false;
+          });
+          this.targetObj.targetList = response.data;//new MatTableDataSource(response.data);
+          this.dataSource = new MatTableDataSource<any>(response.data); // create new object
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort; 
+
         } else {
-          this.datasource.targetList = [];
-          this.flags.displayLoader = false;
+          this.targetObj.targetList = [];
         }
+        this.flags.displayLoader = false;
       },
       (error: any) => {
         console.error('<-- error in fetching target list -->', error);
@@ -71,12 +84,10 @@ export class TargetListComponent implements OnInit, OnDestroy {
     );
   }
 
-  parseTargetList() {
-    if (this.datasource.targetList && this.datasource.targetList.length > 0) {
-      this.datasource.targetList.forEach((targetObj: any) => {
-        targetObj['isEnableEdit'] = false;
-      });
-    }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(filterValue, this.dataSource);
   }
 
   onAddTarget() {
@@ -91,9 +102,9 @@ export class TargetListComponent implements OnInit, OnDestroy {
   }
 
   onToggleEdit(targetIndex: number) {
-    this.datasource.targetList[targetIndex].isEnableEdit =
-      !this.datasource.targetList[targetIndex].isEnableEdit;
-    if (this.datasource.targetList[targetIndex].isEnableEdit) {
+    this.targetObj.targetList[targetIndex].isEnableEdit =
+      !this.targetObj.targetList[targetIndex].isEnableEdit;
+    if (this.targetObj.targetList[targetIndex].isEnableEdit) {
       this.editTargetForm = this.formBuilder.group({
         target: [
           '',
@@ -101,7 +112,7 @@ export class TargetListComponent implements OnInit, OnDestroy {
         ],
       });
       this.editTargetForm.setValue({
-        target: this.datasource.targetList[targetIndex].target,
+        target: this.targetObj.targetList[targetIndex].target,
       });
     }
   }
@@ -118,12 +129,12 @@ export class TargetListComponent implements OnInit, OnDestroy {
   }
 
   onCloseEdit(targetIndex: number) {
-    this.datasource.targetList[targetIndex].isEnableEdit = false;
+    this.targetObj.targetList[targetIndex].isEnableEdit = false;
   }
 
   onTriggerEditTarget(targetIndex: number) {
     const payload = {
-      target_id: this.datasource.targetList[targetIndex].target_id,
+      target_id: this.targetObj.targetList[targetIndex].target_id,
       target: this.editTargetForm.value.target,
     };
 
@@ -146,10 +157,10 @@ export class TargetListComponent implements OnInit, OnDestroy {
   }
 
   onClickDelete(targetIndex: number) {
-    this.datasource.targetIndex = targetIndex;
+    this.targetObj.targetIndex = targetIndex;
     const dialogRef = this.dialog.open(ConfirmDeleteTargetComponent, {
       data: {
-        selectedTarget: this.datasource.targetList[targetIndex],
+        selectedTarget: this.targetObj.targetList[targetIndex],
         buttonText: {
           ok: 'Yes',
           cancel: 'No',
@@ -159,7 +170,7 @@ export class TargetListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerDelete(this.datasource.targetIndex);
+        this.onTriggerDelete(this.targetObj.targetIndex);
       }
     });
   }
@@ -167,7 +178,7 @@ export class TargetListComponent implements OnInit, OnDestroy {
   onTriggerDelete(targetIndex: number) {
     this.flags.displayLoader = true;
     this.appService.deleteTarget(
-      this.datasource.targetList[targetIndex].target_id,
+      this.targetObj.targetList[targetIndex].target_id,
       (response: any) => {
         this.flags.displayLoader = false;
         if (response && response.success) {

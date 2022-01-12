@@ -15,6 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app.routing';
@@ -116,6 +117,7 @@ import { AdsenseModule } from 'ng2-adsense';
     MatSlideToggleModule,
     MatDialogModule,
     MatTabsModule,
+    MatTableModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
