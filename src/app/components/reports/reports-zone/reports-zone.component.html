@@ -14,68 +14,63 @@
           </div>
 
           <div class="card-body px-2">
-            <ng-container *ngFor="let zone of reports;let zoneIndex = index;">
-              <div class="card card-custom">
-                <div class="card-body p-2">
-                  <div class="container-fluid">
+            <div class="card card-custom" *ngFor="let zone of reports;">
+              <div class="card-body p-2">
+                <div class="container-fluid">
 
-                    <div class="row d-flex justify-content-between upper-card">
-                      <div class="title">
-                        {{zone.zone_name}}
-                      </div>
-                      <div class="circle" [ngClass]="zone.acheieved_percent < 97 ? 'bg-danger': 'bg-success'">
-                        {{zone.acheieved_percent}} %
-                      </div>
+                  <div class="row d-flex justify-content-between upper-card">
+                    <div class="title">
+                      {{zone.zone_name}}
                     </div>
+                    <div class="circle" [ngClass]="zone.acheieved_percent < 97 ? 'bg-danger': 'bg-success'">
+                      {{zone.acheieved_percent}} %
+                    </div>
+                  </div>
 
-                    <!-- <div class="row sub-card-heading">Target:</div> -->
-                    <div class="row d-flex align-content-center justify-content-center text-center"
-                      style="position: relative;">
-                      <div class="col sub-card-heading">Target</div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.target_output}}</div>
-                        <div class="bottom-text">O/P</div>
-                      </div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.target_presant}}</div>
-                        <div class="bottom-text">Present</div>
-                      </div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.target_achieved}}</div>
-                        <div class="bottom-text">Achieved</div>
-                      </div>
-                      <div class="col">
-                        <span class="prod-data"
-                          [ngClass]="zone.target_diff < 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
-                        <div class="bottom-text" title="Difference">Diff.</div>
-                      </div>
+                  <!-- <div class="row sub-card-heading">Target:</div> -->
+                  <div class="row d-flex align-content-center justify-content-center text-center"
+                    style="position: relative;">
+                    <div class="col sub-card-heading">Target</div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.target_output}}</div>
+                      <div class="bottom-text">O/P</div>
                     </div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.target_presant}}</div>
+                      <div class="bottom-text">Present</div>
+                    </div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.target_achieved}}</div>
+                      <div class="bottom-text">Achieved</div>
+                    </div>
+                    <div class="col">
+                      <span class="prod-data"
+                        [ngClass]="zone.target_diff < 0 ? 'text-danger': 'text-success'">{{zone.target_diff}}</span>
+                      <div class="bottom-text" title="Difference">Diff.</div>
+                    </div>
+                  </div>
 
-                    <!-- <div class="row sub-card-heading">Hours:</div> -->
-                    <div class="row d-flex align-content-center justify-content-center text-center"
-                      style="position: relative;">
-                      <div class="col sub-card-heading">Hours</div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.target_hrs_avg}}</div>
-                        <div class="bottom-text">Planned</div>
-                      </div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.hours_completed_avg}}</div>
-                        <div class="bottom-text">Present</div>
-                      </div>
-                      <div class="col">
-                        <div class="prod-data">{{zone.hours_remaining_avg }}</div>
-                        <div class="bottom-text">Remaining</div>
-                      </div>
-                      <div class="col"></div>
+                  <!-- <div class="row sub-card-heading">Hours:</div> -->
+                  <div class="row d-flex align-content-center justify-content-center text-center"
+                    style="position: relative;">
+                    <div class="col sub-card-heading">Hours</div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.target_hrs_avg}}</div>
+                      <div class="bottom-text">Planned</div>
                     </div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.hours_completed_avg}}</div>
+                      <div class="bottom-text">Present</div>
+                    </div>
+                    <div class="col">
+                      <div class="prod-data">{{zone.hours_remaining_avg }}</div>
+                      <div class="bottom-text">Remaining</div>
+                    </div>
+                    <div class="col"></div>
                   </div>
                 </div>
               </div>
-              <div *ngIf="zoneIndex % 3 == 0">
-                <ng-adsense [height]="50" [width]="275"></ng-adsense>
-              </div>
-            </ng-container>
+            </div>
 
             <div class="col p-4 text-center" *ngIf="reports.length == 0 && !flags.displayLoader">
               <img src="/assets/img/dreamer.svg" height="200" />
@@ -98,13 +93,3 @@
       edit or delete the data entered. So most of the errors can be avoided.  </p>
   </div>
 </div>
-
-<!-- Adsense start -->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <ng-adsense></ng-adsense>
-    </div>
-  </div>
-</div>
-<!-- Adsense end -->

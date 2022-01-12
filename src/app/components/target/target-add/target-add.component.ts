@@ -59,11 +59,9 @@ export class TargetAddComponent implements AfterViewInit, OnDestroy {
           this.generateTargetForm();
         } else {
           this.flags.displayLoader = false;
-          console.log("Zone List is empty");
         }
       },
       (error: any) => {
-        console.error("Error in fetching target", error);
         this.flags.displayLoader = false;
       }
     );

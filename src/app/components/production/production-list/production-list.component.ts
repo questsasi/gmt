@@ -67,7 +67,6 @@ export class ProductionListComponent implements OnInit, OnDestroy {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('<-- Error in Fetching Production List -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -139,12 +138,10 @@ export class ProductionListComponent implements OnInit, OnDestroy {
         if (response && response.success) {
           this.getProductionList();
         } else {
-          console.error('<-- error in editiing production -->');
         }
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('<-- error in editiing production -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -177,12 +174,10 @@ export class ProductionListComponent implements OnInit, OnDestroy {
         if (response && response.success) {
           this.getProductionList();
         } else {
-          console.error('<-- error in deleting production -->');
         }
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('<-- error in deleting production -->', error);
         this.flags.displayLoader = false;
         this.getProductionList();
       }

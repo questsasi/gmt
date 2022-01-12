@@ -78,7 +78,6 @@ export class TargetListComponent implements OnInit, OnDestroy {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('<-- error in fetching target list -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -87,7 +86,6 @@ export class TargetListComponent implements OnInit, OnDestroy {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(filterValue, this.dataSource);
   }
 
   onAddTarget() {
@@ -146,11 +144,9 @@ export class TargetListComponent implements OnInit, OnDestroy {
         if (response && response.success) {
           this.getTargetList();
         } else {
-          console.error('<-- error in editing target -->');
         }
       },
       (error: any) => {
-        console.error('<-- error in editing target -->', error);
         this.flags.displayLoader = false;
       }
     );
@@ -184,11 +180,9 @@ export class TargetListComponent implements OnInit, OnDestroy {
         if (response && response.success) {
           this.getTargetList();
         } else {
-          console.error('<-- error in deleting target -->');
         }
       },
       (error: any) => {
-        console.error('<-- error in deleting target -->', error);
         this.flags.displayLoader = false;
         this.getTargetList();
       }

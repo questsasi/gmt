@@ -56,7 +56,6 @@ export class ReportsLineComponent implements OnInit, AfterViewInit, OnDestroy {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('Error in Fetching report list', error);
         this.flags.displayLoader = false;
       }
     );

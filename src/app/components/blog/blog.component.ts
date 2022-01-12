@@ -31,7 +31,6 @@ export class BlogComponent {
     this.flags.displayLoader = true;
     this.appService.getBlogs(
       (response: any) => {
-        console.log(this.blogTitle);
         this.blogObj = response.find((obj: any) => obj.title == this.blogTitle );
         if(!this.blogObj) {
           this.router.navigate(['/error/404']);

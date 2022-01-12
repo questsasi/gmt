@@ -51,7 +51,6 @@ export class DashboardComponent {
         this.flags.displayLoader = false;
       },
       (error: any) => {
-        console.error('Error in fetching factory report', error);
         this.flags.displayLoader = false;
         this.report = {};
       }

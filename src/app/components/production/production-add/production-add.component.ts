@@ -59,11 +59,9 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
           this.generateProductionForm();
         } else {
           this.flags.displayLoader = false;
-          console.error("List is empty");
         }
       },
       (error: any) => {
-        console.error("Error in fetching target details", error);
       }
     );
   }

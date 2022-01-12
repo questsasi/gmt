@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   onClickForgotPassword() {
-    console.log("forgot password clicked");
   }
 
   onClickLogin() {

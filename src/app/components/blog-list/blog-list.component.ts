@@ -30,7 +30,6 @@ export class BlogListComponent implements OnInit {
     this.appService.getBlogs(
       (response: any) => {
         this.blogData = response;
-        console.log(this.blogData);
         this.flags.displayLoader = false;
       },
       (error: any) => {
