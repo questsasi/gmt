@@ -60,6 +60,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { ErrorComponent } from './components/error/error.component';
 import { AdsenseModule } from 'ng2-adsense';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { AdsenseModule } from 'ng2-adsense';
     MatTabsModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
