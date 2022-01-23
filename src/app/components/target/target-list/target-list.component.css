@@ -56,3 +56,18 @@ td.mat-footer-cell {
 ::ng-deep .mat-form-field-infix {
   padding-top: 1px !important;
 }
+
+
+@media (min-width: 768px) {
+  .w-style {
+    width: auto !important;
+  }
+}
+
+.w-style {
+  width: 70px;
+}
+
+::ng-deep .mat-paginator-container {
+  align-items: right;
+}

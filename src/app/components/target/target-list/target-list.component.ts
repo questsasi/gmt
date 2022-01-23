@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Meta, Title } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: './target-list.component.html',
   styleUrls: ['./target-list.component.css'],
 })
-export class TargetListComponent implements OnInit, OnDestroy {
+export class TargetListComponent implements OnInit, AfterViewInit, OnDestroy {
   flags: any = {
     displayLoader: Boolean,
   };
@@ -30,10 +30,15 @@ export class TargetListComponent implements OnInit, OnDestroy {
   private serviceSubscription: Subscription = new Subscription;
   desc = 'Target of the day for every zone and line will be added with the required details';
   displayedColumns: string[] = ['sno', 'zone_name', 'line_name', 'production_hours', 'target', 'style_name', 'buyer_name', "action"];
-  dataSource: any = [];
+  dataSource: any = {
+    data: "",
+    pageIndex: 0,
+    pageSize: 10,
+    dataLength: 0
+  };
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | undefined;
-  @ViewChild(MatSort, { static: true }) sort: MatSort | undefined;
- 
+  @ViewChild(MatSort) sort: MatSort | undefined;
+
 
   constructor(
     public dialog: MatDialog,
@@ -58,6 +63,11 @@ export class TargetListComponent implements OnInit, OnDestroy {
     });
   }
 
+  ngAfterViewInit(): void {
+    // this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
   getTargetList() {
     this.flags.displayLoader = true;
     this.appService.getTargetList(
@@ -68,9 +78,12 @@ export class TargetListComponent implements OnInit, OnDestroy {
             targetObj['isEnableEdit'] = false;
           });
           this.targetObj.targetList = response.data;//new MatTableDataSource(response.data);
-          this.dataSource = new MatTableDataSource<any>(response.data); // create new object
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort; 
+
+          this.dataSource.data = new MatTableDataSource<any>(response.data); // create new object
+          this.dataSource.dataLength = response.data.length;
+          console.log(this.dataSource.data);
+          // this.dataSource.paginator = this.paginator;
+          // this.dataSource.sort = this.sort;
 
         } else {
           this.targetObj.targetList = [];
@@ -91,8 +104,6 @@ export class TargetListComponent implements OnInit, OnDestroy {
   onAddTarget() {
     const dialogRef = this.dialog.open(TargetAddComponent, {
       minWidth: '300px',
-      minHeight: '98vh',
-      panelClass: 'custom-dialog-container'
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
