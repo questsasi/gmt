@@ -1,0 +1,42 @@
+<div class="confirmation">
+  <div class="box-header">
+    ACTIVATE USER
+  </div>
+
+  <div>
+    <mat-dialog-content>
+      <div class="">
+        <div class="row">
+          <div class="col-6 label-name"> Name </div>
+          <div class="col-6 break-all"> {{selectedUser.name}} </div>
+        </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Email Id </div>
+          <div class="col-6 break-all"> {{selectedUser.email_id}} </div>
+        </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Password </div>
+          <div class="col-6 break-all"> {{selectedUser.password}} </div>
+        </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Mobile Number </div>
+          <div class="col-6 break-all"> {{selectedUser.mobile_number}} </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+  </div>
+
+  <div>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+        {{confirmButtonText}}
+      </button>
+      <button mat-raised-button mat-dialog-close tabindex="-1">
+        {{cancelButtonText}}
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

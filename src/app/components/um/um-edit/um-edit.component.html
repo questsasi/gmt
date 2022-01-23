@@ -1,0 +1,46 @@
+<h4 mat-dialog-title class="bold pb-2"> Edit User </h4>
+<div mat-dialog-content *ngIf="!flags.displayLoader">
+  <form [formGroup]="editUserForm" (ngSubmit)="editUserForm.valid && onSubmit()" novalidate autocomplete="off">
+    <!-- Name -->
+    <mat-form-field>
+      <label mat-label> Name </label>
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <label mat-label> Email ID </label>
+      <input matInput type="email" formControlName="emailId">
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field>
+      <label mat-label> Password </label>
+      <input matInput type="text" formControlName="password">
+      <mat-error *ngIf="errorHandling('password', 'required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Mobile Number -->
+    <mat-form-field>
+      <label mat-label> Mobile Number </label>
+      <input matInput type="mobile" formControlName="mobile">
+      <mat-error *ngIf="errorHandling('mobile', 'required')">
+        Mobile Number is required
+      </mat-error>
+      <mat-error *ngIf="errorHandling('mobile', 'pattern')">
+        Please, Enter 10 digit Mobile Number
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Actions -->
+    <div mat-dialog-actions>
+      <button mat-button (click)="onClickCancel()"> Cancel </button>
+      <button type="submit" mat-raised-button class="btn btn-danger"
+        [disabled]="editUserForm.invalid || flags.submitting">
+        <span *ngIf="!flags.submitting"> Submit </span>
+        <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+      </button>
+    </div>
+  </form>
+</div>

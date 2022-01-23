@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "testuser1",
+      "email_id": "test@gmail.com",
+      "password": "testpassowd",
+      "mobile_number": "9880882929",
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "name": "testuser2",
+      "email_id": "test2@gmail.com",
+      "password": "sasass",
+      "mobile_number": "923232882929",
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "name": "testuser4",
+      "email_id": "tata@gmail.com",
+      "password": "passwoed",
+      "mobile_number": "1234566",
+      "is_active": false
+    },
+    {
+      "id": 4,
+      "name": "tate12",
+      "email_id": "asygydgf2@gmail.com",
+      "password": "skjfjdfkd",
+      "mobile_number": "16747272",
+      "is_active": true
+    }
+  ]
+}

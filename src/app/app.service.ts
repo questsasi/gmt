@@ -24,8 +24,21 @@ export class AppService {
     // Reports
     factoryReport: AppConstant.serviceUrl + 'report/factory/',
     zoneReport: AppConstant.serviceUrl + 'report/zones/',
-    listReport: AppConstant.serviceUrl + 'report/lines/'
+    listReport: AppConstant.serviceUrl + 'report/lines/',
+
+    // User Management
+    listUsers: AppConstant.serviceUrl + 'users/list',
+    createUser: AppConstant.serviceUrl + 'users/create',
+    modifyUserStatus: AppConstant.serviceUrl + 'users/modifystatus',
+    updateUser: AppConstant.serviceUrl + 'users/update/'
   };
+
+  localhostConst = {
+    listTarget: AppConstant.serviceUrl + 'src/assets/data/targetList.json',
+    getTargetDetails: AppConstant.serviceUrl + 'src/assets/data/addtarget.json',
+    listProduction: AppConstant.serviceUrl + 'src/assets/data/productionList.json',
+    listUser: AppConstant.serviceUrl + 'src/assets/data/userList.json'
+  }
 
   constructor(private httpService: HttpService) { }
 
@@ -67,6 +80,10 @@ export class AppService {
     return this.httpService.get(url, successFn, errorFn);
   }
 
+  getUsersList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.listUser, successFn, errorFn);
+  }
+
   // PUT APIs
   editTarget(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.put(this.appServiceConst.target, postData, successFn, errorFn);
@@ -76,6 +93,11 @@ export class AppService {
     return this.httpService.put(this.appServiceConst.production, postData, successFn, errorFn);
   }
 
+  updateUser(userId: number, postData: any, successFn: Function, errorFn: Function) {
+    const url = `${this.appServiceConst.updateUser}${userId}`;
+    return this.httpService.put(url, postData, successFn, errorFn);
+  }
+
   // POST APIs
   createTarget(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.target, postData, successFn, errorFn);
@@ -83,7 +105,15 @@ export class AppService {
 
   createProduction(postData: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.createProduction, postData, successFn, errorFn);
-  } 
+  }
+
+  createUser(postData: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.createUser, postData, successFn, errorFn);
+  }
+
+  modifyUserStatus(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.modifyUserStatus, postdata, successFn, errorFn);
+  }
 
   // DELETE APIs
   deleteTarget(targetId: number, successFn: Function, errorFn: Function) {
@@ -107,7 +137,7 @@ export class AppService {
   }
 
   seoTitle() {
-    return " - GMT PRO";
+    return "";
   }
 
 

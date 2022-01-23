@@ -85,6 +85,12 @@ export const ROUTES: RouteInfo[] = [
   //   icon: 'card_travel',
   //   class: '',
   // },
+  {
+    path: '/um',
+    title: 'User Management',
+    icon: 'supervised_user_circle',
+    class: '',
+  },
   // {
   //   path: "/hourly_production",
   //   title: "Hourly Production",

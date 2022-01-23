@@ -1,0 +1,75 @@
+<div class="main-content target-list">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger header-box">
+            <div class="d-flex justify-content-between">
+              <div class="card-title p-t-5">User Management</div>
+              <div class="">
+                <button mat-mini-fab color="warn" aria-label="Add Order" (click)="onAddUser()">
+                  <span class="material-icons">add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body px-2">
+            <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+            <div class="table-responsive" *ngIf="!flags.displayLoader">
+              <table class="table" id="zone_table" aria-hidden="true">
+                <caption class="m-all-0"></caption>
+                <thead class="text-primary">
+                  <th id="sno"> S.No </th>
+                  <th id="name"> Name </th>
+                  <th id="emailid"> Email Id </th>
+                  <th id="password"> Password </th>
+                  <th id="password"> Mobile Number </th>
+                  <th id="action"> Action </th>
+                </thead>
+
+                <tbody *ngIf="datasource?.userList?.length > 0">
+                  <tr *ngFor="let userObj of datasource.userList; let userIndex=index">
+                    <td> {{userIndex + 1}} </td>
+                    <td> {{userObj.name}} </td>
+                    <td> {{userObj.email_id}} </td>
+                    <td> {{userObj.password}} </td>
+                    <td> {{userObj.mobile_number}} </td>
+                    <td>
+                      <button mat-raised-button type="button" matTooltip="De Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onDeactivateUser(userIndex)"
+                        *ngIf="userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">mobile_friendly</i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onActivateUser(userIndex)"
+                        *ngIf="!userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">mobile_off</i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Edit User" [matTooltipPosition]="'above'"
+                        class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="onEditUser(userIndex)"
+                        *ngIf="userObj.is_active">
+                        <i class="material-icons" aria-hidden="true">edit</i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+
+                <tbody *ngIf="datasource?.userList?.length === 0">
+                  <td colspan="6">
+                    <div class="text-center fs-20">
+                      No Records Found
+                    </div>
+                  </td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ import { ReportsZoneComponent } from "./components/reports/reports-zone/reports-
 import { ReportsLineComponent } from "./components/reports/reports-line/reports-line.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { UmListComponent } from "./components/um/um-list/um-list.component";
 import { ContactUsComponent } from "./components/contact-us/contact-us.component";
 import { AboutUsComponent } from "./components/about-us/about-us.component";
 import { FaqComponent } from "./components/faq/faq.component";
@@ -48,6 +49,9 @@ const routes: Routes = [
   { path: "reports/lines", component: ReportsLineComponent, canActivate: [AuthGuardService] },
   { path: "blog", component: BlogListComponent },
   { path: "blog/:title", component: BlogComponent },
+
+  { path: "um", component: UmListComponent, canActivate: [AuthGuardService] },
+
   { path: "about-us", component: AboutUsComponent },
   { path: "contact-us", component: ContactUsComponent },
   { path: "faq", component: FaqComponent },
