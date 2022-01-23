@@ -1,11 +1,12 @@
-<h4 mat-dialog-title class="bold pb-2"> 
-  Add Target 
+<h4 mat-dialog-title class="bold">
+  Add Target
   <div (click)="onClickCancel()" class="float-right px-1 text-muted pointer">x</div>
 </h4>
-<div mat-dialog-content>
+<div>
   <app-loader *ngIf="flags.displayLoader"></app-loader>
 
-  <form [formGroup]="targetForm" (ngSubmit)="targetForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader" autocomplete="off">
+  <form [formGroup]="targetForm" (ngSubmit)="targetForm.valid && onSubmit(formDirective)" novalidate *ngIf="!flags.displayLoader" #formDirective="ngForm"
+    autocomplete="off">
     <!-- Target Date -->
     <mat-form-field appearance="fill">
       <mat-label> Target Date </mat-label>
@@ -68,7 +69,7 @@
         Style is required
       </mat-error>
     </mat-form-field>
-    
+
     <!-- Hour -->
     <mat-form-field appearance="fill">
       <mat-label>Hrs</mat-label>
@@ -96,18 +97,20 @@
       </mat-error>
     </mat-form-field>
 
-    <!-- <ng-adsense [height]="50" [width]="200" *ngIf="afterViewInit"></ng-adsense> -->
-
     <!-- Actions -->
     <div mat-dialog-actions class="mt-2">
-      <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
       <button mat-button (click)="onClickCancel()"> Cancel </button>
       <button type="submit" mat-raised-button class="btn btn-danger"
         [disabled]="targetForm.invalid || flags.submitting">
         <span *ngIf="!flags.submitting"> Add </span>
         <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
       </button>
+      <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
+      <div *ngIf="flags.showSuccessMsg" class="text-success" style="font-size: 11px;">
+        <i class="fa fa-thumbs-o-up pl-2 pr-1" arial-hidden="true"></i>
+        Target added
+      </div>
     </div>
   </form>
-  
+
 </div>

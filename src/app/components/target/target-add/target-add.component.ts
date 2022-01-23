@@ -90,7 +90,7 @@ export class TargetAddComponent implements AfterViewInit, OnDestroy {
     return this.targetForm.controls[control].hasError(error);
   };
 
-  onSubmit() {
+  onSubmit(formDirective: any) {
     this.flags.submitting = true;
     this.errorSubmitting = false;
 
@@ -108,7 +108,16 @@ export class TargetAddComponent implements AfterViewInit, OnDestroy {
       postData,
       (resp: any) => {
         this.flags.submitting = false;
-        this.onClickCancel();
+        this.flags.showSuccessMsg = true;
+        setTimeout(() => {
+          this.flags.showSuccessMsg = false;
+        }, 7000);
+
+        // Resetting Data
+        this.targetForm.reset();
+        formDirective.resetForm();
+        this.targetForm.get('dateOfTarget')?.setValue(this.datasource.selectedDate);
+        this.targetForm.get('productionHour')?.setValue(9);        
       },
       (err: any) => {
         this.flags.submitting = false;
