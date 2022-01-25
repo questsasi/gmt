@@ -1,0 +1,27 @@
+.settings-card {
+  margin-bottom: 8px;
+  border: 1px solid #cdd4e0;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 7px;
+  box-shadow: 5px 5px 5px #b5b5b5bf;
+  -webkit-box-shadow: 5px 5px 5px 0px rgb(181 181 181 / 75%);
+}
+
+mat-card-title-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  color: #5466cd;
+}
+
+mat-card-title-group:hover {
+  color: #2196f3;
+}
+
+.material-icons {
+  font-size: 33px !important;
+  color: #d1d1d1;
+  /* padding-right: 5px; */
+}

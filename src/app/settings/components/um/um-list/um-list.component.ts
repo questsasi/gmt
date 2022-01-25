@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AppService } from 'src/app/app.service';
+import { SettingsService } from 'src/app/settings/settings.service';
 import { UmActivateComponent } from '../um-activate/um-activate.component';
 import { UmAddComponent } from '../um-add/um-add.component';
 import { UmDeactivateComponent } from '../um-deactivate/um-deactivate.component';
@@ -15,7 +15,7 @@ export class UmListComponent implements OnInit {
   flags: any = {};
   datasource: any = {};
 
-  constructor(private appService: AppService, private dialog: MatDialog) { }
+  constructor(private settingsService: SettingsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getFlagsStatus();
@@ -29,7 +29,7 @@ export class UmListComponent implements OnInit {
   getUserList() {
     this.flags.displayLoader = true;
     this.datasource.userList = [];
-    this.appService.getUsersList(
+    this.settingsService.getUsersList(
       (response: any) => {
         if (response && response.success && response.data) {
           this.datasource.userList = response.data.length > 0 ? response.data : [];
@@ -116,7 +116,7 @@ export class UmListComponent implements OnInit {
       userId: this.datasource.userList[userIndex].id,
       is_active: true
     };
-    this.appService.modifyUserStatus(
+    this.settingsService.modifyUserStatus(
       postData,
       (response: any) => {
         this.flags.displayLoader = false;
@@ -140,7 +140,7 @@ export class UmListComponent implements OnInit {
       userId: this.datasource.userList[userIndex].id,
       is_active: false
     };
-    this.appService.modifyUserStatus(
+    this.settingsService.modifyUserStatus(
       postData,
       (response: any) => {
         this.flags.displayLoader = false;

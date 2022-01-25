@@ -28,7 +28,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/reports/lines',
     title: 'Line Report',
-    icon: 'timeline',
+    icon: 'subject',
     class: '',
   },
   {
@@ -44,51 +44,15 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
-    path: "/blog",
-    title: 'Blog',
-    icon: 'library_books',
+    path: '/settings',
+    title: 'Settings',
+    icon: 'settings',
     class: '',
   },
   {
     path: '/faq',
     title: 'FAQ',
     icon: 'contact_support',
-    class: '',
-  },
-  // {
-  //   path: '/about-us',
-  //   title: 'About Us',
-  //   icon: 'accessibility_new',
-  //   class: '',
-  // },
-  // {
-  //   path: '/contact-us',
-  //   title: 'Contact Us',
-  //   icon: 'import_contacts',
-  //   class: '',
-  // }, 
-  // {
-  //   path: '/disclaimer',
-  //   title: 'Disclaimer',
-  //   icon: 'aspect_ratio',
-  //   class: '',
-  // },
-  // {
-  //   path: '/privacy',
-  //   title: 'Privacy Policy',
-  //   icon: 'archive',
-  //   class: '',
-  // },
-  // {
-  //   path: '/legal',
-  //   title: 'Legal',
-  //   icon: 'card_travel',
-  //   class: '',
-  // },
-  {
-    path: '/um',
-    title: 'User Management',
-    icon: 'supervised_user_circle',
     class: '',
   },
   // {
@@ -179,7 +143,7 @@ export class SidebarComponent implements OnInit {
 
   onLogout() {
     sessionStorage.clear();
-    window.location.href = "#/"
+    window.location.href = "/"
     location.reload();
   }
 }

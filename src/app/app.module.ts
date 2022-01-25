@@ -62,11 +62,6 @@ import { ErrorComponent } from './components/error/error.component';
 import { AdsenseModule } from 'ng2-adsense';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { UmListComponent } from './components/um/um-list/um-list.component';
-import { UmAddComponent } from './components/um/um-add/um-add.component';
-import { UmActivateComponent } from './components/um/um-activate/um-activate.component';
-import { UmDeactivateComponent } from './components/um/um-deactivate/um-deactivate.component';
-import { UmEditComponent } from './components/um/um-edit/um-edit.component';
 
 @NgModule({
   declarations: [
@@ -101,13 +96,7 @@ import { UmEditComponent } from './components/um/um-edit/um-edit.component';
     PrivacyComponent,
     BlogComponent,
     BlogListComponent,
-    ErrorComponent,
-    
-    UmListComponent,
-    UmAddComponent,
-    UmActivateComponent,
-    UmDeactivateComponent,
-    UmEditComponent
+    ErrorComponent
   ],
   imports: [
     BrowserAnimationsModule,

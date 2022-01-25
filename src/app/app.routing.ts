@@ -20,7 +20,6 @@ import { ReportsZoneComponent } from "./components/reports/reports-zone/reports-
 import { ReportsLineComponent } from "./components/reports/reports-line/reports-line.component";
 import { LoginComponent } from "./components/login/login.component";
 import { AuthGuardService } from "./services/auth-guard.service";
-import { UmListComponent } from "./components/um/um-list/um-list.component";
 import { ContactUsComponent } from "./components/contact-us/contact-us.component";
 import { AboutUsComponent } from "./components/about-us/about-us.component";
 import { FaqComponent } from "./components/faq/faq.component";
@@ -30,6 +29,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { BlogComponent } from "./components/blog/blog.component";
 import { BlogListComponent } from "./components/blog-list/blog-list.component";
 import { ErrorComponent } from "./components/error/error.component";
+import { SettingsModule } from "./settings/settings.module";
 
 const routes: Routes = [
   // { path: "user-profile", component: UserProfileComponent },
@@ -50,7 +50,12 @@ const routes: Routes = [
   { path: "blog", component: BlogListComponent },
   { path: "blog/:title", component: BlogComponent },
 
-  { path: "um", component: UmListComponent, canActivate: [AuthGuardService] },
+  { 
+    path: "settings", 
+    loadChildren: () => import('./settings/settings.module').then(
+      module => module.SettingsModule
+    )
+  },
 
   { path: "about-us", component: AboutUsComponent },
   { path: "contact-us", component: ContactUsComponent },
@@ -60,7 +65,7 @@ const routes: Routes = [
   { path: "privacy", component: PrivacyComponent },
   { path: "error/:code", component: ErrorComponent },
   { path: "", component: DashboardComponent },
-  { path: "**", redirectTo: "error/404", pathMatch: "full" }
+  // { path: "**", redirectTo: "error/404", pathMatch: "full" }
 ];
 
 @NgModule({
@@ -71,6 +76,6 @@ const routes: Routes = [
       initialNavigation: 'enabled'
     }),
   ],
-  exports: [],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

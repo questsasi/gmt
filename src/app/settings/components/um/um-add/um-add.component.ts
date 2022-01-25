@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AppService } from 'src/app/app.service';
+import { SettingsService } from 'src/app/settings/settings.service';
 
 @Component({
   selector: 'app-um-add',
@@ -13,7 +13,7 @@ export class UmAddComponent implements OnInit {
   addUserForm!: FormGroup;
 
   constructor(private dialogRef: MatDialogRef<UmAddComponent>, private formBuilder: FormBuilder,
-    private appService: AppService) { }
+    private settingsService: SettingsService) { }
 
   ngOnInit(): void {
     this.getFlagsStatus();
@@ -50,7 +50,7 @@ export class UmAddComponent implements OnInit {
       mobile_number: this.addUserForm.value.mobile
     }
 
-    this.appService.createUser(
+    this.settingsService.createUser(
       postData,
       (resp: any) => {
         this.flags.submitting = false;

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppService } from 'src/app/app.service';
+import { SettingsService } from 'src/app/settings/settings.service';
 
 @Component({
   selector: 'app-um-edit',
@@ -19,7 +19,7 @@ export class UmEditComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<UmEditComponent>,
-    private formBuilder: FormBuilder, private appService: AppService) {
+    private formBuilder: FormBuilder, private settingsService: SettingsService) {
     this.flags.displayLoader = true;
     if (data) {
       this.selectedUser = data.selectedUser;
@@ -72,7 +72,7 @@ export class UmEditComponent {
       mobile_number: this.editUserForm.value.mobile
     }
 
-    this.appService.updateUser(
+    this.settingsService.updateUser(
       this.selectedUser.id,
       postData,
       (resp: any) => {
