@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: "privacy", component: PrivacyComponent },
   { path: "error/:code", component: ErrorComponent },
   { path: "", component: DashboardComponent },
-  // { path: "**", redirectTo: "error/404", pathMatch: "full" }
+  { path: "**", redirectTo: "error/404", pathMatch: "full" }
 ];
 
 @NgModule({

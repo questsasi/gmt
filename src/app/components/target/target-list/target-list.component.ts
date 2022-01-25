@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { AppService } from 'src/app/app.service';
-import { DataSharedService } from 'src/app/common/data-shared.service';
+import { DataSharedService } from 'src/app/shared/services/data-shared.service';
 import { ConfirmDeleteTargetComponent } from '../confirm-delete-target/confirm-delete-target.component';
 import { TargetAddComponent } from '../target-add/target-add.component';
 import { MatPaginator } from '@angular/material/paginator';

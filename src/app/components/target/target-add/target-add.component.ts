@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, } from "@angular/forms";
 import * as moment from 'moment';
 
 import { AppService } from "src/app/app.service";
-import { DataSharedService } from "src/app/common/data-shared.service";
+import { DataSharedService } from "src/app/shared/services/data-shared.service";
 import { Subscription } from "rxjs";
 
 @Component({

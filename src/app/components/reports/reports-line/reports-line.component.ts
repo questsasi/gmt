@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
-import { DataSharedService } from 'src/app/common/data-shared.service';
+import { DataSharedService } from 'src/app/shared/services/data-shared.service';
 
 @Component({
   selector: 'app-reports-line',

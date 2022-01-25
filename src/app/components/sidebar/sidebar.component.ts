@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { DataSharedService } from 'src/app/common/data-shared.service';
+import { DataSharedService } from 'src/app/shared/services/data-shared.service';
 import { environment } from 'src/environments/environment';
 
 declare const $: any;

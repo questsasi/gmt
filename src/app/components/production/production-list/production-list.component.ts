@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 
 import { AppService } from 'src/app/app.service';
-import { DataSharedService } from 'src/app/common/data-shared.service';
+import { DataSharedService } from 'src/app/shared/services/data-shared.service';
 import { ConfirmDeleteProductionComponent } from '../confirm-delete-production/confirm-delete-production.component';
 import { ProductionAddComponent } from '../production-add/production-add.component';
 
