@@ -10,6 +10,10 @@ import { UmActivateComponent } from './components/um/um-activate/um-activate.com
 import { UmDeactivateComponent } from './components/um/um-deactivate/um-deactivate.component';
 import { SettingsRoutes } from './settings.routes';
 import { SettingsService } from './settings.service';
+import { FactoryListComponent } from './components/factory/factory-list/factory-list.component';
+import { FactoryAddComponent } from './components/factory/factory-add/factory-add.component';
+import { FactoryActivateComponent } from './components/factory/factory-activate/factory-activate.component';
+import { FactoryDeactivateComponent } from './components/factory/factory-deactivate/factory-deactivate.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { SettingsService } from './settings.service';
     UmDeactivateComponent,
     UmEditComponent,
     SettingsComponent,
+    FactoryListComponent,
+    FactoryAddComponent,
+    FactoryActivateComponent,
+    FactoryDeactivateComponent,
   ],
   imports: [
     SharedModule,

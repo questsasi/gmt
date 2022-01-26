@@ -1,0 +1,27 @@
+<div class="confirmation">
+    <div class="box-header">
+        DEACTIVATE FACTORY
+    </div>
+
+    <div>
+        <mat-dialog-content>
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedFactory.name}} </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div>
+        <mat-dialog-actions>
+            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+                {{confirmButtonText}}
+            </button>
+            <button mat-raised-button mat-dialog-close tabindex="-1">
+                {{cancelButtonText}}
+            </button>
+        </mat-dialog-actions>
+    </div>
+</div>

@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   // domainUrl: "http://localhost:3000/api/"
   domainUrl: "https://www.gmtpro.in/api/"
+  // domainUrl: "http://localhost:8080/"
 };
 
 /*

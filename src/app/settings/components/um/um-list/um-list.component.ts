@@ -50,7 +50,7 @@ export class UmListComponent implements OnInit {
     const dialogRef = this.dialog.open(UmAddComponent, {
       width: '250px',
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
   }
@@ -67,7 +67,7 @@ export class UmListComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
   }

@@ -1,0 +1,32 @@
+<h4 mat-dialog-title class="bold pb-2"> Add Factory </h4>
+<div mat-dialog-content>
+    <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+    <form [formGroup]="addFactoryForm" (ngSubmit)="addFactoryForm.valid && onSubmit()" novalidate
+        *ngIf="!flags.displayLoader" autocomplete="off">
+        <!-- Name -->
+        <mat-form-field>
+            <label mat-label> Factory Name </label>
+            <input matInput type="text" formControlName="name">
+            <mat-error *ngIf="errorHandling('name', 'required')">
+                Name is required
+            </mat-error>
+            <mat-error *ngIf="errorHandling('name', 'minlength')">
+                Minimum 3 Characters is required for Name
+            </mat-error>
+            <mat-error *ngIf="errorHandling('name', 'maxlength')">
+                Minimum 50 Characters are allowed for Name
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div mat-dialog-actions>
+            <button mat-button (click)="onClickCancel()"> Cancel </button>
+            <button type="submit" mat-raised-button class="btn btn-danger"
+                [disabled]="addFactoryForm.invalid || flags.submitting">
+                <span *ngIf="!flags.submitting"> Add </span>
+                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+            </button>
+        </div>
+    </form>
+</div>
