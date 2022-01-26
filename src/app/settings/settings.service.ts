@@ -12,6 +12,8 @@ export class SettingsService {
     updateUser: AppConstant.serviceUrl + 'users/update/',
     createFactory: AppConstant.serviceUrl + 'factory/create',
     modifyFactoryStatus: AppConstant.serviceUrl + 'factory/modifystatus',
+    createZone: AppConstant.serviceUrl + 'zone/create',
+    modifyZoneStatus: AppConstant.serviceUrl + 'zone/modifystatus'
   };
 
   localhostConst = {
@@ -19,17 +21,14 @@ export class SettingsService {
     getTargetDetails: AppConstant.serviceUrl + 'src/assets/data/addtarget.json',
     listProduction: AppConstant.serviceUrl + 'src/assets/data/productionList.json',
     listUser: AppConstant.serviceUrl + 'src/assets/data/userList.json',
-    listFactory: AppConstant.serviceUrl + 'src/assets/data/factoryList.json'
+    listFactory: AppConstant.serviceUrl + 'src/assets/data/factoryList.json',
+    listZone: AppConstant.serviceUrl + 'src/assets/data/zoneList.json',
   }
 
   constructor(private httpService: HttpService) { }
 
   getUsersList(successFn: Function, errorFn: Function) {
     return this.httpService.get(this.localhostConst.listUser, successFn, errorFn);
-  }
-
-  getFactoryList(successFn: Function, errorFn: Function) {
-    return this.httpService.get(this.localhostConst.listFactory, successFn, errorFn);
   }
 
   updateUser(userId: number, postData: any, successFn: Function, errorFn: Function) {
@@ -45,12 +44,28 @@ export class SettingsService {
     return this.httpService.post(this.appServiceConst.modifyUserStatus, postdata, successFn, errorFn);
   }
 
+  getFactoryList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.listFactory, successFn, errorFn);
+  }
+
   createFactory(postdata: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.createFactory, postdata, successFn, errorFn);
   }
 
   modifyFactoryStatus(postdata: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.modifyFactoryStatus, postdata, successFn, errorFn);
+  }
+
+  getZoneList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.listZone, successFn, errorFn);
+  }
+
+  createZone(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.createZone, postdata, successFn, errorFn);
+  }
+
+  modifyZoneStatus(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.modifyZoneStatus, postdata, successFn, errorFn);
   }
 
 }

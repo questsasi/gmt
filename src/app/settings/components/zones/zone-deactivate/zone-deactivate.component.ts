@@ -2,21 +2,21 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-factory-deactivate',
-  templateUrl: './factory-deactivate.component.html',
-  styleUrls: ['./factory-deactivate.component.css']
+  selector: 'app-zone-deactivate',
+  templateUrl: './zone-deactivate.component.html',
+  styleUrls: ['./zone-deactivate.component.css']
 })
-export class FactoryDeactivateComponent {
+export class ZoneDeactivateComponent {
 
-  selectedFactory: any;
+  selectedZone: any;
   confirmButtonText = "Yes";
   cancelButtonText = "Cancel";
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialogRef: MatDialogRef<FactoryDeactivateComponent>) {
+    private dialogRef: MatDialogRef<ZoneDeactivateComponent>) {
     if (data) {
-      this.selectedFactory = data.selectedFactory;
+      this.selectedZone = data.selectedZone;
       if (data.buttonText) {
         this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;

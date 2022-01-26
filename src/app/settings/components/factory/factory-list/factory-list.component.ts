@@ -113,12 +113,12 @@ export class FactoryListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerDeActivateUser(this.datasource.factoryIndex);
+        this.onTriggerDeActivateFactory(this.datasource.factoryIndex);
       }
     });
   }
 
-  onTriggerDeActivateUser(factoryIndex: number) {
+  onTriggerDeActivateFactory(factoryIndex: number) {
     this.flags.displayLoader = true;
     const postData = {
       factoryId: this.datasource.factoryList[factoryIndex].id,

@@ -14,6 +14,10 @@ import { FactoryListComponent } from './components/factory/factory-list/factory-
 import { FactoryAddComponent } from './components/factory/factory-add/factory-add.component';
 import { FactoryActivateComponent } from './components/factory/factory-activate/factory-activate.component';
 import { FactoryDeactivateComponent } from './components/factory/factory-deactivate/factory-deactivate.component';
+import { ZoneListComponent } from './components/zones/zone-list/zone-list.component';
+import { ZoneActivateComponent } from './components/zones/zone-activate/zone-activate.component';
+import { ZoneDeactivateComponent } from './components/zones/zone-deactivate/zone-deactivate.component';
+import { ZoneAddComponent } from './components/zones/zone-add/zone-add.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { FactoryDeactivateComponent } from './components/factory/factory-deactiv
     FactoryAddComponent,
     FactoryActivateComponent,
     FactoryDeactivateComponent,
+    ZoneListComponent,
+    ZoneActivateComponent,
+    ZoneDeactivateComponent,
+    ZoneAddComponent,
   ],
   imports: [
     SharedModule,

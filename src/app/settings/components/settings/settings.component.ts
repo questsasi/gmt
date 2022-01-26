@@ -23,7 +23,7 @@ export class SettingsComponent implements OnInit {
     {
       'name': 'Zone',
       'desc': 'Create, Deactivate Zone',
-      'link': '/zone',
+      'link': '/settings/zone',
       'icon': 'blur_circular'
     },
     {

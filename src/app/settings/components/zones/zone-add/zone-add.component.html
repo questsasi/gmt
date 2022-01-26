@@ -1,0 +1,50 @@
+<h4 mat-dialog-title class="bold pb-2">
+    Add Zone
+    <div (click)="onClickCancel()" class="float-right px-1 text-muted pointer">x</div>
+</h4>
+<div mat-dialog-content>
+    <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+    <form [formGroup]="addZoneForm" (ngSubmit)="addZoneForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader"
+        autocomplete="off">
+
+        <!-- Factory -->
+        <mat-form-field appearance="fill">
+            <mat-label>Factory</mat-label>
+            <mat-select formControlName="factory">
+                <mat-option *ngFor="let factory of datasource.factoryList" [value]="factory">
+                    {{factory.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('factory', 'required')">
+                Factory is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Zone Name -->
+        <mat-form-field>
+            <label mat-label> Zone Name </label>
+            <input matInput type="text" formControlName="zonename">
+            <mat-error *ngIf="errorHandling('zonename', 'required')">
+                Zone Name is required
+            </mat-error>
+            <mat-error *ngIf="errorHandling('zonename', 'minlength')">
+                Minimum 3 Characters is required for Zone Name
+            </mat-error>
+            <mat-error *ngIf="errorHandling('zonename', 'maxlength')">
+                Minimum 50 Characters are allowed for Zone Name
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div mat-dialog-actions class="mt-2">
+            <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
+            <button mat-button (click)="onClickCancel()"> Cancel </button>
+            <button type="submit" mat-raised-button class="btn btn-danger"
+                [disabled]="addZoneForm.invalid || flags.submitting">
+                <span *ngIf="!flags.submitting"> Add </span>
+                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+            </button>
+        </div>
+    </form>
+</div>
