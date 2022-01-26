@@ -1,0 +1,41 @@
+<div class="confirmation">
+    <div class="box-header">
+        DEACTIVATE LINE
+    </div>
+
+    <div>
+        <mat-dialog-content>
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Line Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.name}} </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Zone Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.zone_name}} </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Factory Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.factory_name}} </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div>
+        <mat-dialog-actions>
+            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
+                {{confirmButtonText}}
+            </button>
+            <button mat-raised-button mat-dialog-close tabindex="-1">
+                {{cancelButtonText}}
+            </button>
+        </mat-dialog-actions>
+    </div>
+</div>

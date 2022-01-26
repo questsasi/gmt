@@ -18,6 +18,10 @@ import { ZoneListComponent } from './components/zones/zone-list/zone-list.compon
 import { ZoneActivateComponent } from './components/zones/zone-activate/zone-activate.component';
 import { ZoneDeactivateComponent } from './components/zones/zone-deactivate/zone-deactivate.component';
 import { ZoneAddComponent } from './components/zones/zone-add/zone-add.component';
+import { LinesListComponent } from './components/lines/lines-list/lines-list.component';
+import { LineAddComponent } from './components/lines/line-add/line-add.component';
+import { LineActivateComponent } from './components/lines/line-activate/line-activate.component';
+import { LineDeactivateComponent } from './components/lines/line-deactivate/line-deactivate.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import { ZoneAddComponent } from './components/zones/zone-add/zone-add.component
     ZoneActivateComponent,
     ZoneDeactivateComponent,
     ZoneAddComponent,
+    LinesListComponent,
+    LineAddComponent,
+    LineActivateComponent,
+    LineDeactivateComponent,
   ],
   imports: [
     SharedModule,

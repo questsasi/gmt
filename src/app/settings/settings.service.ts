@@ -13,7 +13,9 @@ export class SettingsService {
     createFactory: AppConstant.serviceUrl + 'factory/create',
     modifyFactoryStatus: AppConstant.serviceUrl + 'factory/modifystatus',
     createZone: AppConstant.serviceUrl + 'zone/create',
-    modifyZoneStatus: AppConstant.serviceUrl + 'zone/modifystatus'
+    modifyZoneStatus: AppConstant.serviceUrl + 'zone/modifystatus',
+    createLine: AppConstant.serviceUrl + 'line/create',
+    modifyLineStatus: AppConstant.serviceUrl + 'line/modifystatus'
   };
 
   localhostConst = {
@@ -23,6 +25,8 @@ export class SettingsService {
     listUser: AppConstant.serviceUrl + 'src/assets/data/userList.json',
     listFactory: AppConstant.serviceUrl + 'src/assets/data/factoryList.json',
     listZone: AppConstant.serviceUrl + 'src/assets/data/zoneList.json',
+    listLine: AppConstant.serviceUrl + 'src/assets/data/lineList.json',
+    allListLine: AppConstant.serviceUrl + 'src/assets/data/allLineList.json'
   }
 
   constructor(private httpService: HttpService) { }
@@ -66,6 +70,22 @@ export class SettingsService {
 
   modifyZoneStatus(postdata: any, successFn: Function, errorFn: Function) {
     return this.httpService.post(this.appServiceConst.modifyZoneStatus, postdata, successFn, errorFn);
+  }
+
+  getLineList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.listLine, successFn, errorFn);
+  }
+
+  createLine(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.createLine, postdata, successFn, errorFn);
+  }
+
+  modifyLineStatus(postdata: any, successFn: Function, errorFn: Function) {
+    return this.httpService.post(this.appServiceConst.modifyLineStatus, postdata, successFn, errorFn);
+  }
+
+  getAllFactoryList(successFn: Function, errorFn: Function) {
+    return this.httpService.get(this.localhostConst.allListLine, successFn, errorFn);
   }
 
 }

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SettingsService } from 'src/app/settings/settings.service';
-import { ZoneActivateComponent } from '../zone-activate/zone-activate.component';
-import { ZoneAddComponent } from '../zone-add/zone-add.component';
-import { ZoneDeactivateComponent } from '../zone-deactivate/zone-deactivate.component';
+import { SettingsService } from '../../../../../app/settings/settings.service';
+import { LineActivateComponent } from '../line-activate/line-activate.component';
+import { LineAddComponent } from '../line-add/line-add.component';
+import { LineDeactivateComponent } from '../line-deactivate/line-deactivate.component';
 
 @Component({
-  selector: 'app-zone-list',
-  templateUrl: './zone-list.component.html',
-  styleUrls: ['./zone-list.component.css']
+  selector: 'app-lines-list',
+  templateUrl: './lines-list.component.html',
+  styleUrls: ['./lines-list.component.css']
 })
-export class ZoneListComponent implements OnInit {
+export class LinesListComponent implements OnInit {
 
   flags: any = {};
   datasource: any = {};
@@ -27,16 +27,16 @@ export class ZoneListComponent implements OnInit {
   }
 
   getDefaultDetails() {
-    this.datasource.zoneList = [];
-    this.getZoneList();
+    this.datasource.lineList = [];
+    this.getLineList();
   }
 
-  getZoneList() {
+  getLineList() {
     this.flags.displayLoader = true;
-    this.settingsService.getZoneList(
+    this.settingsService.getLineList(
       (response: any) => {
         if (response && response.success && response.data && response.data.length > 0) {
-          this.datasource.zoneList = response.data;
+          this.datasource.lineList = response.data;
         }
         this.flags.displayLoader = false;
       },
@@ -47,8 +47,8 @@ export class ZoneListComponent implements OnInit {
     this.flags.displayLoader = false;
   }
 
-  onAddZone() {
-    const dialogRef = this.dialog.open(ZoneAddComponent, {
+  onAddLine() {
+    const dialogRef = this.dialog.open(LineAddComponent, {
       width: '250px',
     });
     dialogRef.afterClosed().subscribe(() => {
@@ -56,11 +56,11 @@ export class ZoneListComponent implements OnInit {
     });
   }
 
-  onActivateZone(zoneIndex: number) {
-    this.datasource.zoneIndex = zoneIndex;
-    const dialogRef = this.dialog.open(ZoneActivateComponent, {
+  onActivateLine(lineIndex: number) {
+    this.datasource.lineIndex = lineIndex;
+    const dialogRef = this.dialog.open(LineActivateComponent, {
       data: {
-        selectedZone: this.datasource.zoneList[zoneIndex],
+        selectedLine: this.datasource.lineList[lineIndex],
         buttonText: {
           ok: 'Yes',
           cancel: 'No',
@@ -70,40 +70,40 @@ export class ZoneListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerActivateZone(this.datasource.zoneIndex);
+        this.onTriggerActivateLine(this.datasource.lineIndex);
       }
     });
   }
 
-  onTriggerActivateZone(zoneIndex: number) {
+  onTriggerActivateLine(lineIndex: number) {
     this.flags.displayLoader = true;
     const postData = {
-      zoneId: this.datasource.zoneList[zoneIndex].id,
+      lineId: this.datasource.lineList[lineIndex].id,
       is_active: true
     };
-    this.settingsService.modifyZoneStatus(
+    this.settingsService.modifyLineStatus(
       postData,
       (response: any) => {
         this.flags.displayLoader = false;
         if (response && response.success) {
-          this.getZoneList();
+          this.getLineList();
         } else {
-          console.error('<-- error in activating zone -->');
+          console.error('<-- error in activating line -->');
         }
       },
       (error: any) => {
-        console.error('<-- error in activating zone -->', error);
+        console.error('<-- error in activating line -->', error);
         this.flags.displayLoader = false;
-        this.getZoneList();
+        this.getLineList();
       }
     );
   }
 
-  onDeactivateZone(zoneIndex: number) {
-    this.datasource.zoneIndex = zoneIndex;
-    const dialogRef = this.dialog.open(ZoneDeactivateComponent, {
+  onDeactivateLine(lineIndex: number) {
+    this.datasource.lineIndex = lineIndex;
+    const dialogRef = this.dialog.open(LineDeactivateComponent, {
       data: {
-        selectedZone: this.datasource.zoneList[zoneIndex],
+        selectedLine: this.datasource.lineList[lineIndex],
         buttonText: {
           ok: 'Yes',
           cancel: 'No',
@@ -113,31 +113,31 @@ export class ZoneListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerDeActivateZone(this.datasource.zoneIndex);
+        this.onTriggerDeActivateLine(this.datasource.lineIndex);
       }
     });
   }
 
-  onTriggerDeActivateZone(zoneIndex: number) {
+  onTriggerDeActivateLine(lineIndex: number) {
     this.flags.displayLoader = true;
     const postData = {
-      zoneId: this.datasource.zoneList[zoneIndex].id,
+      lineId: this.datasource.lineList[lineIndex].id,
       is_active: false
     };
-    this.settingsService.modifyZoneStatus(
+    this.settingsService.modifyLineStatus(
       postData,
       (response: any) => {
         this.flags.displayLoader = false;
         if (response && response.success) {
-          this.getZoneList();
+          this.getLineList();
         } else {
-          console.error('<-- error in deactivating zone -->');
+          console.error('<-- error in deactivating line -->');
         }
       },
       (error: any) => {
-        console.error('<-- error in deactivating zone -->', error);
+        console.error('<-- error in deactivating line -->', error);
         this.flags.displayLoader = false;
-        this.getZoneList();
+        this.getLineList();
       }
     );
   }

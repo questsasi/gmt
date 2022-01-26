@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
     {
       'name': 'Line',
       'desc': 'Create, Deactivate Line',
-      'link': '/line',
+      'link': '/settings/line',
       'icon': 'subject'
     }
   ]
