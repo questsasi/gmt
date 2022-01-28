@@ -57,90 +57,31 @@ export class FactoryListComponent implements OnInit {
   }
 
   onActivateFactory(factoryIndex: number) {
-    this.datasource.factoryIndex = factoryIndex;
     const dialogRef = this.dialog.open(FactoryActivateComponent, {
       data: {
         selectedFactory: this.datasource.factoryList[factoryIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
+      }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerActivateFactory(this.datasource.factoryIndex);
-      }
-    });
-  }
-
-  onTriggerActivateFactory(factoryIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      factoryId: this.datasource.factoryList[factoryIndex].id,
-      is_active: true
-    };
-    this.settingsService.modifyFactoryStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getFactoryList();
-        } else {
-          console.error('<-- error in activating factory -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in activating factory -->', error);
-        this.flags.displayLoader = false;
         this.getFactoryList();
       }
-    );
+    });
   }
 
   onDeactivateFactory(factoryIndex: number) {
-    this.datasource.factoryIndex = factoryIndex;
     const dialogRef = this.dialog.open(FactoryDeactivateComponent, {
       data: {
-        selectedFactory: this.datasource.factoryList[factoryIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
+        selectedFactory: this.datasource.factoryList[factoryIndex]
+      }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerDeActivateFactory(this.datasource.factoryIndex);
+        this.getFactoryList();
       }
     });
   }
-
-  onTriggerDeActivateFactory(factoryIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      factoryId: this.datasource.factoryList[factoryIndex].id,
-      is_active: false
-    };
-    this.settingsService.modifyFactoryStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getFactoryList();
-        } else {
-          console.error('<-- error in deactivating factory -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in deactivating factory -->', error);
-        this.flags.displayLoader = false;
-        this.getFactoryList();
-      }
-    );
-  }
-
 
 }
