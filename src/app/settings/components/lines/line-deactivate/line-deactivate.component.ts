@@ -26,7 +26,6 @@ export class LineDeactivateComponent {
   }
 
   getFlagsStatus() {
-    this.flags.displayLoader = false;
     this.flags.submitting = false;
     this.flags.errorSubmitting = false;
   }
@@ -37,7 +36,7 @@ export class LineDeactivateComponent {
 
   onTriggerDeactivateLine() {
     this.getFlagsStatus();
-    this.flags.displayLoader = true;
+    this.flags.submitting = true;
     const postData = {
       lineId: this.selectedLine.id,
       is_active: false

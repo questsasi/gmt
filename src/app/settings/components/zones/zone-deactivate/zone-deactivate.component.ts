@@ -26,7 +26,6 @@ export class ZoneDeactivateComponent {
   }
 
   getFlagsStatus() {
-    this.flags.displayLoader = false;
     this.flags.submitting = false;
     this.flags.errorSubmitting = false;
   }
@@ -37,7 +36,7 @@ export class ZoneDeactivateComponent {
 
   onTriggerDeactivateZone() {
     this.getFlagsStatus();
-    this.flags.displayLoader = true;
+    this.flags.submitting = true;
     const postData = {
       zoneId: this.selectedZone.id,
       is_active: false

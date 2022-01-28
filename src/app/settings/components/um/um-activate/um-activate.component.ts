@@ -26,7 +26,6 @@ export class UmActivateComponent {
   }
 
   getFlagsStatus() {
-    this.flags.displayLoader = false;
     this.flags.submitting = false;
     this.flags.errorSubmitting = false;
   }
