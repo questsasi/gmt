@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingsComponent } from './settings.component';
+import { FactoryDeactivateComponent } from './factory-deactivate.component';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('FactoryDeactivateComponent', () => {
+  let component: FactoryDeactivateComponent;
+  let fixture: ComponentFixture<FactoryDeactivateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SettingsComponent]
+      declarations: [FactoryDeactivateComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(FactoryDeactivateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

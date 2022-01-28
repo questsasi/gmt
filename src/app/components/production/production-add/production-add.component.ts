@@ -22,7 +22,7 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
     displayLoader: Boolean,
     submitting: Boolean
   };
-  errorSubmitting:Boolean = false;
+  errorSubmitting: Boolean = false;
   errorMsg: String = '';
   productionForm!: FormGroup;
   private serviceSubscription: Subscription = new Subscription;
@@ -68,7 +68,7 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
 
   generateProductionForm() {
     this.productionForm = this.formBuilder.group({
-      dateOfProduction: [{disabled: true, value: this.datasource.selectedDate}, [Validators.required]],
+      dateOfProduction: [{ disabled: true, value: this.datasource.selectedDate }, [Validators.required]],
       zone: ["", [Validators.required]],
       line: ["", [Validators.required]],
       target: ["", [Validators.required]],
@@ -83,7 +83,7 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
     this.datasource.lines = [];
     this.datasource.target = [];
     // this.productionForm.controls['zone'] = {};
-    
+
     let result = this.datasource.zones.find((obj: any) => obj.id == this.productionForm.controls['zone'].value);
     this.datasource.lines = result.lines;
   }
@@ -94,7 +94,7 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
 
     let temp = this.productionForm.controls['line'].value;
     this.datasource.target = [];
-    if(temp.targets && temp.targets.length > 0) {
+    if (temp.targets && temp.targets.length > 0) {
       this.datasource.target = temp.targets;
     }
   }
@@ -138,7 +138,7 @@ export class ProductionAddComponent implements AfterViewInit, OnDestroy {
   onClickCancel() {
     this.dialogRef.close();
   }
- 
+
   ngOnDestroy(): void {
     this.serviceSubscription.unsubscribe();
   }

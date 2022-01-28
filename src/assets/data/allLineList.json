@@ -1,0 +1,29 @@
+{
+    "success": true,
+    "data": [
+        {
+            "factory_id": 1,
+            "factory_name": "Factory 1",
+            "zones": [
+                {
+                    "zone_id": 1,
+                    "zone_name": "Zone 1"
+                }
+            ]
+        },
+        {
+            "factory_id": 2,
+            "factory_name": "Factory 2",
+            "zones": [
+                {
+                    "zone_id": 2,
+                    "zone_name": "Zone 2"
+                },
+                {
+                    "zone_id": 3,
+                    "zone_name": "Zone 3"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+<div class="confirmation">
+    <div class="box-header">
+        ACTIVATE LINE
+    </div>
+
+    <div>
+        <mat-dialog-content>
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Line Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.name}} </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Zone Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.zone_name}} </div>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="row">
+                    <div class="col-6 label-name"> Factory Name </div>
+                    <div class="col-6 text-nowrap"> {{selectedLine.factory_name}} </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div>
+        <mat-dialog-actions>
+            <button mat-raised-button mat-dialog-close tabindex="-1"> {{cancelButtonText}} </button>
+            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1"
+                [disabled]="flags.submitting">
+                <div *ngIf="!flags.submitting"> {{confirmButtonText}} </div>
+                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+            </button>
+        </mat-dialog-actions>
+        <div class="text-danger fs-12 m-t-10" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
+    </div>
+</div>

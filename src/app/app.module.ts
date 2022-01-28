@@ -43,6 +43,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { AdsenseModule } from 'ng2-adsense';
 
 import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -84,8 +85,8 @@ import { SharedModule } from './shared/shared.module';
     RouterModule,
     AppRoutingModule,
     SharedModule,
+    CommonModule,
 
-    
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

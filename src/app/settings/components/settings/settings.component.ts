@@ -13,23 +13,27 @@ export class SettingsComponent implements OnInit {
       'desc': 'Create, Deactivate User',
       'link': '/settings/um',
       'icon': 'nature_people'
-    },{
+    },
+    {
       'name': 'Factory',
       'desc': 'Create, Deactivate Factory',
-      'link': '/factory',
+      'link': '/settings/factory',
       'icon': 'markunread_mailbox'
-    },{
+    },
+    {
       'name': 'Zone',
       'desc': 'Create, Deactivate Zone',
-      'link': '/zone',
+      'link': '/settings/zone',
       'icon': 'blur_circular'
-    },{
+    },
+    {
       'name': 'Line',
       'desc': 'Create, Deactivate Line',
-      'link': '/line',
+      'link': '/settings/line',
       'icon': 'subject'
     }
   ]
+
   constructor() { }
 
   ngOnInit(): void {
