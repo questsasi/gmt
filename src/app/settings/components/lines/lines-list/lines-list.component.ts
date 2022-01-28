@@ -57,89 +57,31 @@ export class LinesListComponent implements OnInit {
   }
 
   onActivateLine(lineIndex: number) {
-    this.datasource.lineIndex = lineIndex;
     const dialogRef = this.dialog.open(LineActivateComponent, {
       data: {
-        selectedLine: this.datasource.lineList[lineIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
+        selectedLine: this.datasource.lineList[lineIndex]
+      }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerActivateLine(this.datasource.lineIndex);
-      }
-    });
-  }
-
-  onTriggerActivateLine(lineIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      lineId: this.datasource.lineList[lineIndex].id,
-      is_active: true
-    };
-    this.settingsService.modifyLineStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getLineList();
-        } else {
-          console.error('<-- error in activating line -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in activating line -->', error);
-        this.flags.displayLoader = false;
         this.getLineList();
       }
-    );
+    });
   }
 
   onDeactivateLine(lineIndex: number) {
-    this.datasource.lineIndex = lineIndex;
     const dialogRef = this.dialog.open(LineDeactivateComponent, {
       data: {
-        selectedLine: this.datasource.lineList[lineIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
+        selectedLine: this.datasource.lineList[lineIndex]
       },
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerDeActivateLine(this.datasource.lineIndex);
-      }
-    });
-  }
-
-  onTriggerDeActivateLine(lineIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      lineId: this.datasource.lineList[lineIndex].id,
-      is_active: false
-    };
-    this.settingsService.modifyLineStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getLineList();
-        } else {
-          console.error('<-- error in deactivating line -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in deactivating line -->', error);
-        this.flags.displayLoader = false;
         this.getLineList();
       }
-    );
+    });
   }
 
 }
