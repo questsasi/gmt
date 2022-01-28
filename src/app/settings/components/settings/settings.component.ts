@@ -33,6 +33,7 @@ export class SettingsComponent implements OnInit {
       'icon': 'subject'
     }
   ]
+
   constructor() { }
 
   ngOnInit(): void {

@@ -23,12 +23,13 @@
 
     <div>
         <mat-dialog-actions>
-            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
-                {{confirmButtonText}}
-            </button>
-            <button mat-raised-button mat-dialog-close tabindex="-1">
-                {{cancelButtonText}}
+            <button mat-raised-button mat-dialog-close tabindex="-1"> {{cancelButtonText}} </button>
+            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1"
+                [disabled]="flags.submitting">
+                <div *ngIf="!flags.submitting"> {{confirmButtonText}} </div>
+                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
             </button>
         </mat-dialog-actions>
+        <div class="text-danger fs-12 m-t-10" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
     </div>
 </div>
