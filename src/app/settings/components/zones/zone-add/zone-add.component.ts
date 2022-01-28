@@ -60,6 +60,7 @@ export class ZoneAddComponent implements OnInit {
 
   onSubmit() {
     this.flags.submitting = true;
+    this.flags.errorSubmitting = false;
 
     let postData = {
       factory_name: this.addZoneForm.value.factory.name,
@@ -71,12 +72,37 @@ export class ZoneAddComponent implements OnInit {
       postData,
       (resp: any) => {
         this.flags.submitting = false;
-        this.onClickCancel();
+        if (resp && resp.success) {
+          this.onClickCancel();
+        } else {
+          this.getSuccessErrorFn(resp);
+        }
       },
       (err: any) => {
-        this.flags.submitting = false;
-        this.onClickCancel();
+        this.getErrorFn(err);
       });
+  }
+
+  getSuccessErrorFn(resp: any) {
+    this.errorMsg = resp.data;
+    this.flags.errorSubmitting = false;
+    setTimeout(() => {
+      this.flags.errorSubmitting = true;
+    }, 1 * 1000);
+  }
+
+  getErrorFn(err: any) {
+    err = {
+      error: {
+        data: "Error in Creating Zone"
+      }
+    }
+    this.flags.submitting = false;
+    this.errorMsg = (err && err.error && err.error.data) ? err.error.data : '';
+    this.flags.errorSubmitting = false;
+    setTimeout(() => {
+      this.flags.errorSubmitting = true;
+    }, 1 * 1000);
   }
 
   onClickCancel() {

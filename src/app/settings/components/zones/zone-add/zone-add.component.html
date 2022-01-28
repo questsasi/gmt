@@ -38,13 +38,13 @@
 
         <!-- Actions -->
         <div mat-dialog-actions class="mt-2">
-            <div class="text-danger" style="font-size: 11px;" *ngIf="errorSubmitting">{{errorMsg}}</div>
             <button mat-button (click)="onClickCancel()"> Cancel </button>
             <button type="submit" mat-raised-button class="btn btn-danger"
                 [disabled]="addZoneForm.invalid || flags.submitting">
                 <span *ngIf="!flags.submitting"> Add </span>
                 <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
             </button>
+            <div class="text-danger" style="font-size: 12px;" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
         </div>
     </form>
 </div>

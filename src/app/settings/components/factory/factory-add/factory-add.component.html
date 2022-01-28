@@ -27,6 +27,7 @@
                 <span *ngIf="!flags.submitting"> Add </span>
                 <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
             </button>
+            <div class="text-danger" style="font-size: 12px;" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
         </div>
     </form>
 </div>

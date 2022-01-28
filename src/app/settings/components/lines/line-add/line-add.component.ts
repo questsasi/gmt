@@ -84,7 +84,7 @@ export class LineAddComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.flags.submitting = true;
-    this.errorSubmitting = false;
+    this.flags.errorSubmitting = false;
 
     let postData = {
       zone_id: this.addLineForm.value.zone.zone_id,
@@ -96,17 +96,37 @@ export class LineAddComponent implements OnInit, OnDestroy {
       postData,
       (resp: any) => {
         this.flags.submitting = false;
-        this.onClickCancel();
+        if (resp && resp.success) {
+          this.onClickCancel();
+        } else {
+          this.getSuccessErrorFn(resp);
+        }
       },
       (err: any) => {
-        this.flags.submitting = false;
-        this.errorMsg = err.error.data;
-        this.errorSubmitting = true;
-        setTimeout(() => {
-          this.errorSubmitting = false;
-        }, 10 * 1000);
-        // this.onClickCancel();
+        this.getErrorFn(err);
       });
+  }
+
+  getSuccessErrorFn(resp: any) {
+    this.errorMsg = resp.data;
+    this.flags.errorSubmitting = false;
+    setTimeout(() => {
+      this.flags.errorSubmitting = true;
+    }, 1 * 1000);
+  }
+
+  getErrorFn(err: any) {
+    err = {
+      error: {
+        data: "Error in Creating Line"
+      }
+    }
+    this.flags.submitting = false;
+    this.errorMsg = (err && err.error && err.error.data) ? err.error.data : '';
+    this.flags.errorSubmitting = false;
+    setTimeout(() => {
+      this.flags.errorSubmitting = true;
+    }, 1 * 1000);
   }
 
   onClickCancel() {
