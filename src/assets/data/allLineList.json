@@ -7,7 +7,13 @@
             "zones": [
                 {
                     "zone_id": 1,
-                    "zone_name": "Zone 1"
+                    "zone_name": "Zone 1",
+                    "lines": [
+                        {
+                            "line_id": 1,
+                            "line_name": "Line 1"
+                        }
+                    ]
                 }
             ]
         },
@@ -17,11 +23,22 @@
             "zones": [
                 {
                     "zone_id": 2,
-                    "zone_name": "Zone 2"
+                    "zone_name": "Zone 2",
+                    "lines": [
+                        {
+                            "line_id": 2,
+                            "line_name": "Line 2"
+                        },
+                        {
+                            "line_id": 3,
+                            "line_name": "Line 3"
+                        }
+                    ]
                 },
                 {
                     "zone_id": 3,
-                    "zone_name": "Zone 3"
+                    "zone_name": "Zone 3",
+                    "lines": []
                 }
             ]
         }

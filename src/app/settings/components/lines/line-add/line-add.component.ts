@@ -118,7 +118,7 @@ export class LineAddComponent implements OnInit, OnDestroy {
   getErrorFn(err: any) {
     err = {
       error: {
-        data: "Error in Creating Line"
+        data: "Error in Adding Line"
       }
     }
     this.flags.submitting = false;

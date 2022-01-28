@@ -11,6 +11,11 @@
           <div class="col-6 break-all"> {{selectedUser.name}} </div>
         </div>
 
+        <div class="row">
+          <div class="col-6 label-name"> Employee Id </div>
+          <div class="col-6 break-all"> {{selectedUser.employee_id}} </div>
+        </div>
+
         <div class="row p-t-10">
           <div class="col-6 label-name"> Email Id </div>
           <div class="col-6 break-all"> {{selectedUser.email_id}} </div>
@@ -25,18 +30,33 @@
           <div class="col-6 label-name"> Mobile Number </div>
           <div class="col-6 break-all"> {{selectedUser.mobile_number}} </div>
         </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Factory Name </div>
+          <div class="col-6 break-all"> {{selectedUser.factory_name}} </div>
+        </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Zone Name </div>
+          <div class="col-6 break-all"> {{selectedUser.zone_name}} </div>
+        </div>
+
+        <div class="row p-t-10">
+          <div class="col-6 label-name"> Line Name </div>
+          <div class="col-6 break-all"> {{selectedUser.line_name}} </div>
+        </div>
       </div>
     </mat-dialog-content>
   </div>
 
   <div>
     <mat-dialog-actions>
-      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">
-        {{confirmButtonText}}
-      </button>
-      <button mat-raised-button mat-dialog-close tabindex="-1">
-        {{cancelButtonText}}
+      <button mat-raised-button mat-dialog-close tabindex="-1"> {{cancelButtonText}} </button>
+      <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1" [disabled]="flags.submitting">
+        <div *ngIf="!flags.submitting"> {{confirmButtonText}} </div>
+        <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
       </button>
     </mat-dialog-actions>
+    <div class="text-danger fs-12 m-t-10" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
   </div>
 </div>

@@ -12,7 +12,7 @@ export class UmEditComponent {
 
   selectedUser: any;
   confirmButtonText = "Yes";
-  cancelButtonText = "Cancel";
+  cancelButtonText = "No";
   editUserForm!: FormGroup;
   flags: any = {};
 

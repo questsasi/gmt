@@ -94,7 +94,7 @@ export class ZoneAddComponent implements OnInit {
   getErrorFn(err: any) {
     err = {
       error: {
-        data: "Error in Creating Zone"
+        data: "Error in Adding Zone"
       }
     }
     this.flags.submitting = false;

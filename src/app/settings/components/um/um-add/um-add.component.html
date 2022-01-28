@@ -4,6 +4,45 @@
 
   <form [formGroup]="addUserForm" (ngSubmit)="addUserForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader"
     autocomplete="off">
+    <!-- Factory -->
+    <mat-form-field appearance="fill">
+      <mat-label>Factory</mat-label>
+      <mat-select formControlName="factory" (selectionChange)="onChangeFactory()">
+        <mat-option *ngFor="let factoryObj of datasource.factory" [value]="factoryObj">
+          {{factoryObj.factory_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('factory', 'required')">
+        Factory is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Zone -->
+    <mat-form-field appearance="fill">
+      <mat-label>Zone</mat-label>
+      <mat-select formControlName="zone" (selectionChange)="onChangeZone()">
+        <mat-option *ngFor="let zone of datasource.zones" [value]="zone">
+          {{zone.zone_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('zone', 'required')">
+        Zone is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Line -->
+    <mat-form-field appearance="fill">
+      <mat-label>Line</mat-label>
+      <mat-select formControlName="line">
+        <mat-option *ngFor="let line of datasource.lines" [value]="line">
+          {{line.line_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="errorHandling('line', 'required')">
+        Line is required
+      </mat-error>
+    </mat-form-field>
+
     <!-- Name -->
     <mat-form-field>
       <label mat-label> Name </label>
@@ -11,7 +50,29 @@
       <mat-error *ngIf="errorHandling('name', 'required')">
         Name is required
       </mat-error>
+      <mat-error *ngIf="errorHandling('name', 'minlength')">
+        Minimum 3 Characters is required for Name
+      </mat-error>
+      <mat-error *ngIf="errorHandling('name', 'maxlength')">
+        Minimum 50 Characters are allowed for Name
+      </mat-error>
     </mat-form-field>
+
+    <!-- Name -->
+    <mat-form-field>
+      <label mat-label> Employee Id </label>
+      <input matInput type="text" formControlName="employeeId">
+      <mat-error *ngIf="errorHandling('employeeId', 'required')">
+        Name is required
+      </mat-error>
+      <mat-error *ngIf="errorHandling('employeeId', 'minlength')">
+        Minimum 3 Characters is required for Employee Id
+      </mat-error>
+      <mat-error *ngIf="errorHandling('employeeId', 'maxlength')">
+        Minimum 50 Characters are allowed for Employee Id
+      </mat-error>
+    </mat-form-field>
+
 
     <mat-form-field>
       <label mat-label> Email ID </label>
@@ -30,6 +91,9 @@
       <input matInput type="text" formControlName="password">
       <mat-error *ngIf="errorHandling('password', 'required')">
         Password is required
+      </mat-error>
+      <mat-error *ngIf="errorHandling('password', 'pattern')">
+        Password must have 1 Number, 1 LowerCase , 1 Uppercase, Minimum 8 Characters and Maximum 30 Characters
       </mat-error>
     </mat-form-field>
 
@@ -53,6 +117,7 @@
         <span *ngIf="!flags.submitting"> Add </span>
         <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
       </button>
+      <div class="text-danger" style="font-size: 12px;" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
     </div>
   </form>
 </div>

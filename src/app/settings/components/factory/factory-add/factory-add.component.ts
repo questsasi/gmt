@@ -74,7 +74,7 @@ export class FactoryAddComponent implements OnInit {
   getErrorFn(err: any) {
     err = {
       error: {
-        data: "Error in Creating Factory"
+        data: "Error in Adding Factory"
       }
     }
     this.flags.submitting = false;

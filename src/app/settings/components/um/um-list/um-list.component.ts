@@ -31,8 +31,8 @@ export class UmListComponent implements OnInit {
     this.datasource.userList = [];
     this.settingsService.getUsersList(
       (response: any) => {
-        if (response && response.success && response.data) {
-          this.datasource.userList = response.data.length > 0 ? response.data : [];
+        if (response && response.success && response.data && response.data.length > 0) {
+          this.datasource.userList = response.data;
           this.flags.displayLoader = false;
         } else {
           this.datasource.userList = [];
@@ -72,90 +72,32 @@ export class UmListComponent implements OnInit {
     });
   }
 
-  onDeactivateUser(userIndex: number) {
-    this.datasource.userIndex = userIndex;
-    const dialogRef = this.dialog.open(UmDeactivateComponent, {
-      data: {
-        selectedUser: this.datasource.userList[userIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.onTriggerDeActivateUser(this.datasource.userIndex);
-      }
-    });
-  }
-
   onActivateUser(userIndex: number) {
-    this.datasource.userIndex = userIndex;
     const dialogRef = this.dialog.open(UmActivateComponent, {
       data: {
-        selectedUser: this.datasource.userList[userIndex],
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
+        selectedUser: this.datasource.userList[userIndex]
+      }
     });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.onTriggerActivateUser(this.datasource.userIndex);
+        this.getUserList();
       }
     });
   }
 
-  onTriggerActivateUser(userIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      userId: this.datasource.userList[userIndex].id,
-      is_active: true
-    };
-    this.settingsService.modifyUserStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getUserList();
-        } else {
-          console.error('<-- error in activating user -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in activating user -->', error);
-        this.flags.displayLoader = false;
-        this.getUserList();
+  onDeactivateUser(userIndex: number) {
+    const dialogRef = this.dialog.open(UmDeactivateComponent, {
+      data: {
+        selectedUser: this.datasource.userList[userIndex]
       }
-    );
-  }
+    });
 
-  onTriggerDeActivateUser(userIndex: number) {
-    this.flags.displayLoader = true;
-    const postData = {
-      userId: this.datasource.userList[userIndex].id,
-      is_active: false
-    };
-    this.settingsService.modifyUserStatus(
-      postData,
-      (response: any) => {
-        this.flags.displayLoader = false;
-        if (response && response.success) {
-          this.getUserList();
-        } else {
-          console.error('<-- error in deactivating user -->');
-        }
-      },
-      (error: any) => {
-        console.error('<-- error in deactivating user -->', error);
-        this.flags.displayLoader = false;
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.getUserList();
       }
-    );
+    });
   }
 
   onTriggerEditUser(userIndex: number) {
