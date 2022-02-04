@@ -1,28 +1,18 @@
 <div class="confirmation">
-    <div class="box-header">
-        DEACTIVATE FACTORY
-    </div>
-
     <div>
-        <mat-dialog-content>
-            <div class="">
-                <div class="row">
-                    <div class="col-6 label-name"> Name </div>
-                    <div class="col-6 text-nowrap"> {{selectedFactory.name}} </div>
-                </div>
-            </div>
-        </mat-dialog-content>
+      <mat-dialog-content>
+        Are you sure, do you want to deactivate the factory (<b>{{selectedFactory.factory_name}}</b>) ?
+      </mat-dialog-content>
     </div>
-
+  
     <div>
-        <mat-dialog-actions>
-            <button mat-raised-button mat-dialog-close tabindex="-1"> {{cancelButtonText}} </button>
-            <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1"
-                [disabled]="flags.submitting">
-                <div *ngIf="!flags.submitting"> {{confirmButtonText}} </div>
-                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
-            </button>
-        </mat-dialog-actions>
-        <div class="text-danger fs-12 m-t-10" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
+      <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close tabindex="-1">No</button>
+        <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1" [disabled]="flags.submitting">
+          <div *ngIf="!flags.submitting">Yes</div>
+          <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+        </button>
+      </mat-dialog-actions>
+      <div class="text-danger fs-12 m-t-10" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
     </div>
-</div>
+  </div>

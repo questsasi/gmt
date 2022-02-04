@@ -10,12 +10,17 @@ export class SettingsService {
     createUser: AppConstant.serviceUrl + 'users/create',
     modifyUserStatus: AppConstant.serviceUrl + 'users/modifystatus',
     updateUser: AppConstant.serviceUrl + 'users/update/',
-    createFactory: AppConstant.serviceUrl + 'factory/create',
-    modifyFactoryStatus: AppConstant.serviceUrl + 'factory/modifystatus',
+    
+    
     createZone: AppConstant.serviceUrl + 'zone/create',
     modifyZoneStatus: AppConstant.serviceUrl + 'zone/modifystatus',
     createLine: AppConstant.serviceUrl + 'line/create',
-    modifyLineStatus: AppConstant.serviceUrl + 'line/modifystatus'
+    modifyLineStatus: AppConstant.serviceUrl + 'line/modifystatus',
+
+    // factory
+    factory: AppConstant.serviceUrl + 'factory',
+    activateFactory: AppConstant.serviceUrl + 'factory/enable/',
+    deactivateFactory: AppConstant.serviceUrl + 'factory/disable/'
   };
 
   localhostConst = {
@@ -49,15 +54,19 @@ export class SettingsService {
   }
 
   getFactoryList(successFn: Function, errorFn: Function) {
-    return this.httpService.get(this.localhostConst.listFactory, successFn, errorFn);
+    return this.httpService.get(this.appServiceConst.factory, successFn, errorFn);
   }
 
   createFactory(postdata: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.createFactory, postdata, successFn, errorFn);
+    return this.httpService.post(this.appServiceConst.factory, postdata, successFn, errorFn);
   }
 
-  modifyFactoryStatus(postdata: any, successFn: Function, errorFn: Function) {
-    return this.httpService.post(this.appServiceConst.modifyFactoryStatus, postdata, successFn, errorFn);
+  activateFactory(id: Number, successFn: Function, errorFn: Function) {
+    return this.httpService.put(this.appServiceConst.activateFactory + id, "", successFn, errorFn);
+  }
+
+  deactivateFactory(id: Number, successFn: Function, errorFn: Function) {
+    return this.httpService.put(this.appServiceConst.deactivateFactory + id, "", successFn, errorFn);
   }
 
   getZoneList(successFn: Function, errorFn: Function) {

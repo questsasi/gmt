@@ -45,7 +45,7 @@ export class FactoryAddComponent implements OnInit {
     this.flags.errorSubmitting = false;
 
     let postData = {
-      name: this.addFactoryForm.value.name
+      factory_name: this.addFactoryForm.value.name
     }
 
     this.settingsService.createFactory(

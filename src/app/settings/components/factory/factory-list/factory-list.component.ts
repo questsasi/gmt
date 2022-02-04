@@ -56,12 +56,8 @@ export class FactoryListComponent implements OnInit {
     });
   }
 
-  onActivateFactory(factoryIndex: number) {
-    const dialogRef = this.dialog.open(FactoryActivateComponent, {
-      data: {
-        selectedFactory: this.datasource.factoryList[factoryIndex],
-      }
-    });
+  onActivateFactory(obj: Object) {
+    const dialogRef = this.dialog.open(FactoryActivateComponent, { data: obj });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
@@ -70,12 +66,8 @@ export class FactoryListComponent implements OnInit {
     });
   }
 
-  onDeactivateFactory(factoryIndex: number) {
-    const dialogRef = this.dialog.open(FactoryDeactivateComponent, {
-      data: {
-        selectedFactory: this.datasource.factoryList[factoryIndex]
-      }
-    });
+  onDeactivateFactory(obj: Object) {
+    const dialogRef = this.dialog.open(FactoryDeactivateComponent, { data: obj });
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {

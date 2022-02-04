@@ -11,8 +11,6 @@ export class FactoryDeactivateComponent {
 
   selectedFactory: any;
   selectedFactoryId: any;
-  confirmButtonText = "Yes";
-  cancelButtonText = "No";
   flags: any = {};
   errorMsg!: any;
 
@@ -21,7 +19,7 @@ export class FactoryDeactivateComponent {
     private dialogRef: MatDialogRef<FactoryDeactivateComponent>,
     private settingsService: SettingsService) {
     if (data) {
-      this.selectedFactory = data.selectedFactory;
+      this.selectedFactory = data;
     }
     this.getFlagsStatus();
   }
@@ -38,12 +36,9 @@ export class FactoryDeactivateComponent {
   onTriggerDeActivateFactory() {
     this.getFlagsStatus();
     this.flags.submitting = true;
-    const postData = {
-      factoryId: this.selectedFactory.id,
-      is_active: false
-    };
-    this.settingsService.modifyFactoryStatus(
-      postData,
+    
+    this.settingsService.deactivateFactory(
+      this.selectedFactory.id,
       (resp: any) => {
         this.flags.submitting = false;
         if (resp && resp.success) {
