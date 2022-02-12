@@ -15,6 +15,7 @@ export class ZoneAddComponent implements OnInit {
   addZoneForm!: FormGroup;
   errorSubmitting: Boolean = false;
   errorMsg: String = '';
+  successMsg: String = '';
 
   constructor(private dialogRef: MatDialogRef<ZoneAddComponent>, private formBuilder: FormBuilder,
     private settingsService: SettingsService) { }
@@ -62,50 +63,28 @@ export class ZoneAddComponent implements OnInit {
     this.flags.submitting = true;
     this.flags.errorSubmitting = false;
 
-    let postData = {
-      factory_name: this.addZoneForm.value.factory.name,
-      factory_id: this.addZoneForm.value.factory.id,
-      zone_name: this.addZoneForm.value.zonename
-    }
-
     this.settingsService.createZone(
-      postData,
+      this.addZoneForm.value,
       (resp: any) => {
-        this.flags.submitting = false;
-        if (resp && resp.success) {
-          this.onClickCancel();
-        } else {
-          this.getSuccessErrorFn(resp);
-        }
+        this.successMsg = resp.message;
+        this.flags.success = true;
+        setTimeout(() => {
+          this.flags.success = false;
+          this.dialogRef.close();
+        }, 2 * 1000);
       },
       (err: any) => {
-        this.getErrorFn(err);
+        this.flags.submitting = false;
+        this.errorMsg = err.error.data;
+        this.flags.errorSubmitting = true;
+        setTimeout(() => {
+          this.flags.errorSubmitting = false;
+        }, 15 * 1000);
       });
-  }
-
-  getSuccessErrorFn(resp: any) {
-    this.errorMsg = resp.data;
-    this.flags.errorSubmitting = false;
-    setTimeout(() => {
-      this.flags.errorSubmitting = true;
-    }, 1 * 1000);
-  }
-
-  getErrorFn(err: any) {
-    err = {
-      error: {
-        data: "Error in Adding Zone"
-      }
-    }
-    this.flags.submitting = false;
-    this.errorMsg = (err && err.error && err.error.data) ? err.error.data : '';
-    this.flags.errorSubmitting = false;
-    setTimeout(() => {
-      this.flags.errorSubmitting = true;
-    }, 1 * 1000);
   }
 
   onClickCancel() {
     this.dialogRef.close();
   }
+
 }
