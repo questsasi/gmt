@@ -70,6 +70,7 @@ export class TargetListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   getTargetList() {
     this.flags.displayLoader = true;
+    this.dataSource.dataLength = 0;
     this.appService.getTargetList(
       this.targetObj.selectedDate,
       (response: any) => {
