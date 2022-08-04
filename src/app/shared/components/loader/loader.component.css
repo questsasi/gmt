@@ -20,7 +20,7 @@
   stroke: #fff;
 }
 
-::ng-deep .mat-dialog-content {
+/* ::ng-deep .mat-dialog-content {
   min-height: 300px;
   height: 99%;
-}
+} */

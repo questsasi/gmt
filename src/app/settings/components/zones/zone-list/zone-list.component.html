@@ -1,0 +1,65 @@
+<div class="main-content target-list">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger header-box">
+            <div class="d-flex justify-content-between">
+              <div class="card-title p-t-5"> Zone </div>
+              <div class="">
+                <button mat-mini-fab color="warn" aria-label="Add Zone" (click)="onAddZone()">
+                  <span class="material-icons"> add </span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body px-2">
+            <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+            <div class="table-responsive" *ngIf="!flags.displayLoader">
+              <table class="table" id="zone_table" aria-hidden="true">
+                <caption class="m-all-0"></caption>
+                <thead class="text-primary">
+                  <th id="sno"> S.No </th>
+                  <th id="name"> Zone Name </th>
+                  <th id="name"> Factory Name </th>
+                  <th id="action"> Action </th>
+                </thead>
+
+                <tbody *ngIf="datasource?.zoneList?.length > 0">
+                  <tr *ngFor="let zoneObj of datasource.zoneList; let zoneIndex=index">
+                    <td> {{zoneIndex + 1}} </td>
+                    <td> {{zoneObj.zone_name}} </td>
+                    <td> {{zoneObj.factory_name}} </td>
+                    <td>
+                      <button mat-raised-button type="button" matTooltip="De Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-success btn-link btn-sm btn-just-icon" (click)="onDeactivateZone(zoneIndex)"
+                        *ngIf="zoneObj.is_active">
+                        <i class="material-icons" aria-hidden="true"> mobile_friendly </i>
+                      </button>
+
+                      <button mat-raised-button type="button" matTooltip="Activate" [matTooltipPosition]="'above'"
+                        class="btn btn-danger btn-link btn-sm btn-just-icon" (click)="onActivateZone(zoneIndex)"
+                        *ngIf="!zoneObj.is_active">
+                        <i class="material-icons" aria-hidden="true"> mobile_off </i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+
+                <tbody *ngIf="datasource?.zoneList?.length === 0">
+                  <td colspan="6">
+                    <div class="text-center fs-20">
+                      No Records Found
+                    </div>
+                  </td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

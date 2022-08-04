@@ -1,0 +1,32 @@
+{
+    "success": true,
+    "data": [
+        {
+            "id": 1,
+            "name": "Line 1",
+            "zone_id": 1,
+            "zone_name": "Zone 1",
+            "factory_id": 1,
+            "factory_name": "Factory 1",
+            "is_active": true
+        },
+        {
+            "id": 2,
+            "name": "Line 2",
+            "zone_id": 1,
+            "zone_name": "Zone 2",
+            "factory_id": 1,
+            "factory_name": "Factory 1",
+            "is_active": false
+        },
+        {
+            "id": 3,
+            "name": "Line 3",
+            "zone_id": 1,
+            "zone_name": "Zone 1",
+            "factory_id": 1,
+            "factory_name": "Factory 2",
+            "is_active": true
+        }
+    ]
+}

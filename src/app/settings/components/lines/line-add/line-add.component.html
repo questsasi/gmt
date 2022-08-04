@@ -1,0 +1,63 @@
+<h4 mat-dialog-title class="bold pb-2">
+    Add Line
+    <div (click)="onClickCancel()" class="float-right px-1 text-muted pointer">x</div>
+</h4>
+<div mat-dialog-content>
+    <app-loader *ngIf="flags.displayLoader"></app-loader>
+
+    <form [formGroup]="addLineForm" (ngSubmit)="addLineForm.valid && onSubmit()" novalidate *ngIf="!flags.displayLoader"
+        autocomplete="off">
+
+        <!-- Factory -->
+        <mat-form-field appearance="fill">
+            <mat-label>Factory</mat-label>
+            <mat-select formControlName="factory" (selectionChange)="onChangeFactory()">
+                <mat-option *ngFor="let factoryObj of datasource.factoryList" [value]="factoryObj">
+                    {{factoryObj.factory_name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('factory', 'required')">
+                Factory is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Zone -->
+        <mat-form-field appearance="fill">
+            <mat-label>Zone</mat-label>
+            <mat-select formControlName="zone">
+                <mat-option *ngFor="let zone of datasource.zones" [value]="zone">
+                    {{zone.zone_name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('zone', 'required')">
+                Zone is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Line Name -->
+        <mat-form-field>
+            <label mat-label> Line Name </label>
+            <input matInput type="text" formControlName="linename">
+            <mat-error *ngIf="errorHandling('linename', 'required')">
+                Line Name is required
+            </mat-error>
+            <mat-error *ngIf="errorHandling('linename', 'minlength')">
+                Minimum 3 Characters is required for Line Name
+            </mat-error>
+            <mat-error *ngIf="errorHandling('linename', 'maxlength')">
+                Minimum 50 Characters are allowed for Line Name
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div mat-dialog-actions class="mt-2">
+            <button mat-button (click)="onClickCancel()"> Cancel </button>
+            <button type="submit" mat-raised-button class="btn btn-danger"
+                [disabled]="addLineForm.invalid || flags.submitting">
+                <span *ngIf="!flags.submitting"> Add </span>
+                <app-loader *ngIf="flags.submitting" [loaderType]="'formSubmit'"></app-loader>
+            </button>
+            <div class="text-danger" style="font-size: 12px;" *ngIf="flags.errorSubmitting"> {{errorMsg}} </div>
+        </div>
+    </form>
+</div>

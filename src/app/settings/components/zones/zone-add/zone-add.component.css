@@ -1,0 +1,5 @@
+::ng-deep .mat-dialog-content {
+  min-height: 270px;
+  padding: 10px 24px;
+  font-size: 14px;
+}
